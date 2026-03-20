@@ -1,0 +1,4930 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Bestiário D&D</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #121212;
+    color: #eee;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT - FICHA */
+.left {
+    width: 60%;
+    padding: 25px;
+    overflow-y: auto;
+    border-right: 1px solid #2a2a2a;
+    background: #181818;
+}
+
+.left h1 {
+    margin: 0 0 5px;
+    font-size: 28px;
+}
+
+#page {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.left img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #333;
+}
+
+/* DESCRIÇÃO BONITA */
+#desc {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    background: #1f1f1f;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+/* RIGHT - FILTROS */
+.right {
+    width: 40%;
+    padding: 20px;
+    overflow-y: auto;
+    background: #151515;
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    background: #1f1f1f;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #666;
+}
+
+/* LISTA */
+.monster {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    background: #1b1b1b;
+    border: 1px solid transparent;
+    transition: 0.2s;
+}
+
+.monster:hover {
+    background: #252525;
+    border-color: #444;
+}
+
+/* NOME */
+.monster strong {
+    font-size: 15px;
+}
+
+/* ND BADGE */
+.nd {
+    float: right;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* CORES POR ND */
+.nd-low { background: #2e7d32; }
+.nd-mid { background: #f9a825; color: #000; }
+.nd-high { background: #c62828; }
+.nd-boss { background: #6a1b9a; }
+
+/* SCROLL */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.nd {
+    float: right;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Fácil */
+.nd-low {
+    background: #2e7d32;
+	box-shadow: 0 0 5px #2e7d32;
+}
+
+/* Médio */
+.nd-mid {
+    background: #f9a825;
+    color: #000;
+	box-shadow: 0 0 5px #f9a825;
+}
+
+/* Difícil */
+.nd-high {
+    background: #c62828;
+	 box-shadow: 0 0 5px #c62828;
+}
+
+/* Boss */
+.nd-boss {
+    background: #6a1b9a;
+	box-shadow: 0 0 8px #6a1b9a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ESQUERDA -->
+    <div class="left">
+        <h1 id="name">Selecione um monstro</h1>
+        <p id="page"></p>        
+        <pre id="desc"></pre>
+		<img id="image" src="" style="display:none;">
+    </div>
+
+    <!-- DIREITA -->
+    <div class="right">
+
+        <input type="text" id="search" placeholder="Buscar monstro...">
+
+        <select id="ndFilter">
+            <option value="">Todos ND</option>
+        </select>
+
+        <select id="regionFilter">
+            <option value="">Todas Regiões</option>
+        </select>
+
+        <div id="list"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+// 🔥 DADOS EMBUTIDOS
+
+const REGIOES = [
+  "Ártico",
+  "Costa",
+  "Deserto",
+  "Floresta",
+  "Montanha",
+  "Pântano",
+  "Planície",
+  "Subterrâneo",
+  "SubSubaquático",
+  "Urbano",
+  "Ruínas",
+  "Extraplanar",
+  "Qualquer"
+];
+
+let monsters = [
+{
+    nome: "Aarakocra",
+    nd: "1/4",
+    regiao: ["Montanha", "Plano Elemental"],
+    pagina: 12,
+    descricao: `Humanoide alado que habita grandes altitudes e serve entidades do Plano Elemental do Ar.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (aarakocra), neutro e bom
+Classe de Armadura: 12
+Pontos de Vida: 13 (3d8)
+Deslocamento: 6 m, voo 15 m
+
+FOR 10 (+0)
+DES 14 (+2)
+CON 10 (+0)
+INT 11 (+0)
+SAB 12 (+1)
+CAR 11 (+0)
+
+Perícias: Percepção +5
+Sentidos: Percepção passiva 15
+Idiomas: Aarakocra, Auran
+
+Habilidades:
+- Ataque de Mergulho:
+Se o aarakocra estiver voando e mergulhar pelo menos 9 metros em linha reta em direção ao alvo e acertar um ataque corpo-a-corpo, causa dano extra de 1d6.
+
+Ações:
+- Garra:
+Ataque corpo-a-corpo com arma: +4 para atingir, alcance 1,5 m, um alvo.
+Dano: 1d4 + 2 de dano cortante.
+
+- Azagaia:
+Ataque à distância com arma: +4 para atingir, alcance 9/36 m, um alvo.
+Dano: 1d6 + 2 de dano perfurante.
+`
+},
+
+{
+    nome: "Abocanhador Matraqueante",
+    nd: "2",
+    regiao: "Subterrâneo",
+    pagina: 13,
+    descricao: `Criatura amorfa composta por bocas e olhos que enlouquece suas vítimas com sua tagarelice constante.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Média, neutro
+Classe de Armadura: 9
+Pontos de Vida: 67 (9d8 + 27)
+Deslocamento: 3 m, natação 3 m
+
+FOR 10 (+0)
+DES 8 (-1)
+CON 16 (+3)
+INT 3 (-4)
+SAB 10 (+0)
+CAR 6 (-2)
+
+Imunidade: condição caído
+Sentidos: visão no escuro 18 m, Percepção passiva 10
+Idiomas: —
+
+Habilidades:
+- Solo Aberrante:
+O solo num raio de 3 m ao redor da criatura é terreno difícil. Criaturas devem passar em teste de Força CD 10 ou ficam com deslocamento 0.
+
+- Tagarelice:
+Criaturas a até 6 m devem fazer teste de Sabedoria CD 10.
+Falha: não pode usar reações e pode perder turno ou agir aleatoriamente.
+
+Ações:
+- Mordida:
+Ataque corpo-a-corpo: +2 para atingir, alcance 1,5 m.
+Dano: 5d6 perfurante.
+Se o alvo for Médio ou menor, deve passar em teste de Força CD 10 ou cair.
+Se morrer, é absorvido.
+
+- Cusparada Cegante (Recarga 5–6):
+Ataque em área de 1,5 m.
+Teste de Destreza CD 13.
+Falha: alvo fica cego até o fim do próximo turno do monstro.
+`
+},
+
+{
+    nome: "Abolete",
+    nd: "10",
+    regiao: ["Subaquático", "Subterrâneo"],
+    pagina: 14,
+    descricao: `Criatura ancestral psíquica que domina mentes e habita profundezas aquáticas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Grande, leal e mau
+Classe de Armadura: 17 (armadura natural)
+Pontos de Vida: 135 (18d10 + 36)
+Deslocamento: 3 m, natação 12 m
+
+FOR 21 (+5)
+DES 9 (-1)
+CON 15 (+2)
+INT 18 (+4)
+SAB 15 (+2)
+CAR 18 (+4)
+
+Testes de Resistência: CON +6, INT +8, SAB +6
+Perícias: História +12, Percepção +10
+Sentidos: visão no escuro 36 m, Percepção passiva 20
+Idiomas: Telepatia 36 m
+
+Habilidades:
+- Anfíbio:
+Pode respirar ar e água.
+
+- Escravidão:
+Alvo deve fazer teste de Sabedoria CD 14.
+Falha: fica encantado e sob controle do abolete.
+
+- Nuvem de Muco:
+Criaturas na água devem fazer teste de Constituição.
+Falha: doença que impede respiração fora d'água.
+
+Ações:
+- Ataques Múltiplos:
+O abolete realiza 3 ataques de tentáculo.
+
+- Tentáculo:
++9 para atingir, alcance 3 m.
+Dano: 2d6 + 5 contundente.
+
+- Cauda:
++9 para atingir.
+Dano: 3d6 + 5 contundente.
+
+- Escravizar (3/dia):
+Teste de Sabedoria CD 14.
+Falha: controle mental total.
+
+Ações Lendárias:
+- Detectar:
+Realiza teste de Sabedoria (Percepção).
+
+- Chicotada de Cauda:
+Ataque de cauda adicional.
+
+- Drenar Psíquico:
+Causa dano psíquico e cura o abolete.
+`
+},
+
+{
+    nome: "Banshee",
+    nd: "4",
+    regiao: ["Ruínas", "Floresta"],
+    pagina: 25,
+    descricao: `Espírito amaldiçoado cujo lamento pode matar.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, caótico e maligno
+CA: 12
+PV: 58 (13d8)
+Deslocamento: voo 12 m
+
+FOR 1 (-5)
+DES 14 (+2)
+CON 10 (+0)
+INT 12 (+1)
+SAB 11 (+0)
+CAR 17 (+3)
+
+Resistências: ácido, fogo, elétrico
+Imunidades: frio, necrótico, veneno
+
+Habilidades:
+- Incorpórea:
+Atravessa objetos e criaturas.
+
+Ações:
+- Toque Corruptor:
++4 para atingir, dano 3d6 necrótico.
+
+- Lamento (1/dia):
+Criaturas a 9 m fazem teste CON CD 13.
+Falha: 0 PV.
+`
+},
+
+{
+    nome: "Basilisco",
+    nd: "3",
+    regiao: ["Deserto", "Ruínas"],
+    pagina: 26,
+    descricao: `Criatura cujo olhar petrifica.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Média
+CA: 15
+PV: 52 (8d8+16)
+Deslocamento: 6 m
+
+FOR 16
+DES 8
+CON 15
+INT 2
+SAB 8
+CAR 7
+
+Habilidades:
+- Olhar Petrificante:
+Teste CON CD 12 ou começa a petrificar.
+
+Ações:
+- Mordida:
++5 para atingir, dano 2d6+3 perfurante.
+`
+},
+
+{
+    nome: "Behir",
+    nd: "11",
+    regiao: "Montanhas",
+    pagina: 27,
+    descricao: `Serpente gigante que cospe relâmpagos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Enorme
+CA: 17
+PV: 168
+Deslocamento: 15 m
+
+FOR 23
+DES 16
+CON 18
+INT 7
+SAB 14
+CAR 12
+
+Ações:
+- Mordida:
++10 para atingir, dano 3d10+6.
+
+- Sopro Elétrico (Recarga 5–6):
+Linha de 6 m, dano 12d10 elétrico, CD 16 DES.
+`
+},
+
+{
+    nome: "Bugbear",
+    nd: "1",
+    regiao: "Floresta",
+    pagina: 32,
+    descricao: `Goblinoide furtivo e brutal.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio
+CA: 16
+PV: 27
+Deslocamento: 9 m
+
+FOR 15
+DES 14
+CON 13
+
+Habilidades:
+- Ataque surpresa:
++2d6 dano extra.
+
+Ações:
+- Maça:
++4 para atingir, dano 2d8+2.
+`
+},
+
+{
+    nome: "Bulette",
+    nd: "5",
+    regiao: "Subterrâneo",
+    pagina: 33,
+    descricao: `Predador subterrâneo.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande
+CA: 17
+PV: 94
+Deslocamento: 12 m
+
+FOR 19
+DES 11
+CON 21
+
+Ações:
+- Mordida:
++7 para atingir, dano 4d12+4.
+
+- Salto:
+Área de impacto com dano.
+`
+},
+
+{
+    nome: "Carniçal (Ghoul)",
+    nd: "1",
+    regiao: ["Ruínas", "Subterrâneo"],
+    pagina: 38,
+    descricao: `Mortos-vivos que se alimentam de carne e paralisam suas vítimas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, caótico e maligno
+Classe de Armadura: 12
+Pontos de Vida: 22 (5d8)
+Deslocamento: 9 m
+
+FOR 13 (+1)
+DES 15 (+2)
+CON 10 (+0)
+INT 7 (-2)
+SAB 10 (+0)
+CAR 6 (-2)
+
+Imunidades a dano: veneno
+Imunidades a condição: envenenado
+Sentidos: visão no escuro 18 m, Percepção passiva 10
+Idiomas: Comum
+
+Habilidades:
+- Fedor de Carniça:
+Criaturas a até 1,5 m devem passar em teste de Constituição CD 10 ou ficam envenenadas.
+
+Ações:
+- Garras:
+Ataque corpo-a-corpo: +4 para atingir, alcance 1,5 m.
+Dano: 2d4 + 2 cortante.
+Se o alvo não for morto-vivo, deve passar em teste de Constituição CD 10 ou fica paralisado por 1 minuto.
+
+- Mordida:
+Ataque corpo-a-corpo: +2 para atingir, alcance 1,5 m.
+Dano: 2d6 + 1 perfurante.
+`
+},
+
+{
+    nome: "Cavaleiro da Morte",
+    nd: "17",
+    regiao: ["Ruínas","Infernal"],
+    pagina: 39,
+    descricao: `Paladino corrompido transformado em morto-vivo poderoso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, caótico e maligno
+Classe de Armadura: 20 (armadura completa, escudo)
+Pontos de Vida: 180 (19d8 + 95)
+Deslocamento: 9 m
+
+FOR 20 (+5)
+DES 11 (+0)
+CON 20 (+5)
+INT 12 (+1)
+SAB 16 (+3)
+CAR 18 (+4)
+
+Testes de Resistência: CON +11, SAB +9, CAR +10
+Imunidades: necrótico, veneno
+Condições: enfeitiçado, exausto, amedrontado, envenenado
+
+Habilidades:
+- Aura de Desespero:
+Inimigos a até 3 m sofrem desvantagem em testes de resistência.
+
+Ações:
+- Espada Longa:
++11 para atingir, alcance 1,5 m.
+Dano: 1d8 + 5 cortante + 4d8 necrótico.
+
+- Orbe de Fogo (1/dia):
+Explosão de 6 m.
+Dano: 20d6 fogo.
+Teste de Destreza CD 18 para metade do dano.
+`
+},
+
+{
+    nome: "Chuul",
+    nd: "4",
+    regiao: ["Subaquático","Subterrâneo"],
+    pagina: 42,
+    descricao: `Criatura anfíbia que paralisa suas vítimas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Grande
+Classe de Armadura: 16 (armadura natural)
+Pontos de Vida: 93 (11d10 + 33)
+Deslocamento: 9 m, natação 9 m
+
+FOR 19 (+4)
+DES 10 (+0)
+CON 16 (+3)
+INT 5 (-3)
+SAB 11 (+0)
+CAR 5 (-3)
+
+Sentidos: visão no escuro 18 m
+
+Ações:
+- Pinça:
++6 para atingir, alcance 3 m.
+Dano: 2d6 + 4 contundente.
+Alvo fica agarrado (CD 14).
+
+- Tentáculos:
+Criaturas agarradas devem fazer teste de Constituição CD 13.
+Falha: ficam paralisadas por 1 minuto.
+`
+},
+
+{
+    nome: "Ciclope",
+    nd: "6",
+    regiao: "Montanhas",
+    pagina: 43,
+    descricao: `Gigante brutal de um olho só.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Gigante Enorme
+Classe de Armadura: 14
+Pontos de Vida: 138 (12d12 + 60)
+Deslocamento: 9 m
+
+FOR 22 (+6)
+DES 11 (+0)
+CON 20 (+5)
+INT 8 (-1)
+SAB 6 (-2)
+CAR 10 (+0)
+
+Ações:
+- Clava:
++9 para atingir, alcance 3 m.
+Dano: 3d8 + 6 contundente.
+
+- Pedra:
++9 para atingir, alcance 9/36 m.
+Dano: 4d10 + 6 contundente.
+`
+},
+{
+    nome: "Cocatriz",
+    nd: "1/2",
+    regiao: ["Floresta","Ruínas"],
+    pagina: 44,
+    descricao: `Criatura pequena com poder de petrificação ao toque.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Pequena, neutro
+CA: 11
+PV: 27 (6d6 + 6)
+Deslocamento: 6 m, voo 12 m
+
+FOR 6 (-2)
+DES 12 (+1)
+CON 12 (+1)
+INT 2 (-4)
+SAB 13 (+1)
+CAR 5 (-3)
+
+Sentidos: visão no escuro 18 m, Percepção passiva 11
+
+Ações:
+- Bico:
++3 para atingir, alcance 1,5 m.
+Dano: 1d4 + 1 perfurante.
+Se o alvo for criatura, deve fazer teste de Constituição CD 11.
+Falha: começa a petrificar (restrito) e repete o teste no próximo turno.
+`
+},
+
+{
+    nome: "Couatl",
+    nd: "4",
+    regiao: ["Floresta","Extraplanar"],
+    pagina: 45,
+    descricao: `Ser celestial serpentino com grande poder mágico e proteção divina.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Celestial Médio, leal e bom
+CA: 19 (armadura natural)
+PV: 97 (13d8 + 39)
+Deslocamento: 9 m, voo 18 m
+
+FOR 16 (+3)
+DES 20 (+5)
+CON 17 (+3)
+INT 18 (+4)
+SAB 20 (+5)
+CAR 18 (+4)
+
+Resistências: radiante
+Sentidos: visão verdadeira 36 m
+
+Habilidades:
+- Conjuração Inata: magias como Detectar Pensamentos, Invisibilidade, etc.
+
+Ações:
+- Mordida:
++8 para atingir, alcance 1,5 m.
+Dano: 1d6 + 5 perfurante + 3d6 veneno.
+CD 13 CON ou envenenado por 24h.
+
+- Constrição:
++6 para atingir.
+Dano: 2d6 + 3 contundente e alvo fica agarrado (CD 15).
+`
+},
+
+{
+    nome: "Demilich",
+    nd: "18",
+    regiao: ["Extraplanar","Ruínas"],
+    pagina: 46,
+    descricao: `Crânio arcano extremamente poderoso que consome almas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Pequeno
+CA: 20
+PV: 80 (20d4 + 40)
+Deslocamento: voo 9 m
+
+FOR 1 (-5)
+DES 20 (+5)
+CON 10 (+0)
+INT 20 (+5)
+SAB 17 (+3)
+CAR 20 (+5)
+
+Imunidades: necrótico, veneno
+
+Ações:
+- Drenar Vida:
+Criaturas a 3 m fazem teste CON CD 19.
+Falha: 6d6 necrótico.
+
+- Uivo:
+CD 15 CON.
+Falha: reduz a 0 PV.
+
+Ações Lendárias:
+- Drenar Essência
+`
+},
+
+{
+    nome: "Devorador de Intelecto",
+    nd: "2",
+    regiao: "Subterrâneo",
+    pagina: 64,
+    descricao: `Criatura que destrói a mente e assume corpos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Pequena
+CA: 12
+PV: 21 (6d6)
+Deslocamento: 12 m
+
+FOR 6 (-2)
+DES 14 (+2)
+CON 13 (+1)
+INT 12 (+1)
+SAB 11 (+0)
+CAR 10 (+0)
+
+Ações:
+- Devorar Intelecto:
+Alvo faz teste INT CD 12.
+Falha: sofre 2d10 psíquico e INT reduzida a 0.
+
+- Roubar Corpo:
+Alvo incapacitado → controle total.
+`
+},
+
+{
+    nome: "Devorador de Mentes (Mind Flayer)",
+    nd: "7",
+    regiao: "Subterrâneo",
+    pagina: 65,
+    descricao: `Aberração psíquica que domina mentes e devora cérebros.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 15
+PV: 71 (13d8 + 13)
+Deslocamento: 9 m
+
+FOR 11
+DES 12
+CON 12
+INT 19
+SAB 17
+CAR 17
+
+Ações:
+- Tentáculos:
++7 para atingir, alcance 1,5 m.
+Dano: 2d10 + 4 psíquico.
+Alvo agarrado e atordoado.
+
+- Extrair Cérebro:
+Alvo agarrado → 10d10 perfurante.
+
+- Explosão Mental:
+Cone 18 m.
+CD 15 INT.
+Falha: 4d8 psíquico e atordoado.
+`
+},
+
+{
+    nome: "Diabo (Imp)",
+    nd: "1",
+    regiao: "Inferno",
+    pagina: 67,
+    descricao: `Pequeno diabo servil com veneno e invisibilidade.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 13
+PV: 10 (3d4 + 3)
+Deslocamento: 6 m, voo 12 m
+
+Ações:
+- Picada:
++5 para atingir.
+Dano: 1d4 + 3 perfurante + 3d6 veneno.
+CD 11 CON metade do veneno.
+
+Habilidades:
+- Invisibilidade
+`
+},
+
+{
+    nome: "Tiranossauro Rex",
+    nd: "8",
+    regiao: "Floresta",
+    pagina: 80,
+    descricao: `Predador colossal.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 13
+PV: 136 (13d12 + 52)
+Deslocamento: 15 m
+
+FOR 25 (+7)
+DES 10 (+0)
+CON 19 (+4)
+
+Ações:
+- Mordida:
++10 para atingir.
+Dano: 4d12 + 7 perfurante.
+Alvo agarrado.
+
+- Cauda:
++10 para atingir.
+Dano: 3d8 + 7 contundente.
+`
+},
+{
+    nome: "Dracolich",
+    nd: "17",
+    regiao: ["Ruínas","Covil"],
+    pagina: 82,
+    descricao: `Dragão morto-vivo reanimado por magia sombria.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Enorme
+CA: 19 (armadura natural)
+PV: 225 (18d12 + 108)
+Deslocamento: 12 m, voo 24 m
+
+FOR 23 (+6)
+DES 14 (+2)
+CON 21 (+5)
+INT 16 (+3)
+SAB 13 (+1)
+CAR 21 (+5)
+
+Imunidades: necrótico, veneno
+
+Ações:
+- Mordida:
++11 para atingir, alcance 3 m.
+Dano: 2d10 + 6 perfurante + 3d6 necrótico.
+
+- Garras:
++11 para atingir.
+Dano: 2d6 + 6 cortante.
+
+- Sopro necrótico (Recarga 5–6):
+Cone 18 m.
+Dano: 10d8 necrótico.
+CD 18 DES metade.
+`
+},
+
+{
+    nome: "Dragão das Sombras",
+    nd: "variável",
+    regiao: "Umbra",
+    pagina: 83,
+    descricao: `Dragão corrompido pela energia sombria.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Dragão
+
+Habilidades:
+- Dano necrótico extra
+- Resistência à sombra
+
+Ações:
+- Mordida, garras e sopro sombrio
+`
+},
+
+{
+    nome: "Dragão Vermelho Adulto",
+    nd: "17",
+    regiao: ["Montanhas","Covil"],
+    pagina: 98,
+    descricao: `Dragão cromático extremamente poderoso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 19
+PV: 256 (19d12 + 133)
+Deslocamento: 12 m, voo 24 m
+
+FOR 27 (+8)
+DES 10 (+0)
+CON 25 (+7)
+INT 16 (+3)
+SAB 13 (+1)
+CAR 21 (+5)
+
+Ações:
+- Mordida:
++14 para atingir.
+Dano: 2d10 + 8 + 2d6 fogo.
+
+- Garras:
++14 para atingir.
+Dano: 2d6 + 8.
+
+- Sopro de fogo (Recarga 5–6):
+Cone 18 m.
+Dano: 18d6 fogo.
+CD 21 DES metade.
+`
+},
+
+{
+    nome: "Dríade",
+    nd: "1",
+    regiao: "Floresta",
+    pagina: 119,
+    descricao: `Espírito da natureza ligado a uma árvore.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Fada Média
+CA: 11
+PV: 22 (5d8)
+Deslocamento: 9 m
+
+FOR 10
+DES 12
+CON 11
+INT 14
+SAB 15
+CAR 18
+
+Ações:
+- Clava:
++2 para atingir.
+Dano: 1d4.
+
+Habilidades:
+- Encantar:
+CD 14 SAB.
+`
+},
+
+{
+    nome: "Drider",
+    nd: "6",
+    regiao: "Subterrâneo",
+    pagina: 120,
+    descricao: `Drow transformado em criatura aranha.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 19
+PV: 123
+Deslocamento: 9 m, escalada 9 m
+
+FOR 16
+DES 16
+CON 18
+
+Ações:
+- Espada longa:
++6, 1d8+3
+
+- Arco longo:
++6, 1d8+3
+`
+},
+
+{
+    nome: "Duergar",
+    nd: "1",
+    regiao: "Subterrâneo",
+    pagina: 121,
+    descricao: `Anões cinzentos com habilidades psíquicas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 16
+PV: 26
+Deslocamento: 7 m
+
+Ações:
+- Machado:
++4, 1d8+2
+
+Habilidades:
+- Invisibilidade
+- Aumentar tamanho
+`
+},
+
+{
+    nome: "Duplo (Doppelganger)",
+    nd: "3",
+    regiao: "Urbano",
+    pagina: 122,
+    descricao: `Metamorfo que assume identidades.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 14
+PV: 52
+Deslocamento: 9 m
+
+FOR 11
+DES 18
+CON 14
+
+Ações:
+- Ataque:
++6 para atingir.
+Dano: 1d6+4.
+
+Habilidades:
+- Ler pensamentos
+- Mudança de forma
+`
+},
+
+{
+    nome: "Elemental da Água",
+    nd: "5",
+    regiao: "Plano Elemental",
+    pagina: 125,
+    descricao: `Ser feito de água viva.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 14
+PV: 114
+Deslocamento: 9 m, natação 27 m
+
+FOR 18
+DES 14
+CON 18
+
+Ações:
+- Golpe:
++7 para atingir.
+Dano: 2d8+4.
+
+- Engolfar:
+CD 15 FOR ou fica preso.
+`
+},
+{
+    nome: "Elemental do Ar",
+    nd: "5",
+    regiao: "Plano Elemental",
+    pagina: 124,
+    descricao: `Ser de vento turbulento que arremessa inimigos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Grande, neutro
+CA: 15
+PV: 90 (12d10 + 24)
+Deslocamento: voo 27 m (paira)
+
+FOR 14 (+2)
+DES 20 (+5)
+CON 14 (+2)
+INT 6 (-2)
+SAB 10 (+0)
+CAR 6 (-2)
+
+Resistências: elétrico, trovejante; contundente, cortante e perfurante não-mágicos
+Imunidades: veneno; condições envenenado, agarrado, paralisado, petrificado, caído, inconsciente
+
+Ações:
+- Golpe:
++8 para atingir, alcance 1,5 m.
+Dano: 2d8 + 5 contundente.
+
+- Redemoinho (Recarga 4–6):
+Criaturas em um cilindro de 3 m fazem teste de FOR CD 13.
+Falha: 3d8 + 2 contundente, ficam arremessadas e caídas.
+`
+},
+{
+    nome: "Elemental do Fogo",
+    nd: "5",
+    regiao: "Plano Elemental",
+    pagina: 125,
+    descricao: `Corpo flamejante que incendeia o que toca.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Grande, neutro
+CA: 13
+PV: 102 (12d10 + 36)
+Deslocamento: 15 m
+
+FOR 10 (+0)
+DES 17 (+3)
+CON 16 (+3)
+INT 6 (-2)
+SAB 10 (+0)
+CAR 7 (-2)
+
+Resistências: contundente, cortante e perfurante não-mágicos
+Imunidades: fogo, veneno; condições envenenado, agarrado, paralisado
+
+Habilidades:
+- Forma de Fogo:
+Criaturas que tocam/atingem em corpo-a-corpo sofrem 1d10 fogo.
+
+Ações:
+- Toque:
++6 para atingir, alcance 1,5 m.
+Dano: 2d6 + 3 fogo.
+Alvo pega fogo (1d10 no início dos turnos, ação para apagar).
+`
+},
+{
+    nome: "Elemental da Terra",
+    nd: "5",
+    regiao: ["Plano Elemental", "Subterrâneo"],
+    pagina: 124,
+    descricao: `Massa viva de pedra que esmaga inimigos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Grande, neutro
+CA: 17 (armadura natural)
+PV: 126 (12d10 + 60)
+Deslocamento: 9 m, escavação 9 m
+
+FOR 20 (+5)
+DES 8 (-1)
+CON 20 (+5)
+INT 5 (-3)
+SAB 10 (+0)
+CAR 5 (-3)
+
+Resistências: contundente, cortante e perfurante não-mágicos
+Imunidades: veneno; condições envenenado, paralisado, petrificado
+
+Ações:
+- Pancada:
++8 para atingir, alcance 3 m.
+Dano: 2d8 + 5 contundente.
+
+- Passo Sísmico (Recarga 4–6):
+Criaturas em 3 m fazem DES CD 13.
+Falha: 2d8 contundente e ficam caídas.
+`
+},
+{
+    nome: "Elfo Drow (Guerreiro)",
+    nd: "1/4",
+    regiao: "Subterrâneo",
+    pagina: 126,
+    descricao: `Elfo das profundezas com magia inata e táticas furtivas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (elfo), neutro e maligno
+CA: 15 (cota de malha leve)
+PV: 13 (3d8)
+Deslocamento: 9 m
+
+FOR 10 (+0)
+DES 14 (+2)
+CON 10 (+0)
+INT 11 (+0)
+SAB 11 (+0)
+CAR 12 (+1)
+
+Perícias: Furtividade +4, Percepção +2
+Sentidos: visão no escuro 36 m, Percepção passiva 12
+
+Habilidades:
+- Sensibilidade à Luz Solar: desvantagem sob luz solar.
+
+Ações:
+- Espada Curta:
++4 para atingir, 1,5 m.
+Dano: 1d6 + 2 perfurante + veneno (CD 13 CON, 2d6 veneno; metade no sucesso).
+
+- Besta de Mão:
++4 para atingir, 9/36 m.
+Dano: 1d6 + 2 perfurante + veneno (CD 13 CON).
+`
+},
+{
+    nome: "Empírico",
+    nd: "23",
+    regiao: "Planos Superiores",
+    pagina: 130,
+    descricao: `Titã celestial de poder devastador.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Celestial Enorme, neutro e bom
+CA: 22 (armadura natural)
+PV: 313 (19d12 + 190)
+Deslocamento: 15 m, voo 15 m
+
+FOR 30 (+10)
+DES 21 (+5)
+CON 30 (+10)
+INT 21 (+5)
+SAB 22 (+6)
+CAR 27 (+8)
+
+Testes: FOR +17, CON +17, SAB +13, CAR +15
+
+Ações:
+- Ataques Múltiplos: 2 ataques.
+
+- Maça:
++17 para atingir, alcance 3 m.
+Dano: 3d12 + 10 contundente + 4d6 radiante.
+
+- Raio:
++15 para atingir, alcance 36 m.
+Dano: 7d6 energia (tipo varia).
+
+Ações Lendárias:
+- Ataque adicional
+- Movimento
+`
+},
+
+{
+    nome: "Ente (Treant)",
+    nd: "9",
+    regiao: ["Floresta"],
+    pagina: 131,
+    descricao: `Guardião ancestral das florestas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Planta Enorme, caótico e bom
+CA: 16 (armadura natural)
+PV: 138 (12d12 + 60)
+Deslocamento: 9 m
+
+FOR 23 (+6)
+DES 8 (-1)
+CON 21 (+5)
+INT 12 (+1)
+SAB 16 (+3)
+CAR 12 (+1)
+
+Vulnerabilidade: fogo
+
+Ações:
+- Pancada:
++10 para atingir, alcance 3 m.
+Dano: 3d6 + 6 contundente.
+
+- Arremessar Pedra:
++10 para atingir, alcance 18/60 m.
+Dano: 4d10 + 6 contundente.
+`
+},
+
+{
+    nome: "Esfinge (Androsfinge)",
+    nd: "17",
+    regiao: ["Deserto"],
+    pagina: 132,
+    descricao: `Guardião mágico poderoso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, leal e bom
+CA: 17
+PV: 199 (19d10 + 95)
+Deslocamento: 12 m, voo 18 m
+
+FOR 22 (+6)
+DES 10 (+0)
+CON 20 (+5)
+INT 16 (+3)
+SAB 18 (+4)
+CAR 23 (+6)
+
+Ações:
+- Garra:
++12 para atingir.
+Dano: 2d10 + 6 cortante.
+
+- Rugido (3/dia):
+CD 18 CON.
+Efeitos variados.
+`
+},
+
+{
+    nome: "Espantalho",
+    nd: "1",
+    regiao: ["Ruínas","Planície"],
+    pagina: 135,
+    descricao: `Constructo que causa medo.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Constructo Médio
+CA: 11
+PV: 36 (8d8)
+Deslocamento: 6 m
+
+FOR 11 (+0)
+DES 13 (+1)
+CON 11 (+0)
+
+Ações:
+- Garras:
++3 para atingir.
+Dano: 2d4 + 1.
+
+- Olhar Aterrador:
+CD 11 SAB.
+`
+},
+
+{
+    nome: "Espectro",
+    nd: "1",
+    regiao: ["Ruínas"],
+    pagina: 136,
+    descricao: `Espírito que drena vida.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio
+CA: 12
+PV: 22 (5d8)
+Deslocamento: voo 15 m
+
+Ações:
+- Dreno de Vida:
++4 para atingir.
+Dano: 3d6 necrótico.
+`
+},
+
+{
+    nome: "Esqueletos",
+    nd: "1/4",
+    regiao: ["Subterrâneo","Ruínas"],
+    pagina: 137,
+    descricao: `Mortos-vivos animados por magia necromântica.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, leal e maligno
+CA: 13 (armadura)
+PV: 13 (2d8 + 4)
+Deslocamento: 9 m
+
+FOR 10 (+0)
+DES 14 (+2)
+CON 15 (+2)
+INT 6 (-2)
+SAB 8 (-1)
+CAR 5 (-3)
+
+Vulnerabilidade: contundente
+Imunidades: veneno; condição envenenado
+Sentidos: visão no escuro 18 m
+
+Ações:
+- Espada Curta:
++4 para atingir, alcance 1,5 m.
+Dano: 1d6 + 2 perfurante.
+
+- Arco Curto:
++4 para atingir, alcance 24/96 m.
+Dano: 1d6 + 2 perfurante.
+`
+},
+
+{
+    nome: "Ettercap",
+    nd: "2",
+    regiao: ["Floresta","Subterrâneo"],
+    pagina: 140,
+    descricao: `Criatura humanoide aracnídea que usa teias para capturar presas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Média, neutro e maligno
+CA: 13
+PV: 44 (8d8 + 8)
+Deslocamento: 9 m, escalada 9 m
+
+FOR 14 (+2)
+DES 15 (+2)
+CON 13 (+1)
+INT 7 (-2)
+SAB 12 (+1)
+CAR 8 (-1)
+
+Perícias: Furtividade +4, Percepção +3
+
+Habilidades:
+- Escalada de Aranha
+- Sentido de Teia
+
+Ações:
+- Mordida:
++4 para atingir, alcance 1,5 m.
+Dano: 1d8 + 2 perfurante + 1d8 veneno.
+
+- Garras:
++4 para atingir.
+Dano: 2d4 + 2 cortante.
+
+- Teia:
++4 para atingir, alcance 9/18 m.
+Alvo fica restringido (CD 11 FOR para escapar).
+`
+},
+
+{
+    nome: "Ettin",
+    nd: "4",
+    regiao: ["Montanha","Floresta"],
+    pagina: 141,
+    descricao: `Gigante de duas cabeças que ataca com força brutal.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Gigante Grande, caótico e maligno
+CA: 12
+PV: 85 (10d10 + 30)
+Deslocamento: 12 m
+
+FOR 21 (+5)
+DES 8 (-1)
+CON 17 (+3)
+INT 6 (-2)
+SAB 10 (+0)
+CAR 8 (-1)
+
+Sentidos: Percepção passiva 10
+
+Habilidades:
+- Duas Cabeças: vantagem em testes contra ficar atordoado, cego, etc.
+
+Ações:
+- Ataques Múltiplos:
+2 ataques (clava e machado)
+
+- Clava:
++7 para atingir.
+Dano: 2d8 + 5 contundente.
+
+- Machado:
++7 para atingir.
+Dano: 2d8 + 5 cortante.
+`
+},
+
+{
+    nome: "Fantasma",
+    nd: "4",
+    regiao: ["Ruínas","Urbano"],
+    pagina: 142,
+    descricao: `Espírito inquieto que pode possuir corpos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio
+CA: 11
+PV: 45 (10d8)
+Deslocamento: voo 12 m
+
+FOR 7 (-2)
+DES 13 (+1)
+CON 10 (+0)
+INT 10 (+0)
+SAB 12 (+1)
+CAR 17 (+3)
+
+Resistências: ácido, fogo, elétrico
+Imunidades: necrótico, veneno
+
+Ações:
+- Toque Horripilante:
++5 para atingir.
+Dano: 4d6 necrótico.
+
+- Possessão:
+CD 13 CAR.
+Alvo fica possuído.
+`
+},
+
+{
+    nome: "Flumph",
+    nd: "1/8",
+    regiao: ["Subterrâneo"],
+    pagina: 143,
+    descricao: `Criatura pacífica que se alimenta de energia psíquica.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Pequena, leal e bom
+CA: 12
+PV: 7 (2d6)
+Deslocamento: voo 9 m
+
+FOR 6 (-2)
+DES 15 (+2)
+CON 10 (+0)
+INT 14 (+2)
+SAB 14 (+2)
+CAR 11 (+0)
+
+Ações:
+- Tentáculos:
++4 para atingir, alcance 1,5 m.
+Dano: 1d4 + 2 psíquico.
+
+- Spray Ácido:
+Cone 1,5 m.
+Dano: 1d4 ácido.
+CD 10 DEX para evitar.
+`
+},
+
+{
+    nome: "Fogo-Fátuo",
+    nd: "2",
+    regiao: ["Pântano"],
+    pagina: 144,
+    descricao: `Luz enganadora que atrai vítimas para a morte.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Pequena, caótico e maligno
+CA: 19
+PV: 22 (9d4)
+Deslocamento: voo 15 m
+
+FOR 1 (-5)
+DES 28 (+9)
+CON 10 (+0)
+INT 13 (+1)
+SAB 14 (+2)
+CAR 11 (+0)
+
+Ações:
+- Choque:
++4 para atingir.
+Dano: 2d8 elétrico.
+`
+},
+
+{
+    nome: "Fomori",
+    nd: "8",
+    regiao: ["Subterrâneo"],
+    pagina: 145,
+    descricao: `Gigante deformado com olhar amaldiçoado.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Gigante Enorme, caótico e maligno
+CA: 14
+PV: 149 (13d12 + 65)
+Deslocamento: 9 m
+
+FOR 23 (+6)
+DES 10 (+0)
+CON 20 (+5)
+INT 9 (-1)
+SAB 14 (+2)
+CAR 6 (-2)
+
+Ações:
+- Clava:
++9 para atingir.
+Dano: 3d8 + 6 contundente.
+
+- Olhar Amaldiçoado:
+CD 14 CAR.
+Efeito: deformação permanente.
+`
+},
+
+{
+    nome: "Galeb Duhr",
+    nd: "6",
+    regiao: ["Montanha","Subterrâneo"],
+    pagina: 148,
+    descricao: `Criatura de pedra que protege territórios.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Médio
+CA: 16
+PV: 85 (10d8 + 40)
+Deslocamento: 9 m
+
+FOR 20 (+5)
+DES 14 (+2)
+CON 20 (+5)
+
+Ações:
+- Pancada:
++8 para atingir.
+Dano: 2d8 + 5 contundente.
+
+Habilidades:
+- Animar Rochas
+`
+},
+
+{
+    nome: "Gárgula",
+    nd: "2",
+    regiao: ["Ruínas","Montanha"],
+    pagina: 149,
+    descricao: `Estátua viva que embosca suas vítimas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Médio
+CA: 15
+PV: 52 (7d8 + 21)
+Deslocamento: 9 m, voo 18 m
+
+FOR 15 (+2)
+DES 11 (+0)
+CON 16 (+3)
+
+Ações:
+- Mordida:
++4 para atingir.
+Dano: 1d6 + 2.
+
+- Garras:
++4 para atingir.
+Dano: 1d6 + 2.
+`
+},
+
+{
+    nome: "Fungos (Violeta Fungo)",
+    nd: "1/4",
+    regiao: ["Subterrâneo"],
+    pagina: 146,
+    descricao: `Planta que ataca com tentáculos necrosantes.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Planta Média
+CA: 5
+PV: 18 (4d8)
+Deslocamento: 1,5 m
+
+Ações:
+- Tentáculo:
++2 para atingir.
+Dano: 1d8 necrótico.
+`
+},
+
+{
+    nome: "Garra Rastejante",
+    nd: "0",
+    regiao: ["Subterrâneo","Ruínas"],
+    pagina: 150,
+    descricao: `Mão animada por magia sombria.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Miúdo, neutro e maligno
+CA: 12
+PV: 2 (1d4)
+Deslocamento: 6 m, escalada 6 m
+
+FOR 13 (+1)
+DES 14 (+2)
+CON 11 (+0)
+INT 5 (-3)
+SAB 10 (+0)
+CAR 4 (-3)
+
+Imunidades: veneno; condição envenenado
+
+Ações:
+- Garra:
++3 para atingir, alcance 1,5 m.
+Dano: 1d4 + 1 contundente.
+`
+},
+
+{
+    nome: "Djinni",
+    nd: "11",
+    regiao: ["Extraplanar"],
+    pagina: 144,
+    descricao: `Gênio do ar poderoso e nobre.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Grande, caótico e bom
+CA: 17
+PV: 161 (14d10 + 84)
+Deslocamento: voo 27 m
+
+FOR 21 (+5)
+DES 15 (+2)
+CON 22 (+6)
+INT 15 (+2)
+SAB 16 (+3)
+CAR 20 (+5)
+
+Habilidades:
+- Conjuração Inata (inclui Invisibilidade, Criar Alimentos, etc.)
+
+Ações:
+- Golpe:
++9 para atingir, alcance 1,5 m.
+Dano: 2d6 + 5 contundente + 1d6 trovejante.
+`
+},
+
+{
+    nome: "Gnoll",
+    nd: "1/2",
+    regiao: ["Deserto","Ruínas"],
+    pagina: 169,
+    descricao: `Guerreiro Florestagem dominado pela fome e violência.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (gnoll), caótico e maligno
+CA: 15 (armadura de couro, escudo)
+PV: 22 (5d8)
+Deslocamento: 9 m
+
+FOR 14 (+2)
+DES 12 (+1)
+CON 11 (+0)
+INT 6 (-2)
+SAB 10 (+0)
+CAR 7 (-2)
+
+Ações:
+- Lança:
++4 para atingir, alcance 1,5 m ou 6/18 m.
+Dano: 1d6 + 2 perfurante.
+
+- Mordida:
++4 para atingir, alcance 1,5 m.
+Dano: 1d4 + 2 perfurante.
+`
+},
+
+{
+    nome: "Goblin",
+    nd: "1/4",
+    regiao: ["Floresta","Ruínas"],
+    pagina: 172,
+    descricao: `Pequeno humanoide astuto e traiçoeiro.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Pequeno (goblinoide), neutro e maligno
+CA: 15 (armadura de couro, escudo)
+PV: 7 (2d6)
+Deslocamento: 9 m
+
+FOR 8 (-1)
+DES 14 (+2)
+CON 10 (+0)
+INT 10 (+0)
+SAB 8 (-1)
+CAR 8 (-1)
+
+Habilidades:
+- Fuga Ágil:
+Pode usar Desengajar ou Esconder como ação bônus.
+
+Ações:
+- Cimitarra:
++4 para atingir, alcance 1,5 m.
+Dano: 1d6 + 2 cortante.
+
+- Arco Curto:
++4 para atingir, alcance 24/96 m.
+Dano: 1d6 + 2 perfurante.
+`
+},
+{
+    nome: "Golem de Carne",
+    nd: "5",
+    regiao: ["Ruínas"],
+    pagina: 174,
+    descricao: `Constructo feito de corpos reanimados.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Constructo Médio, imparcial
+CA: 9
+PV: 93 (11d8 + 44)
+Deslocamento: 9 m
+
+FOR 19 (+4)
+DES 9 (-1)
+CON 18 (+4)
+INT 6 (-2)
+SAB 10 (+0)
+CAR 5 (-3)
+
+Imunidades: veneno, psíquico
+Condições: envenenado, exausto, amedrontado
+
+Ações:
+- Pancada:
++7 para atingir, alcance 1,5 m.
+Dano: 2d8 + 4 contundente.
+`
+},
+
+{
+    nome: "Golem de Pedra",
+    nd: "10",
+    regiao: ["Montanha","Ruínas"],
+    pagina: 175,
+    descricao: `Constructo extremamente resistente de pedra viva.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Constructo Grande, imparcial
+CA: 17 (armadura natural)
+PV: 178 (17d10 + 85)
+Deslocamento: 9 m
+
+FOR 22 (+6)
+DES 9 (-1)
+CON 20 (+5)
+INT 3 (-4)
+SAB 11 (+0)
+CAR 1 (-5)
+
+Imunidades: veneno, psíquico
+
+Ações:
+- Pancada:
++10 para atingir, alcance 1,5 m.
+Dano: 3d8 + 6 contundente.
+
+- Lentidão (Recarga 5–6):
+CD 17 SAB.
+Afeta inimigos em área reduzindo ações.
+`
+},
+{
+    nome: "Górgona",
+    nd: "5",
+    regiao: ["Planície","Montanha"],
+    pagina: 177,
+    descricao: `Criatura metálica semelhante a um touro que exala gás petrificante.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, imparcial
+CA: 19 (armadura natural)
+PV: 114 (12d10 + 48)
+Deslocamento: 12 m
+
+FOR 20 (+5)
+DES 11 (+0)
+CON 18 (+4)
+INT 2 (-4)
+SAB 12 (+1)
+CAR 7 (-2)
+
+Ações:
+- Investida:
+Se mover 6 m em linha reta e acertar com chifres, causa +2d8.
+
+- Chifres:
++8 para atingir, alcance 1,5 m.
+Dano: 2d12 + 5 perfurante.
+
+- Sopro Petrificante (Recarga 5–6):
+Cone de 9 m.
+CD 13 CON.
+Falha: começa a petrificar.
+`
+},
+
+{
+    nome: "Grell",
+    nd: "3",
+    regiao: ["Subterrâneo"],
+    pagina: 172,
+    descricao: `Aberração flutuante com tentáculos paralisantes.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Média, neutro
+CA: 12
+PV: 55 (10d8 + 10)
+Deslocamento: voo 9 m
+
+FOR 15 (+2)
+DES 14 (+2)
+CON 13 (+1)
+INT 12 (+1)
+SAB 11 (+0)
+CAR 9 (-1)
+
+Ações:
+- Tentáculos:
++4 para atingir.
+Dano: 2d6 + 2 perfurante.
+CD 11 CON ou paralisado.
+
+- Bico:
++4 para atingir.
+Dano: 1d6 + 2 perfurante.
+`
+},
+
+{
+    nome: "Grick",
+    nd: "2",
+    regiao: ["Subterrâneo"],
+    pagina: 173,
+    descricao: `Predador subterrâneo com resistência a armas comuns.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Média, neutro
+CA: 14
+PV: 27 (6d8)
+Deslocamento: 9 m
+
+FOR 14 (+2)
+DES 14 (+2)
+CON 11 (+0)
+INT 3 (-4)
+SAB 14 (+2)
+CAR 5 (-3)
+
+Resistências: dano não mágico
+
+Ações:
+- Tentáculos:
++4 para atingir.
+Dano: 2d6 + 2 cortante.
+
+- Bico:
++4 para atingir.
+Dano: 1d6 + 2 perfurante.
+`
+},
+
+{
+    nome: "Grifo",
+    nd: "2",
+    regiao: ["Montanha"],
+    pagina: 181,
+    descricao: `Criatura alada com corpo de leão e cabeça de águia.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, imparcial
+CA: 12
+PV: 59 (7d10 + 21)
+Deslocamento: 9 m, voo 24 m
+
+FOR 18 (+4)
+DES 15 (+2)
+CON 16 (+3)
+INT 2 (-4)
+SAB 13 (+1)
+CAR 8 (-1)
+
+Ações:
+- Ataques Múltiplos
+
+- Bico:
++6 para atingir.
+Dano: 1d8 + 4 perfurante.
+
+- Garras:
++6 para atingir.
+Dano: 2d6 + 4 cortante.
+`
+}, 
+{
+    nome: "Grimlock",
+    nd: "1/4",
+    regiao: ["Subterrâneo"],
+    pagina: 175,
+    descricao: `Humanoides cegos que caçam por som e cheiro.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio, caótico e maligno
+CA: 11
+PV: 11 (2d8 + 2)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 12 (+1)
+CON 12 (+1)
+INT 9 (-1)
+SAB 8 (-1)
+CAR 6 (-2)
+
+Perícias: Percepção +3
+Sentidos: Percepção às cegas 9 m (cego além disso)
+
+Habilidades:
+- Percepção às Cegas:
+Não sofre penalidade enquanto estiver dentro do alcance.
+
+Ações:
+- Clava:
++5 para atingir, alcance 1,5 m.
+Dano: 1d4 + 3 contundente.
+`
+},
+
+{
+    nome: "Hidra",
+    nd: "8",
+    regiao: ["Pântano"],
+    pagina: 190,
+    descricao: `Monstro com múltiplas cabeças que crescem novamente quando cortadas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Enorme, imparcial
+CA: 15
+PV: 172 (15d12 + 75)
+Deslocamento: 9 m, natação 9 m
+
+FOR 20 (+5)
+DES 12 (+1)
+CON 20 (+5)
+INT 2 (-4)
+SAB 10 (+0)
+CAR 7 (-2)
+
+Habilidades:
+- Múltiplas Cabeças:
+Tem uma reação extra por cabeça.
+
+- Regeneração de Cabeças:
+Se uma cabeça for destruída, duas crescem se não receber dano de fogo.
+
+Ações:
+- Mordida:
++8 para atingir, alcance 3 m.
+Dano: 1d10 + 5 perfurante.
+(um ataque por cabeça)
+`
+},
+
+{
+    nome: "Hipogrifo",
+    nd: "1",
+    regiao: ["Montanha"],
+    pagina: 183,
+    descricao: `Criatura híbrida com natureza territorial, mas possível de domesticar.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, imparcial
+CA: 11
+PV: 19 (3d10 + 3)
+Deslocamento: 12 m, voo 18 m
+
+FOR 17 (+3)
+DES 13 (+1)
+CON 13 (+1)
+INT 2 (-4)
+SAB 12 (+1)
+CAR 8 (-1)
+
+Ações:
+- Ataques Múltiplos
+
+- Bico:
++5 para atingir, alcance 1,5 m.
+Dano: 1d10 + 3 perfurante.
+
+- Garras:
++5 para atingir.
+Dano: 2d6 + 3 cortante.
+`
+},
+
+{
+    nome: "Horror Encapuzado",
+    nd: "4",
+    regiao: ["Ruínas"],
+    pagina: 183,
+    descricao: `Constructo mágico criado para eliminar usuários de magia.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Constructo Médio, imparcial
+CA: 18 (armadura natural)
+PV: 60 (8d8 + 24)
+Deslocamento: 9 m, voo 18 m
+
+FOR 16 (+3)
+DES 12 (+1)
+CON 16 (+3)
+INT 10 (+0)
+SAB 10 (+0)
+CAR 5 (-3)
+
+Resistências: magia
+Imunidades: veneno, psíquico
+
+Ações:
+- Ataques Múltiplos
+
+- Espada:
++6 para atingir.
+Dano: 1d6 + 3 cortante.
+
+Habilidades:
+- Resistência Mágica
+`
+},
+
+{
+    nome: "Inseto Gigante (Aranha Gigante)",
+    nd: "1",
+    regiao: ["Floresta","Subterrâneo"],
+    pagina: 328,
+    descricao: `Predador venenoso que utiliza teias para capturar presas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, imparcial
+CA: 14
+PV: 26 (4d10 + 4)
+Deslocamento: 9 m, escalada 9 m
+
+FOR 14 (+2)
+DES 16 (+3)
+CON 12 (+1)
+INT 2 (-4)
+SAB 11 (+0)
+CAR 4 (-3)
+
+Habilidades:
+- Escalada de Aranha
+- Sentido de Teia
+
+Ações:
+- Mordida:
++5 para atingir, alcance 1,5 m.
+Dano: 1d8 + 3 perfurante + 2d8 veneno.
+CD 11 CON metade.
+
+- Teia:
++5 para atingir, alcance 9/18 m.
+Alvo fica restringido (CD 12 FOR).
+`
+},
+
+{
+    nome: "Inseto Gigante (Escorpião Gigante)",
+    nd: "3",
+    regiao: ["Deserto"],
+    pagina: 327,
+    descricao: `Predador com pinças poderosas e ferrão venenoso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, imparcial
+CA: 15
+PV: 52 (7d10 + 14)
+Deslocamento: 12 m
+
+FOR 15 (+2)
+DES 13 (+1)
+CON 15 (+2)
+INT 1 (-5)
+SAB 9 (-1)
+CAR 3 (-4)
+
+Ações:
+- Ataques Múltiplos
+
+- Pinça:
++4 para atingir.
+Dano: 1d8 + 2 contundente.
+Alvo agarrado.
+
+- Ferrão:
++4 para atingir.
+Dano: 1d10 + 2 perfurante + 4d10 veneno.
+CD 12 CON metade.
+`
+},
+
+{
+    nome: "Kobold",
+    nd: "1/8",
+    regiao: ["Subterrâneo"],
+    pagina: 195,
+    descricao: `Pequenos humanoides reptilianos que vivem em túneis e servem dragões.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Pequeno (kobold), leal e maligno
+CA: 12
+PV: 5 (2d6 - 2)
+Deslocamento: 9 m
+
+FOR 7 (-2)
+DES 15 (+2)
+CON 9 (-1)
+INT 8 (-1)
+SAB 7 (-2)
+CAR 8 (-1)
+
+Habilidades:
+- Sensibilidade à Luz Solar:
+Desvantagem em ataques e Percepção sob luz solar.
+
+- Táticas de Bando:
+Vantagem se aliado estiver adjacente ao alvo.
+
+Ações:
+- Adaga:
++4 para atingir, alcance 1,5 m.
+Dano: 1d4 + 2 perfurante.
+
+- Funda:
++4 para atingir, alcance 9/36 m.
+Dano: 1d4 + 2 contundente.
+`
+},
+
+{
+    nome: "Kraken",
+    nd: "23",
+    regiao: ["Subaquático"],
+    pagina: 197,
+    descricao: `Monstro marinho colossal capaz de destruir navios e cidades costeiras.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Gargantuesca, caótico e maligno
+CA: 18 (armadura natural)
+PV: 472 (27d20 + 189)
+Deslocamento: 6 m, natação 18 m
+
+FOR 30 (+10)
+DES 11 (+0)
+CON 25 (+7)
+INT 22 (+6)
+SAB 18 (+4)
+CAR 20 (+5)
+
+Testes: FOR +17, CON +14, INT +13, SAB +11
+
+Habilidades:
+- Anfíbio
+- Resistência Lendária (3/dia)
+
+Ações:
+- Ataques Múltiplos (3 tentáculos)
+
+- Tentáculo:
++17 para atingir, alcance 9 m.
+Dano: 3d6 + 10 contundente.
+Alvo agarrado (CD 18).
+
+- Mordida:
++17 para atingir.
+Dano: 3d8 + 10 perfurante.
+
+- Tempestade Relâmpago:
+Área grande, CD 23 DES.
+Dano: 4d10 elétrico.
+
+Ações Lendárias:
+- Ataque adicional
+- Arremessar
+`
+},
+
+{
+    nome: "Lamia",
+    nd: "4",
+    regiao: ["Deserto"],
+    pagina: 201,
+    descricao: `Criatura astuta que manipula e enfraquece vítimas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, caótico e maligno
+CA: 13
+PV: 97 (13d10 + 26)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 13 (+1)
+CON 15 (+2)
+INT 14 (+2)
+SAB 15 (+2)
+CAR 16 (+3)
+
+Habilidades:
+- Conjuração Inata (disfarce, charme)
+
+Ações:
+- Ataques Múltiplos
+
+- Toque Drenante:
++5 para atingir.
+Dano: 1d10 necrótico.
+Reduz Sabedoria do alvo.
+
+- Adaga:
++5 para atingir.
+Dano: 1d6 + 3 perfurante.
+`
+},
+
+{
+    nome: "Lich",
+    nd: "21",
+    regiao: ["Ruínas","Extraplanar"],
+    pagina: 202,
+    descricao: `Mago que alcançou imortalidade através de necromancia.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, leal e maligno
+CA: 17 (armadura natural)
+PV: 135 (18d8 + 54)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 16 (+3)
+CON 16 (+3)
+INT 20 (+5)
+SAB 14 (+2)
+CAR 16 (+3)
+
+Testes: CON +10, INT +12, SAB +9
+
+Habilidades:
+- Resistência Lendária (3/dia)
+- Conjuração (magias de alto nível)
+
+Ações:
+- Toque Paralisante:
++12 para atingir.
+Dano: 3d6 frio.
+CD 18 CON ou paralisado.
+
+Ações Lendárias:
+- Truques mágicos
+- Dreno de energia
+`
+},
+
+{
+    nome: "Lobisomem (Werewolf)",
+    nd: "3",
+    regiao: ["Floresta","Urbano"],
+    pagina: 211,
+    descricao: `Humanoide amaldiçoado que se transforma em fera.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (metamorfo), caótico e maligno
+CA: 11 (forma humanoide) / 12 (forma híbrida)
+PV: 58 (9d8 + 18)
+Deslocamento: 9 m
+
+FOR 15 (+2)
+DES 13 (+1)
+CON 14 (+2)
+INT 10 (+0)
+SAB 11 (+0)
+CAR 10 (+0)
+
+Imunidades: dano não mágico não prateado
+
+Ações:
+- Ataques Múltiplos
+
+- Mordida:
++4 para atingir.
+Dano: 2d4 + 2 perfurante.
+
+- Garras:
++4 para atingir.
+Dano: 2d4 + 2 cortante.
+`
+},
+
+{
+    nome: "Manticora",
+    nd: "3",
+    regiao: ["Montanha"],
+    pagina: 213,
+    descricao: `Predador alado com cauda cheia de espinhos venenosos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, leal e maligno
+CA: 14
+PV: 68 (8d10 + 24)
+Deslocamento: 9 m, voo 15 m
+
+FOR 17 (+3)
+DES 16 (+3)
+CON 17 (+3)
+INT 7 (-2)
+SAB 12 (+1)
+CAR 8 (-1)
+
+Ações:
+- Ataques Múltiplos
+
+- Mordida:
++5 para atingir.
+Dano: 1d8 + 3 perfurante.
+
+- Garras:
++5 para atingir.
+Dano: 1d6 + 3 cortante.
+
+- Espinhos da Cauda:
++5 para atingir, alcance 30/60 m.
+Dano: 1d8 + 3 perfurante.
+`
+},
+
+{
+    nome: "Medusa",
+    nd: "6",
+    regiao: ["Ruínas"],
+    pagina: 214,
+    descricao: `Criatura com serpentes no lugar do cabelo cujo olhar transforma em pedra.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Média, leal e maligno
+CA: 15 (armadura natural)
+PV: 127 (17d8 + 51)
+Deslocamento: 9 m
+
+FOR 10 (+0)
+DES 15 (+2)
+CON 16 (+3)
+INT 12 (+1)
+SAB 13 (+1)
+CAR 15 (+2)
+
+Perícias: Enganação +5, Percepção +4
+
+Habilidades:
+- Olhar Petrificante:
+Criatura a até 9 m deve fazer teste de CON CD 14.
+Falha: começa a petrificar (restrito) e pode virar pedra.
+
+Ações:
+- Ataques Múltiplos
+
+- Espada Curta:
++5 para atingir, alcance 1,5 m.
+Dano: 1d6 + 2 perfurante + 2d6 veneno.
+
+- Arco Longo:
++5 para atingir, alcance 45/180 m.
+Dano: 1d8 + 2 perfurante + 2d6 veneno.
+`
+},
+
+{
+    nome: "Mephit de Fogo",
+    nd: "1/2",
+    regiao: ["Extraplanar"],
+    pagina: 216,
+    descricao: `Pequeno elemental travesso feito de fogo.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Pequeno, neutro e maligno
+CA: 13
+PV: 22 (5d6 + 5)
+Deslocamento: 9 m, voo 9 m
+
+FOR 8 (-1)
+DES 14 (+2)
+CON 12 (+1)
+INT 10 (+0)
+SAB 11 (+0)
+CAR 12 (+1)
+
+Imunidades: fogo
+
+Ações:
+- Garras:
++4 para atingir.
+Dano: 1d4 + 2 cortante.
+
+- Sopro de Fogo (Recarga 6):
+Cone 4,5 m.
+CD 11 DES.
+Dano: 2d6 fogo.
+`
+},
+
+{
+    nome: "Minotauro",
+    nd: "3",
+    regiao: ["Ruínas","Subterrâneo"],
+    pagina: 223,
+    descricao: `Criatura brutal com cabeça de touro que adora labirintos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, caótico e maligno
+CA: 14 (armadura natural)
+PV: 76 (9d10 + 27)
+Deslocamento: 12 m
+
+FOR 18 (+4)
+DES 11 (+0)
+CON 16 (+3)
+INT 6 (-2)
+SAB 16 (+3)
+CAR 9 (-1)
+
+Habilidades:
+- Investida:
+Se correr 3 m e acertar, causa +2d8.
+
+Ações:
+- Machado Grande:
++6 para atingir.
+Dano: 2d12 + 4 cortante.
+
+- Chifres:
++6 para atingir.
+Dano: 2d8 + 4 perfurante.
+`
+},
+
+{
+    nome: "Múmia",
+    nd: "3",
+    regiao: ["Deserto","Ruínas"],
+    pagina: 228,
+    descricao: `Cadáver animado por maldição antiga.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, leal e maligno
+CA: 11
+PV: 58 (9d8 + 18)
+Deslocamento: 6 m
+
+FOR 16 (+3)
+DES 8 (-1)
+CON 15 (+2)
+INT 6 (-2)
+SAB 10 (+0)
+CAR 12 (+1)
+
+Vulnerabilidade: fogo
+
+Habilidades:
+- Olhar Aterrador:
+CD 11 SAB ou fica amedrontado.
+
+Ações:
+- Punho:
++5 para atingir.
+Dano: 2d6 + 3 contundente + maldição.
+`
+},
+
+{
+    nome: "Naga Guardiã",
+    nd: "10",
+    regiao: ["Floresta","Ruínas"],
+    pagina: 234,
+    descricao: `Ser mágico serpentino que protege locais sagrados.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, leal e bom
+CA: 18 (armadura natural)
+PV: 127 (15d10 + 45)
+Deslocamento: 12 m
+
+FOR 19 (+4)
+DES 18 (+4)
+CON 16 (+3)
+INT 16 (+3)
+SAB 19 (+4)
+CAR 18 (+4)
+
+Habilidades:
+- Conjuração (magias divinas)
+
+Ações:
+- Mordida:
++8 para atingir.
+Dano: 2d8 + 4 perfurante + veneno.
+`
+},
+
+{
+    nome: "Ogro",
+    nd: "2",
+    regiao: ["Montanha","Floresta"],
+    pagina: 237,
+    descricao: `Gigante bruto e pouco inteligente.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Gigante Grande, caótico e maligno
+CA: 11
+PV: 59 (7d10 + 21)
+Deslocamento: 12 m
+
+FOR 19 (+4)
+DES 8 (-1)
+CON 16 (+3)
+INT 5 (-3)
+SAB 7 (-2)
+CAR 7 (-2)
+
+Ações:
+- Clava Grande:
++6 para atingir.
+Dano: 2d8 + 4 contundente.
+
+- Lança:
++6 para atingir, alcance 9/36 m.
+Dano: 2d6 + 4 perfurante.
+`
+},
+
+{
+    nome: "Orc",
+    nd: "1/2",
+    regiao: ["Montanha","Ruínas"],
+    pagina: 246,
+    descricao: `Guerreiros brutais que vivem para guerra e conquista.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (orc), caótico e maligno
+CA: 13 (armadura de couro)
+PV: 15 (2d8 + 6)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 12 (+1)
+CON 16 (+3)
+INT 7 (-2)
+SAB 11 (+0)
+CAR 10 (+0)
+
+Habilidades:
+- Agressivo:
+Pode se mover como ação bônus em direção a inimigos.
+
+Ações:
+- Machado Grande:
++5 para atingir, alcance 1,5 m.
+Dano: 1d12 + 3 cortante.
+
+- Azagaia:
++5 para atingir, alcance 9/36 m.
+Dano: 1d6 + 3 perfurante.
+`
+},
+
+{
+    nome: "Otyugh",
+    nd: "5",
+    regiao: ["Subterrâneo"],
+    pagina: 248,
+    descricao: `Criatura grotesca que vive em lixo e esgotos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Grande, neutro
+CA: 14 (armadura natural)
+PV: 114 (12d10 + 48)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 11 (+0)
+CON 19 (+4)
+INT 6 (-2)
+SAB 13 (+1)
+CAR 6 (-2)
+
+Habilidades:
+- Telepatia 36 m
+
+Ações:
+- Ataques Múltiplos (2 tentáculos + mordida)
+
+- Tentáculo:
++6 para atingir.
+Dano: 1d8 + 3 contundente.
+Alvo agarrado.
+
+- Mordida:
++6 para atingir.
+Dano: 2d8 + 3 perfurante + doença.
+`
+},
+
+{
+    nome: "Pégaso",
+    nd: "2",
+    regiao: ["Planície"],
+    pagina: 250,
+    descricao: `Cavalo alado símbolo de pureza e liberdade.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Celestial Grande, caótico e bom
+CA: 12
+PV: 59 (7d10 + 21)
+Deslocamento: 18 m, voo 27 m
+
+FOR 18 (+4)
+DES 15 (+2)
+CON 16 (+3)
+INT 10 (+0)
+SAB 15 (+2)
+CAR 13 (+1)
+
+Ações:
+- Cascos:
++6 para atingir, alcance 1,5 m.
+Dano: 2d6 + 4 contundente.
+`
+},
+
+{
+    nome: "Peryton",
+    nd: "2",
+    regiao: ["Montanha"],
+    pagina: 251,
+    descricao: `Predador alado que caça corações humanos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Média, caótico e maligno
+CA: 13
+PV: 33 (6d8 + 6)
+Deslocamento: 6 m, voo 18 m
+
+FOR 16 (+3)
+DES 12 (+1)
+CON 13 (+1)
+INT 9 (-1)
+SAB 12 (+1)
+CAR 10 (+0)
+
+Habilidades:
+- Investida Aérea:
+Dano extra ao mergulhar.
+
+Ações:
+- Chifres:
++5 para atingir.
+Dano: 1d8 + 3 perfurante.
+
+- Garras:
++5 para atingir.
+Dano: 2d4 + 3 cortante.
+`
+},
+
+{
+    nome: "Pseudodragão",
+    nd: "1/4",
+    regiao: ["Floresta","Extraplanar"],
+    pagina: 254,
+    descricao: `Pequeno dragão amigável com ferrão venenoso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Dragão Miúdo, neutro e bom
+CA: 13
+PV: 7 (2d4 + 2)
+Deslocamento: 4,5 m, voo 18 m
+
+FOR 6 (-2)
+DES 15 (+2)
+CON 13 (+1)
+INT 10 (+0)
+SAB 12 (+1)
+CAR 10 (+0)
+
+Habilidades:
+- Sentidos Aguçados
+- Telepatia limitada
+
+Ações:
+- Mordida:
++4 para atingir.
+Dano: 1d4 + 2 perfurante.
+
+- Ferrão:
++4 para atingir.
+Dano: 1d4 + 2 perfurante + veneno.
+CD 11 CON ou fica inconsciente.
+`
+},
+
+{
+    nome: "Rato Gigante",
+    nd: "1/8",
+    regiao: ["Urbano","Subterrâneo"],
+    pagina: 327,
+    descricao: `Roedor agressivo que vive em esgotos e ruínas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Pequena, imparcial
+CA: 12
+PV: 7 (2d6)
+Deslocamento: 9 m
+
+FOR 7 (-2)
+DES 15 (+2)
+CON 11 (+0)
+INT 2 (-4)
+SAB 10 (+0)
+CAR 4 (-3)
+
+Habilidades:
+- Olfato Aguçado
+
+Ações:
+- Mordida:
++4 para atingir.
+Dano: 1d4 + 2 perfurante.
+`
+},
+{
+    nome: "Remorhaz",
+    nd: "11",
+    regiao: ["Ártico"],
+    pagina: 258,
+    descricao: `Predador gigantesco que gera calor intenso e engole presas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Enorme, imparcial
+CA: 17 (armadura natural)
+PV: 195 (17d12 + 85)
+Deslocamento: 9 m, escavação 6 m
+
+FOR 24 (+7)
+DES 13 (+1)
+CON 21 (+5)
+INT 4 (-3)
+SAB 10 (+0)
+CAR 5 (-3)
+
+Habilidades:
+- Corpo Aquecido:
+Quem toca sofre 3d6 fogo.
+
+Ações:
+- Mordida:
++11 para atingir, alcance 3 m.
+Dano: 6d10 + 7 perfurante + 3d6 fogo.
+Alvo pode ser engolido.
+
+- Engolir:
+Dano contínuo dentro da criatura.
+`
+},
+
+{
+    nome: "Revenant",
+    nd: "5",
+    regiao: ["Ruínas","Urbano"],
+    pagina: 259,
+    descricao: `Espírito vingativo que retorna da morte para caçar seu alvo.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, neutro
+CA: 13
+PV: 136 (16d8 + 64)
+Deslocamento: 9 m
+
+FOR 18 (+4)
+DES 14 (+2)
+CON 18 (+4)
+INT 13 (+1)
+SAB 16 (+3)
+CAR 18 (+4)
+
+Habilidades:
+- Regeneração
+- Vingança Implacável
+
+Ações:
+- Punho:
++7 para atingir.
+Dano: 2d6 + 4 contundente.
+`
+},
+
+{
+    nome: "Roper",
+    nd: "5",
+    regiao: ["Subterrâneo"],
+    pagina: 261,
+    descricao: `Predador imóvel que captura presas com tentáculos longos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, neutro
+CA: 20 (armadura natural)
+PV: 93 (11d10 + 33)
+Deslocamento: 3 m
+
+FOR 18 (+4)
+DES 8 (-1)
+CON 17 (+3)
+INT 7 (-2)
+SAB 16 (+3)
+CAR 6 (-2)
+
+Ações:
+- Mordida:
++7 para atingir.
+Dano: 4d8 + 4 perfurante.
+
+- Tentáculo:
++7 para atingir, alcance 15 m.
+Alvo puxado e agarrado.
+`
+},
+
+{
+    nome: "Sahuagin",
+    nd: "1/2",
+    regiao: ["Subaquático"],
+    pagina: 263,
+    descricao: `Humanoide marinho feroz e organizado.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (sahuagin), leal e maligno
+CA: 12
+PV: 22 (4d8 + 4)
+Deslocamento: 9 m, natação 12 m
+
+FOR 13 (+1)
+DES 11 (+0)
+CON 12 (+1)
+INT 12 (+1)
+SAB 13 (+1)
+CAR 9 (-1)
+
+Habilidades:
+- Frenesi de Sangue
+
+Ações:
+- Tridente:
++3 para atingir.
+Dano: 1d6 + 1 perfurante.
+`
+},
+
+{
+    nome: "Salamandra",
+    nd: "5",
+    regiao: ["Extraplanar"],
+    pagina: 266,
+    descricao: `Ser elemental de fogo com corpo serpentino.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Grande, neutro e maligno
+CA: 15
+PV: 90 (12d10 + 24)
+Deslocamento: 9 m
+
+FOR 18 (+4)
+DES 14 (+2)
+CON 15 (+2)
+INT 11 (+0)
+SAB 10 (+0)
+CAR 12 (+1)
+
+Imunidades: fogo
+
+Ações:
+- Ataques Múltiplos
+
+- Lança:
++7 para atingir.
+Dano: 2d6 + 4 perfurante + 2d6 fogo.
+
+- Cauda:
++7 para atingir.
+Dano: 2d6 + 4 contundente + agarrar.
+`
+},
+
+{
+    nome: "Sátiro",
+    nd: "1/2",
+    regiao: ["Floresta"],
+    pagina: 267,
+    descricao: `Criatura feérica amante da música e do caos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Fada Média, caótico e neutro
+CA: 14
+PV: 31 (7d8)
+Deslocamento: 12 m
+
+FOR 12 (+1)
+DES 16 (+3)
+CON 11 (+0)
+INT 12 (+1)
+SAB 10 (+0)
+CAR 14 (+2)
+
+Ações:
+- Chifres:
++3 para atingir.
+Dano: 2d4 + 1 contundente.
+
+- Adaga:
++5 para atingir.
+Dano: 1d4 + 3 perfurante.
+`
+},
+
+{
+    nome: "Sombra",
+    nd: "1/2",
+    regiao: ["Ruínas","Subterrâneo"],
+    pagina: 269,
+    descricao: `Morto-vivo incorpóreo que drena a força vital.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, caótico e maligno
+CA: 12
+PV: 16 (3d8 + 3)
+Deslocamento: 12 m
+
+FOR 6 (-2)
+DES 14 (+2)
+CON 13 (+1)
+INT 6 (-2)
+SAB 10 (+0)
+CAR 8 (-1)
+
+Resistências: ácido, fogo, elétrico
+Imunidades: necrótico, veneno
+
+Habilidades:
+- Incorpóreo
+
+Ações:
+- Dreno de Força:
++4 para atingir.
+Dano: 2d6 necrótico.
+Reduz FOR do alvo.
+`
+},
+
+{
+    nome: "Succubus / Incubus",
+    nd: "4",
+    regiao: ["Extraplanar","Urbano"],
+    pagina: 285,
+    descricao: `Demônio sedutor que manipula e drena vítimas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Corruptor Médio, neutro e maligno
+CA: 15
+PV: 66 (12d8 + 12)
+Deslocamento: 9 m, voo 18 m
+
+FOR 8 (-1)
+DES 17 (+3)
+CON 13 (+1)
+INT 15 (+2)
+SAB 12 (+1)
+CAR 20 (+5)
+
+Habilidades:
+- Encantar
+- Mudança de forma
+
+Ações:
+- Dreno de Energia:
++5 para atingir.
+Dano: psíquico + redução de PV máximo.
+`
+},
+
+{
+    nome: "Tarrasque",
+    nd: "30",
+    regiao: ["Planície"],
+    pagina: 286,
+    descricao: `A mais devastadora criatura existente, praticamente indestrutível.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Gargantuesca, imparcial
+CA: 25
+PV: 676 (33d20 + 330)
+Deslocamento: 12 m
+
+FOR 30 (+10)
+DES 11 (+0)
+CON 30 (+10)
+INT 3 (-4)
+SAB 11 (+0)
+CAR 11 (+0)
+
+Habilidades:
+- Resistência Lendária (3/dia)
+- Carapaça Refletora
+
+Ações:
+- Ataques Múltiplos (5 ataques)
+
+- Mordida:
++19 para atingir.
+Dano: 4d12 + 10.
+
+- Garras:
++19 para atingir.
+Dano: 4d8 + 10.
+
+- Cauda:
++19 para atingir.
+Dano: 4d6 + 10.
+`
+},
+
+{
+    nome: "Troll",
+    nd: "5",
+    regiao: ["Pântano","Floresta"],
+    pagina: 291,
+    descricao: `Monstro regenerativo extremamente perigoso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Gigante Grande, caótico e maligno
+CA: 15
+PV: 84 (8d10 + 40)
+Deslocamento: 9 m
+
+FOR 18 (+4)
+DES 13 (+1)
+CON 20 (+5)
+INT 7 (-2)
+SAB 9 (-1)
+CAR 7 (-2)
+
+Habilidades:
+- Regeneração (10 PV por turno)
+
+Ações:
+- Ataques Múltiplos
+
+- Garras:
++7 para atingir.
+Dano: 2d6 + 4.
+
+- Mordida:
++7 para atingir.
+Dano: 1d6 + 4.
+`
+},
+
+{
+    nome: "Unicórnio",
+    nd: "5",
+    regiao: ["Floresta"],
+    pagina: 294,
+    descricao: `Criatura celestial pura com poderes de cura.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Celestial Grande, leal e bom
+CA: 12
+PV: 67 (9d10 + 18)
+Deslocamento: 15 m
+
+FOR 18 (+4)
+DES 14 (+2)
+CON 15 (+2)
+INT 11 (+0)
+SAB 17 (+3)
+CAR 16 (+3)
+
+Habilidades:
+- Teleporte
+- Cura
+
+Ações:
+- Chifre:
++7 para atingir.
+Dano: 1d8 + 4 perfurante.
+`
+},
+
+{
+    nome: "Vampiro",
+    nd: "13",
+    regiao: ["Urbano","Ruínas"],
+    pagina: 297,
+    descricao: `Morto-vivo aristocrático que se alimenta de sangue.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, leal e maligno
+CA: 16
+PV: 144 (17d8 + 68)
+Deslocamento: 9 m
+
+FOR 18 (+4)
+DES 18 (+4)
+CON 18 (+4)
+INT 17 (+3)
+SAB 15 (+2)
+CAR 18 (+4)
+
+Habilidades:
+- Regeneração
+- Forma de Névoa
+- Encantar
+
+Ações:
+- Mordida:
++9 para atingir.
+Dano: 1d6 + 4 perfurante + 3d6 necrótico.
+
+- Garras:
++9 para atingir.
+Dano: 2d4 + 4.
+`
+},
+
+{
+    nome: "Cria Vampirica",
+    nd: "5",
+    regiao: ["Urbano","Ruínas"],
+    pagina: 298,
+    descricao: `Forma menos poderosa de vampiro, ainda extremamente perigosa.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, leal e maligno
+CA: 15
+PV: 82 (11d8 + 33)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 16 (+3)
+CON 16 (+3)
+INT 11 (+0)
+SAB 10 (+0)
+CAR 12 (+1)
+
+Habilidades:
+- Regeneração
+- Escalada em paredes
+- Fraquezas a luz solar
+
+Ações:
+- Mordida:
++6 para atingir.
+Dano: 1d6 + 3 perfurante + 2d6 necrótico.
+
+- Garras:
++6 para atingir.
+Dano: 2d4 + 3 cortante.
+`
+},
+
+{
+    nome: "Verme da Carniça",
+    nd: "2",
+    regiao: ["Subterrâneo"],
+    pagina: 255,
+    descricao: `Criatura que se alimenta de carne em decomposição e paralisa suas presas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, neutro
+CA: 13
+PV: 51 (6d10 + 18)
+Deslocamento: 9 m
+
+FOR 14 (+2)
+DES 13 (+1)
+CON 16 (+3)
+INT 1 (-5)
+SAB 12 (+1)
+CAR 5 (-3)
+
+Habilidades:
+- Sensibilidade a cheiro de cadáver
+
+Ações:
+- Tentáculos:
++4 para atingir.
+Dano: 2d4 + 2.
+CD 13 CON ou paralisado.
+
+- Mordida:
++4 para atingir.
+Dano: 1d8 + 2 perfurante.
+`
+},
+
+{
+    nome: "Verme Púrpura",
+    nd: "15",
+    regiao: ["Subterrâneo"],
+    pagina: 255,
+    descricao: `Colosso subterrâneo que engole criaturas inteiras.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Gargantuesca, imparcial
+CA: 18
+PV: 247 (15d20 + 90)
+Deslocamento: 15 m, escavação 9 m
+
+FOR 28 (+9)
+DES 7 (-2)
+CON 22 (+6)
+INT 1 (-5)
+SAB 8 (-1)
+CAR 4 (-3)
+
+Ações:
+- Mordida:
++9 para atingir.
+Dano: 3d8 + 9 perfurante.
+Pode engolir.
+
+- Ferrão:
++9 para atingir.
+Dano: 3d6 + 9 perfurante + 12d6 veneno.
+CD 19 CON metade.
+`
+},
+
+{
+    nome: "Wyvern",
+    nd: "6",
+    regiao: ["Montanha"],
+    pagina: 303,
+    descricao: `Predador alado com ferrão venenoso mortal.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Dragão Grande, imparcial
+CA: 13
+PV: 110 (13d10 + 39)
+Deslocamento: 6 m, voo 24 m
+
+FOR 19 (+4)
+DES 10 (+0)
+CON 16 (+3)
+INT 5 (-3)
+SAB 12 (+1)
+CAR 6 (-2)
+
+Ações:
+- Ataques Múltiplos
+
+- Mordida:
++7 para atingir.
+Dano: 2d6 + 4.
+
+- Ferrão:
++7 para atingir.
+Dano: 2d6 + 4 + 7d6 veneno.
+CD 15 CON metade.
+`
+},
+
+{
+    nome: "Xorn",
+    nd: "5",
+    regiao: ["Extraplanar"],
+    pagina: 304,
+    descricao: `Criatura elemental que se alimenta de minerais e metais.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Elemental Médio, neutro
+CA: 19
+PV: 73 (7d8 + 42)
+Deslocamento: 6 m, escavação 6 m
+
+FOR 17 (+3)
+DES 10 (+0)
+CON 22 (+6)
+INT 11 (+0)
+SAB 10 (+0)
+CAR 11 (+0)
+
+Habilidades:
+- Sentir tesouros
+- Passar por pedra
+
+Ações:
+- Mordida:
++6 para atingir.
+Dano: 3d6 + 3 perfurante.
+
+- Garras:
++6 para atingir.
+Dano: 2d6 + 3.
+`
+},
+
+{
+    nome: "Yeti",
+    nd: "3",
+    regiao: ["Ártico"],
+    pagina: 305,
+    descricao: `Criatura das montanhas geladas com olhar aterrador.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, caótico e maligno
+CA: 12
+PV: 51 (6d10 + 18)
+Deslocamento: 12 m
+
+FOR 18 (+4)
+DES 13 (+1)
+CON 16 (+3)
+INT 8 (-1)
+SAB 12 (+1)
+CAR 7 (-2)
+
+Habilidades:
+- Olhar Aterrador:
+CD 13 SAB ou fica paralisado.
+
+Ações:
+- Garras:
++6 para atingir.
+Dano: 2d6 + 4 cortante + frio.
+`
+},
+
+{
+    nome: "Yeti Abominável",
+    nd: "9",
+    regiao: ["Ártico"],
+    pagina: 306,
+    descricao: `Versão muito mais poderosa do yeti, com frio extremo e presença aterradora.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Enorme, caótico e maligno
+CA: 15 (armadura natural)
+PV: 137 (11d12 + 66)
+Deslocamento: 12 m
+
+FOR 24 (+7)
+DES 10 (+0)
+CON 22 (+6)
+INT 9 (-1)
+SAB 13 (+1)
+CAR 9 (-1)
+
+Imunidades: frio
+
+Habilidades:
+- Aura Congelante:
+Criaturas próximas sofrem dano de frio.
+
+- Olhar Aterrador:
+CD 16 SAB ou fica paralisado.
+
+Ações:
+- Garras:
++11 para atingir.
+Dano: 2d10 + 7 cortante + 2d6 frio.
+`
+},
+
+{
+    nome: "Yuan-Ti Abominação",
+    nd: "7",
+    regiao: ["Floresta","Ruínas"],
+    pagina: 308,
+    descricao: `Forma mais poderosa dos yuan-ti, com corpo de serpente.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Monstruosidade Grande, neutro e maligno
+CA: 15 (armadura natural)
+PV: 127 (15d10 + 45)
+Deslocamento: 9 m
+
+FOR 19 (+4)
+DES 16 (+3)
+CON 17 (+3)
+INT 17 (+3)
+SAB 15 (+2)
+CAR 18 (+4)
+
+Habilidades:
+- Resistência à magia
+- Conjuração
+
+Ações:
+- Ataques Múltiplos
+
+- Mordida:
++7 para atingir.
+Dano: 1d6 + 4 + veneno.
+
+- Constrição:
++7 para atingir.
+Dano: 2d6 + 4 + agarrar.
+`
+},
+
+{
+    nome: "Yuan-Ti Mestiço",
+    nd: "3",
+    regiao: ["Floresta","Ruínas"],
+    pagina: 309,
+    descricao: `Híbrido humano-serpente com magia e ataques venenosos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio, neutro e maligno
+CA: 12
+PV: 66 (12d8 + 12)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 14 (+2)
+CON 13 (+1)
+INT 12 (+1)
+SAB 13 (+1)
+CAR 14 (+2)
+
+Habilidades:
+- Resistência à magia
+- Conjuração inata
+
+Ações:
+- Ataques Múltiplos
+
+- Cimitarra:
++5 para atingir.
+Dano: 1d6 + 3.
+
+- Arco Longo:
++4 para atingir.
+Dano: 1d8 + 2 + veneno.
+`
+},
+
+{
+    nome: "Yuan-Ti Puro-Sangue",
+    nd: "1",
+    regiao: ["Floresta","Ruínas"],
+    pagina: 310,
+    descricao: `Forma mais próxima de humano dos yuan-ti, especializada em infiltração.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio, neutro e maligno
+CA: 11
+PV: 40 (9d8)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 12 (+1)
+CON 11 (+0)
+INT 13 (+1)
+SAB 12 (+1)
+CAR 14 (+2)
+
+Habilidades:
+- Conjuração (encantar, disfarce)
+- Resistência à magia
+
+Ações:
+- Cimitarra:
++3 para atingir.
+Dano: 1d6 + 1.
+
+- Arco Curto:
++3 para atingir.
+Dano: 1d6 + 1 + veneno.
+`
+},
+
+{
+    nome: "Arcanaloth",
+    nd: "12",
+    regiao: ["Extraplanar"],
+    pagina: 313,
+    descricao: `Yugoloth feiticeiro especializado em magia arcana.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Corruptor Médio, neutro e maligno
+CA: 17
+PV: 104 (16d8 + 32)
+Deslocamento: 9 m
+
+FOR 17 (+3)
+DES 12 (+1)
+CON 14 (+2)
+INT 20 (+5)
+SAB 16 (+3)
+CAR 17 (+3)
+
+Habilidades:
+- Conjuração poderosa
+- Resistência mágica
+
+Ações:
+- Garra:
++7 para atingir.
+Dano: 2d4 + 3.
+
+- Magias (nível alto)
+`
+},
+
+{
+    nome: "Mezzoloth",
+    nd: "5",
+    regiao: ["Extraplanar"],
+    pagina: 313,
+    descricao: `Soldado yugoloth especializado em combate corpo a corpo.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Corruptor Médio, neutro e maligno
+CA: 18
+PV: 75 (10d8 + 30)
+Deslocamento: 12 m
+
+FOR 18 (+4)
+DES 11 (+0)
+CON 16 (+3)
+INT 7 (-2)
+SAB 10 (+0)
+CAR 11 (+0)
+
+Ações:
+- Ataques Múltiplos
+
+- Tridente:
++7 para atingir.
+Dano: 1d8 + 4.
+
+- Garra:
++7 para atingir.
+Dano: 1d6 + 4.
+`
+},
+
+{
+    nome: "Nycaloth",
+    nd: "9",
+    regiao: ["Extraplanar"],
+    pagina: 314,
+    descricao: `Yugoloth voador extremamente agressivo.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Corruptor Grande, neutro e maligno
+CA: 18
+PV: 123 (13d10 + 52)
+Deslocamento: 9 m, voo 18 m
+
+FOR 20 (+5)
+DES 11 (+0)
+CON 19 (+4)
+INT 12 (+1)
+SAB 10 (+0)
+CAR 15 (+2)
+
+Habilidades:
+- Teleporte
+- Resistência mágica
+
+Ações:
+- Ataques Múltiplos
+
+- Garras:
++9 para atingir.
+Dano: 2d6 + 5.
+
+- Espada:
++9 para atingir.
+Dano: 2d8 + 5.
+`
+},
+
+{
+    nome: "Ultroloth",
+    nd: "13",
+    regiao: ["Extraplanar"],
+    pagina: 314,
+    descricao: `Líder dos yugoloths, extremamente inteligente e poderoso estrategista.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Corruptor Médio, neutro e maligno
+CA: 19 (armadura natural)
+PV: 153 (18d8 + 72)
+Deslocamento: 9 m, voo 18 m
+
+FOR 16 (+3)
+DES 16 (+3)
+CON 18 (+4)
+INT 18 (+4)
+SAB 16 (+3)
+CAR 18 (+4)
+
+Testes: INT +9, SAB +8, CAR +9
+
+Habilidades:
+- Resistência Mágica
+- Teleporte
+- Conjuração poderosa
+
+Ações:
+- Ataques Múltiplos
+
+- Garra:
++8 para atingir, alcance 1,5 m.
+Dano: 2d6 + 3 cortante.
+
+- Magias:
+Inclui invisibilidade, medo e controle.
+
+Ações Lendárias:
+- Ataque adicional
+- Teleporte curto
+`
+},
+
+{
+    nome: "Zumbi",
+    nd: "1/4",
+    regiao: ["Urbano","Ruínas","Subterrâneo"],
+    pagina: 316,
+    descricao: `Cadáver animado lento, mas resistente.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Médio, neutro e maligno
+CA: 8
+PV: 22 (3d8 + 9)
+Deslocamento: 6 m
+
+FOR 13 (+1)
+DES 6 (-2)
+CON 16 (+3)
+INT 3 (-4)
+SAB 6 (-2)
+CAR 5 (-3)
+
+Habilidades:
+- Fortitude Morta-viva:
+Ao cair a 0 PV, pode permanecer com 1 PV (CD 5 + dano).
+
+Ações:
+- Pancada:
++3 para atingir, alcance 1,5 m.
+Dano: 1d6 + 1 contundente.
+`
+},
+
+{
+    nome: "Ogro Zumbi",
+    nd: "2",
+    regiao: ["Ruínas","Subterrâneo"],
+    pagina: 316,
+    descricao: `Versão morta-viva de um ogro, extremamente resistente.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Grande, neutro e maligno
+CA: 8
+PV: 85 (9d10 + 36)
+Deslocamento: 6 m
+
+FOR 19 (+4)
+DES 6 (-2)
+CON 18 (+4)
+INT 3 (-4)
+SAB 6 (-2)
+CAR 5 (-3)
+
+Habilidades:
+- Fortitude Morta-viva
+
+Ações:
+- Clava:
++6 para atingir.
+Dano: 2d8 + 4 contundente.
+`
+},
+
+{
+    nome: "Observador Zumbi",
+    nd: "5",
+    regiao: ["Subterrâneo"],
+    pagina: 316,
+    descricao: `Beholder reanimado, com raios oculares enfraquecidos mas ainda perigosos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Morto-vivo Grande, neutro e maligno
+CA: 15
+PV: 93 (11d10 + 33)
+Deslocamento: voo 6 m
+
+FOR 10 (+0)
+DES 8 (-1)
+CON 16 (+3)
+INT 3 (-4)
+SAB 8 (-1)
+CAR 5 (-3)
+
+Habilidades:
+- Fortitude Morta-viva
+
+Ações:
+- Mordida:
++3 para atingir.
+Dano: 4d6 + 1 perfurante.
+
+- Raios Oculares:
+Efeitos aleatórios (dano, medo, paralisia).
+`
+},
+
+{
+    nome: "Bandido",
+    nd: "1/8",
+    regiao: ["Qualquer"],
+    pagina: 318,
+    descricao: `Criminoso comum que atua em grupos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (qualquer raça), qualquer tendência
+CA: 12 (armadura de couro)
+PV: 11 (2d8 + 2)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 12 (+1)
+CON 12 (+1)
+INT 10 (+0)
+SAB 10 (+0)
+CAR 10 (+0)
+
+Ações:
+- Cimitarra:
++3 para atingir, alcance 1,5 m.
+Dano: 1d6 + 1 cortante.
+
+- Besta Leve:
++3 para atingir, alcance 24/96 m.
+Dano: 1d8 + 1 perfurante.
+`
+},
+
+{
+    nome: "Capitão de Bandidos",
+    nd: "2",
+    regiao: ["Qualquer"],
+    pagina: 318,
+    descricao: `Líder experiente de um grupo de criminosos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 15
+PV: 65 (10d8 + 20)
+Deslocamento: 9 m
+
+FOR 15 (+2)
+DES 16 (+3)
+CON 14 (+2)
+INT 14 (+2)
+SAB 11 (+0)
+CAR 14 (+2)
+
+Ações:
+- Ataques Múltiplos (2 ataques)
+
+- Cimitarra:
++5 para atingir.
+Dano: 1d6 + 3.
+
+- Adaga:
++5 para atingir.
+Dano: 1d4 + 3.
+`
+},
+
+{
+    nome: "Cultista",
+    nd: "1/8",
+    regiao: ["Qualquer"],
+    pagina: 319,
+    descricao: `Servo fanático de uma entidade ou culto.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 12
+PV: 9 (2d8)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 12 (+1)
+CON 10 (+0)
+INT 10 (+0)
+SAB 11 (+0)
+CAR 10 (+0)
+
+Habilidades:
+- Devoção Sombria (vantagem contra medo)
+
+Ações:
+- Cimitarra:
++3 para atingir.
+Dano: 1d6 + 1.
+`
+},
+
+{
+    nome: "Fanático do Culto",
+    nd: "2",
+    regiao: ["Qualquer"],
+    pagina: 319,
+    descricao: `Líder religioso com acesso a magia sombria.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 13
+PV: 33 (6d8 + 6)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 14 (+2)
+CON 12 (+1)
+INT 10 (+0)
+SAB 13 (+1)
+CAR 14 (+2)
+
+Habilidades:
+- Conjuração (magias de clérigo)
+
+Ações:
+- Adaga:
++4 para atingir.
+Dano: 1d4 + 2.
+`
+},
+
+{
+    nome: "Druida",
+    nd: "2",
+    regiao: ["Qualquer"],
+    pagina: 320,
+    descricao: `Guardião da natureza com poderes de transformação.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 11
+PV: 27 (5d8 + 5)
+Deslocamento: 9 m
+
+FOR 10 (+0)
+DES 12 (+1)
+CON 13 (+1)
+INT 12 (+1)
+SAB 15 (+2)
+CAR 11 (+0)
+
+Habilidades:
+- Conjuração
+- Forma Florestagem
+
+Ações:
+- Cajado:
++2 para atingir.
+Dano: 1d6.
+`
+},
+
+{
+    nome: "Guarda",
+    nd: "1/8",
+    regiao: ["Qualquer"],
+    pagina: 320,
+    descricao: `Soldado comum treinado para patrulha e proteção.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 16 (armadura, escudo)
+PV: 11 (2d8 + 2)
+Deslocamento: 9 m
+
+FOR 13 (+1)
+DES 12 (+1)
+CON 12 (+1)
+INT 10 (+0)
+SAB 11 (+0)
+CAR 10 (+0)
+
+Ações:
+- Lança:
++3 para atingir.
+Dano: 1d6 + 1.
+`
+},
+
+{
+    nome: "Cavaleiro",
+    nd: "3",
+    regiao: ["Qualquer"],
+    pagina: 320,
+    descricao: `Guerreiro montado de elite, treinado para combate organizado.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio (qualquer raça)
+CA: 18 (armadura completa)
+PV: 52 (8d8 + 16)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 11 (+0)
+CON 14 (+2)
+INT 11 (+0)
+SAB 11 (+0)
+CAR 15 (+2)
+
+Habilidades:
+- Bravura:
+Vantagem contra medo.
+
+Ações:
+- Ataques Múltiplos (2 ataques)
+
+- Espada Longa:
++5 para atingir, alcance 1,5 m.
+Dano: 1d8 + 3 cortante.
+
+- Besta Pesada:
++2 para atingir, alcance 30/120 m.
+Dano: 1d10 perfurante.
+
+Reação:
+- Parar Golpe:
+Adiciona +2 na CA contra um ataque.
+`
+},
+
+{
+    nome: "Nobre",
+    nd: "1/8",
+    regiao: ["Qualquer"],
+    pagina: 321,
+    descricao: `Pessoa de alta posição social, pouco treinada para combate.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 15
+PV: 9 (2d8)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 12 (+1)
+CON 11 (+0)
+INT 12 (+1)
+SAB 14 (+2)
+CAR 16 (+3)
+
+Ações:
+- Estocada:
++3 para atingir.
+Dano: 1d8 + 1 perfurante.
+
+Reação:
+- Parry:
++2 na CA contra um ataque.
+`
+},
+
+{
+    nome: "Espião",
+    nd: "1",
+    regiao: ["Qualquer"],
+    pagina: 321,
+    descricao: `Especialista em infiltração, disfarce e assassinato.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 12
+PV: 27 (6d8)
+Deslocamento: 9 m
+
+FOR 10 (+0)
+DES 15 (+2)
+CON 10 (+0)
+INT 12 (+1)
+SAB 14 (+2)
+CAR 16 (+3)
+
+Perícias: Furtividade +4, Enganação +5
+
+Habilidades:
+- Ataque Furtivo:
++2d6 de dano extra.
+
+Ações:
+- Espada Curta:
++4 para atingir.
+Dano: 1d6 + 2.
+
+- Besta Leve:
++4 para atingir.
+Dano: 1d8 + 2.
+`
+},
+
+{
+    nome: "Gladiador",
+    nd: "5",
+    regiao: ["Qualquer"],
+    pagina: 321,
+    descricao: `Combatente experiente de arenas, extremamente resistente.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 16
+PV: 112 (15d8 + 45)
+Deslocamento: 9 m
+
+FOR 18 (+4)
+DES 15 (+2)
+CON 16 (+3)
+INT 10 (+0)
+SAB 12 (+1)
+CAR 15 (+2)
+
+Ações:
+- Ataques Múltiplos (3 ataques)
+
+- Lança:
++7 para atingir.
+Dano: 1d6 + 4 (ou arremesso).
+
+- Escudo:
++7 para atingir.
+Dano: 1d4 + 4 contundente.
+
+Reação:
+- Parry (+3 CA)
+`
+},
+
+{
+    nome: "Sacerdote",
+    nd: "2",
+    regiao: ["Qualquer"],
+    pagina: 322,
+    descricao: `Servo divino com acesso a magias de cura e proteção.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 13
+PV: 27 (5d8 + 5)
+Deslocamento: 9 m
+
+FOR 10 (+0)
+DES 10 (+0)
+CON 12 (+1)
+INT 11 (+0)
+SAB 16 (+3)
+CAR 13 (+1)
+
+Habilidades:
+- Conjuração (magias divinas)
+
+Ações:
+- Cajado:
++2 para atingir.
+Dano: 1d6.
+`
+},
+
+{
+    nome: "Mago",
+    nd: "6",
+    regiao: ["Qualquer"],
+    pagina: 322,
+    descricao: `Conjurador poderoso com vasto repertório de magias.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 12
+PV: 40 (9d8)
+Deslocamento: 9 m
+
+FOR 9 (-1)
+DES 14 (+2)
+CON 11 (+0)
+INT 17 (+3)
+SAB 12 (+1)
+CAR 11 (+0)
+
+Habilidades:
+- Conjuração (magias de alto nível)
+
+Ações:
+- Cajado:
++2 para atingir.
+Dano: 1d6.
+
+- Magias:
+Bola de fogo, relâmpago, etc.
+`
+},
+
+{
+    nome: "Assassino",
+    nd: "8",
+    regiao: ["Qualquer"],
+    pagina: 322,
+    descricao: `Matador profissional especializado em eliminar alvos rapidamente.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Humanoide Médio
+CA: 15
+PV: 78 (12d8 + 24)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 16 (+3)
+CON 14 (+2)
+INT 13 (+1)
+SAB 11 (+0)
+CAR 10 (+0)
+
+Habilidades:
+- Ataque Furtivo (4d6)
+- Assassinar (críticos contra surpresa)
+
+Ações:
+- Espada Curta:
++6 para atingir.
+Dano: 1d6 + 3 + veneno.
+
+- Besta Leve:
++6 para atingir.
+Dano: 1d8 + 3 + veneno.
+`
+},
+
+{
+    nome: "Arquimago",
+    nd: "12",
+    regiao: ["Qualquer"],
+    pagina: 323,
+    descricao: `Mago extremamente poderoso com acesso a magias devastadoras.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 15 (armadura de mago)
+PV: 99 (18d8 + 18)
+Deslocamento: 9 m
+
+FOR 10 (+0)
+DES 14 (+2)
+CON 12 (+1)
+INT 20 (+5)
+SAB 15 (+2)
+CAR 16 (+3)
+
+Habilidades:
+- Resistência Mágica
+- Conjuração (nível alto)
+
+Ações:
+- Cajado:
++6 para atingir.
+Dano: 1d6.
+
+- Magias:
+Teleportar, Bola de Fogo, etc.
+`
+},
+
+{
+    nome: "Veterano",
+    nd: "3",
+    regiao: ["Qualquer"],
+    pagina: 323,
+    descricao: `Soldado experiente e versátil em combate.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 17
+PV: 58 (9d8 + 18)
+Deslocamento: 9 m
+
+FOR 16 (+3)
+DES 13 (+1)
+CON 14 (+2)
+INT 10 (+0)
+SAB 11 (+0)
+CAR 10 (+0)
+
+Ações:
+- Ataques Múltiplos (2 ataques)
+
+- Espada Longa:
++5 para atingir.
+Dano: 1d8 + 3.
+
+- Besta:
++3 para atingir.
+Dano: 1d8 + 1.
+`
+},
+
+{
+    nome: "Batedor (Scout)",
+    nd: "1/2",
+    regiao: ["Qualquer"],
+    pagina: 323,
+    descricao: `Explorador ágil especialista em combate à distância.
+
+=== BLOCO DE ESTATÍSTICAS ===
+CA: 13
+PV: 16 (3d8 + 3)
+Deslocamento: 9 m
+
+FOR 11 (+0)
+DES 14 (+2)
+CON 12 (+1)
+INT 11 (+0)
+SAB 13 (+1)
+CAR 11 (+0)
+
+Perícias: Furtividade +6, Percepção +5
+
+Ações:
+- Ataques Múltiplos (2 ataques)
+
+- Arco Longo:
++4 para atingir.
+Dano: 1d8 + 2.
+
+- Espada Curta:
++4 para atingir.
+Dano: 1d6 + 2.
+`
+},
+
+{
+    nome: "Lobo",
+    nd: "1/4",
+    regiao: ["Floresta","Ártico"],
+    pagina: 341,
+    descricao: `Predador em matilha que derruba inimigos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Média
+CA: 13
+PV: 11 (2d8 + 2)
+Deslocamento: 12 m
+
+FOR 12 (+1)
+DES 15 (+2)
+CON 12 (+1)
+INT 3 (-4)
+SAB 12 (+1)
+CAR 6 (-2)
+
+Habilidades:
+- Táticas de Matilha
+
+Ações:
+- Mordida:
++4 para atingir.
+Dano: 2d4 + 2.
+CD 11 FOR ou fica caído.
+`
+},
+
+{
+    nome: "Urso Pardo",
+    nd: "1",
+    regiao: ["Floresta"],
+    pagina: 334,
+    descricao: `Animal forte e territorial.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Grande
+CA: 11
+PV: 34 (4d10 + 12)
+Deslocamento: 12 m
+
+FOR 19 (+4)
+DES 10 (+0)
+CON 16 (+3)
+INT 2 (-4)
+SAB 13 (+1)
+CAR 7 (-2)
+
+Ações:
+- Ataques Múltiplos
+
+- Mordida:
++5 para atingir.
+Dano: 1d8 + 4.
+
+- Garras:
++5 para atingir.
+Dano: 2d6 + 4.
+`
+}, 
+
+{
+    nome: "Cavalo de Montaria",
+    nd: "1/4",
+    regiao: ["Qualquer"],
+    pagina: 336,
+    descricao: `Animal domesticado utilizado para transporte.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Grande
+CA: 10
+PV: 13 (2d10 + 2)
+Deslocamento: 18 m
+
+FOR 16 (+3)
+DES 10 (+0)
+CON 12 (+1)
+INT 2 (-4)
+SAB 11 (+0)
+CAR 7 (-2)
+
+Ações:
+- Cascos:
++5 para atingir.
+Dano: 2d4 + 3 contundente.
+`
+},
+
+{
+    nome: "Cavalo de Guerra",
+    nd: "1/2",
+    regiao: ["Qualquer"],
+    pagina: 336,
+    descricao: `Cavalo treinado para combate.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Grande
+CA: 11
+PV: 19 (3d10 + 3)
+Deslocamento: 18 m
+
+FOR 18 (+4)
+DES 12 (+1)
+CON 13 (+1)
+INT 2 (-4)
+SAB 12 (+1)
+CAR 7 (-2)
+
+Ações:
+- Cascos:
++6 para atingir.
+Dano: 2d6 + 4.
+`
+},
+
+{
+    nome: "Águia",
+    nd: "0",
+    regiao: ["Montanha","Floresta"],
+    pagina: 322,
+    descricao: `Ave de rapina ágil com visão aguçada.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Pequena
+CA: 12
+PV: 3 (1d6)
+Deslocamento: 3 m, voo 18 m
+
+FOR 6 (-2)
+DES 15 (+2)
+CON 10 (+0)
+INT 2 (-4)
+SAB 14 (+2)
+CAR 7 (-2)
+
+Habilidades:
+- Visão Aguçada
+
+Ações:
+- Garras:
++4 para atingir.
+Dano: 1d4 + 2.
+`
+},
+
+{
+    nome: "Coruja",
+    nd: "0",
+    regiao: ["Floresta"],
+    pagina: 333,
+    descricao: `Ave noturna silenciosa.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Miúda
+CA: 11
+PV: 1 (1d4 - 1)
+Deslocamento: voo 18 m
+
+FOR 3 (-4)
+DES 13 (+1)
+CON 8 (-1)
+INT 2 (-4)
+SAB 12 (+1)
+CAR 7 (-2)
+
+Habilidades:
+- Voo Silencioso
+
+Ações:
+- Garras:
++3 para atingir.
+Dano: 1 cortante.
+`
+},
+
+{
+    nome: "Pantera",
+    nd: "1/4",
+    regiao: ["Floresta"],
+    pagina: 333,
+    descricao: `Predador ágil que embosca suas presas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Média
+CA: 12
+PV: 13 (3d8)
+Deslocamento: 15 m, escalada 12 m
+
+FOR 14 (+2)
+DES 15 (+2)
+CON 10 (+0)
+INT 3 (-4)
+SAB 14 (+2)
+CAR 7 (-2)
+
+Habilidades:
+- Investida
+
+Ações:
+- Mordida:
++4 para atingir.
+Dano: 1d6 + 2.
+`
+},
+
+{
+    nome: "Urso Polar",
+    nd: "2",
+    regiao: ["Ártico"],
+    pagina: 334,
+    descricao: `Versão maior e mais agressiva do urso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Grande
+CA: 12
+PV: 42 (5d10 + 15)
+Deslocamento: 12 m, natação 9 m
+
+FOR 20 (+5)
+DES 10 (+0)
+CON 16 (+3)
+INT 2 (-4)
+SAB 13 (+1)
+CAR 7 (-2)
+
+Ações:
+- Ataques Múltiplos
+
+- Mordida:
++7 para atingir.
+Dano: 1d8 + 5.
+
+- Garras:
++7 para atingir.
+Dano: 2d6 + 5.
+`
+},
+
+{
+    nome: "Vespa Gigante",
+    nd: "1/2",
+    regiao: ["Floresta","Floresta"],
+    pagina: 329,
+    descricao: `Inseto agressivo com ferrão venenoso.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Média
+CA: 12
+PV: 13 (3d8)
+Deslocamento: 3 m, voo 15 m
+
+FOR 10 (+0)
+DES 14 (+2)
+CON 10 (+0)
+INT 1 (-5)
+SAB 10 (+0)
+CAR 3 (-4)
+
+Ações:
+- Ferrão:
++4 para atingir, alcance 1,5 m.
+Dano: 1d6 + 2 perfurante + 3d6 veneno.
+CD 11 CON metade.
+`
+},
+
+{
+    nome: "Urso Pardo",
+    nd: "1",
+    regiao: ["Floresta"],
+    pagina: 334,
+    descricao: `Grande predador territorial extremamente forte.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Grande
+CA: 11
+PV: 34 (4d10 + 12)
+Deslocamento: 12 m
+
+FOR 19 (+4)
+DES 10 (+0)
+CON 16 (+3)
+INT 2 (-4)
+SAB 13 (+1)
+CAR 7 (-2)
+
+Ações:
+- Ataques Múltiplos
+
+- Mordida:
++5 para atingir.
+Dano: 1d8 + 4 perfurante.
+
+- Garras:
++5 para atingir.
+Dano: 2d6 + 4 cortante.
+`
+},
+
+{
+    nome: "Tigre",
+    nd: "1",
+    regiao: ["Floresta"],
+    pagina: 339,
+    descricao: `Predador ágil especializado em emboscadas.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Grande
+CA: 12
+PV: 37 (5d10 + 10)
+Deslocamento: 12 m
+
+FOR 17 (+3)
+DES 15 (+2)
+CON 14 (+2)
+INT 3 (-4)
+SAB 12 (+1)
+CAR 8 (-1)
+
+Habilidades:
+- Investida:
+Se mover e acertar, pode derrubar o alvo.
+
+Ações:
+- Mordida:
++5 para atingir.
+Dano: 1d10 + 3.
+
+- Garras:
++5 para atingir.
+Dano: 1d8 + 3.
+`
+},
+
+{
+    nome: "Cavalo Pesado",
+    nd: "1/4",
+    regiao: ["Qualquer"],
+    pagina: 336,
+    descricao: `Cavalo forte usado para carga e transporte pesado.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Grande
+CA: 10
+PV: 19 (3d10 + 3)
+Deslocamento: 12 m
+
+FOR 18 (+4)
+DES 10 (+0)
+CON 12 (+1)
+INT 2 (-4)
+SAB 11 (+0)
+CAR 7 (-2)
+
+Ações:
+- Cascos:
++6 para atingir.
+Dano: 2d4 + 4 contundente.
+`
+},
+
+{
+    nome: "Mula",
+    nd: "0",
+    regiao: ["Qualquer"],
+    pagina: 335,
+    descricao: `Animal resistente usado para transporte.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Média
+CA: 10
+PV: 11 (2d8 + 2)
+Deslocamento: 12 m
+
+FOR 14 (+2)
+DES 10 (+0)
+CON 13 (+1)
+INT 2 (-4)
+SAB 10 (+0)
+CAR 5 (-3)
+
+Ações:
+- Cascos:
++4 para atingir.
+Dano: 1d4 + 2.
+`
+},
+
+{
+    nome: "Cão de Montaria",
+    nd: "1/4",
+    regiao: ["Qualquer"],
+    pagina: 334,
+    descricao: `Animal treinado para combate e montaria em regiões frias.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Besta Média
+CA: 13
+PV: 13 (2d8 + 4)
+Deslocamento: 12 m
+
+FOR 14 (+2)
+DES 14 (+2)
+CON 12 (+1)
+INT 3 (-4)
+SAB 12 (+1)
+CAR 7 (-2)
+
+Habilidades:
+- Táticas de Matilha
+
+Ações:
+- Mordida:
++4 para atingir.
+Dano: 1d6 + 2.
+`
+}
+
+];
+
+
+
+// 🔧 INICIALIZAÇÃO
+populateFilters();
+renderList();
+
+monsters.sort((a, b) => 
+  a.nome.localeCompare(b.nome, 'pt-BR')
+);
+
+// 🔍 FILTROS
+function populateFilters() {
+    let nds = [...new Set(monsters.map(m => m.nd))];
+
+    // Ordem correta de ND
+    const ordemND = [
+        "0","1/8","1/4","1/2",
+        "1","2","3","4","5","6","7","8","9","10",
+        "11","12","13","14","15","16","17","18","19","20",
+        "21","22","23","24","25","26","27","28","29","30"
+    ];
+
+    nds.sort((a, b) => ordemND.indexOf(a) - ordemND.indexOf(b));
+
+    let ndSelect = document.getElementById("ndFilter");
+
+    nds.forEach(nd => {
+        let opt = document.createElement("option");
+        opt.value = nd;
+        opt.textContent = nd;
+        ndSelect.appendChild(opt);
+    });
+
+    // REGIÕES (vamos corrigir abaixo 👇)
+    populateRegions();
+}
+
+function populateRegions() {
+    let regSelect = document.getElementById("regionFilter");
+
+    REGIOES.forEach(r => {
+        let opt = document.createElement("option");
+        opt.value = r;
+        opt.textContent = r;
+        regSelect.appendChild(opt);
+    });
+}
+
+function getNDClass(nd) {
+    if (!nd) return "nd-low";
+
+    // evita erro com valores estranhos
+    if (typeof nd !== "string") nd = String(nd);
+
+    let val;
+
+    if (nd.includes('/')) {
+        const parts = nd.split('/');
+        if (parts.length !== 2) return "nd-low";
+
+        const num = parseFloat(parts[0]);
+        const den = parseFloat(parts[1]);
+
+        if (isNaN(num) || isNaN(den) || den === 0) return "nd-low";
+
+        val = num / den;
+    } else {
+        val = parseFloat(nd);
+
+        if (isNaN(val)) return "nd-low";
+    }
+
+    if (val <= 1) return "nd-low";
+    if (val <= 5) return "nd-mid";
+    if (val <= 15) return "nd-high";
+    return "nd-boss";
+}
+
+// 📋 LISTA
+function renderList() {
+    let search = document.getElementById("search").value.toLowerCase();
+    let nd = document.getElementById("ndFilter").value;
+    let region = document.getElementById("regionFilter").value;
+
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+
+    let filtrados = monsters
+        .filter(m =>
+            m.nome.toLowerCase().includes(search) &&
+            (nd === "" || m.nd === nd) &&
+            (region === "" || m.regiao.includes(region))
+        );
+
+    // ORDENAÇÃO ALFABÉTICA PADRÃO
+    filtrados = filtrados.sort((a, b) =>
+        a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' })
+    );
+
+    filtrados.forEach(m => {
+        let div = document.createElement("div");
+        div.className = "monster";
+
+        div.innerHTML = `
+            <strong>${m.nome}</strong>
+            <span class="nd ${getNDClass(m.nd)}">ND ${m.nd}</span>
+        `;
+
+        div.onclick = () => showMonster(m);
+
+        list.appendChild(div);
+    });
+}
+
+// 📖 MOSTRAR MONSTRO
+function showMonster(m) {
+    document.getElementById("name").textContent = m.nome;
+    document.getElementById("page").textContent = "Página: " + m.pagina;
+    document.getElementById("desc").textContent = m.descricao;
+
+    let img = document.getElementById("image");
+
+    if (m.imagem) {
+        img.src = "img/" + m.imagem;
+        img.style.display = "block";
+    } else {
+        img.style.display = "none";
+    }
+}
+
+
+
+// 🔄 EVENTOS
+document.getElementById("search").addEventListener("input", renderList);
+document.getElementById("ndFilter").addEventListener("change", renderList);
+document.getElementById("regionFilter").addEventListener("change", renderList);
+
+</script>
+
+</body>
+</html>
