@@ -2,7 +2,15 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Bestiário">
+<meta name="theme-color" content="#121212">
 <title>Bestiário D&D</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
 
 <style>
 body {
@@ -80,7 +88,7 @@ input:focus, select:focus {
 
 /* LISTA */
 .monster {
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
     margin-bottom: 6px;
     cursor: pointer;
@@ -156,6 +164,48 @@ input:focus, select:focus {
 .nd-boss {
     background: #6a1b9a;
 	box-shadow: 0 0 8px #6a1b9a;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .left, .right {
+        width: 100%;
+        height: auto;
+    }
+
+    .right {
+        order: 1;
+        max-height: 50vh;
+        overflow-y: auto;
+        border-bottom: 1px solid #333;
+    }
+
+    .left {
+        order: 2;
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    /* lista mais compacta */
+    .monster {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* título menor */
+    .left h1 {
+        font-size: 22px;
+    }
+
+    /* descrição mais confortável */
+    #desc {
+        font-size: 14px;
+    }
 }
 </style>
 </head>
@@ -4915,6 +4965,12 @@ function showMonster(m) {
     } else {
         img.style.display = "none";
     }
+	
+	if (window.innerWidth <= 768) {
+    document.querySelector('.left').scrollIntoView({
+        behavior: 'smooth'
+		});
+	}
 }
 
 
