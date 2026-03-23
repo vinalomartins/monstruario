@@ -23,6 +23,16 @@
 <meta name="theme-color" content="#121212">
 
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -181,40 +191,48 @@ input:focus, select:focus {
 
     .container {
         flex-direction: column;
+        width: 100%;
     }
 
     .left, .right {
         width: 100%;
-        height: auto;
+        max-width: 100%;
+        padding: 12px;
     }
 
     .right {
         order: 1;
-        max-height: 50vh;
+        max-height: 45vh;
         overflow-y: auto;
         border-bottom: 1px solid #333;
     }
 
     .left {
         order: 2;
-        max-height: 50vh;
+        max-height: 55vh;
         overflow-y: auto;
     }
 
-    /* lista mais compacta */
-    .monster {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    /* título menor */
-    .left h1 {
-        font-size: 22px;
-    }
-
-    /* descrição mais confortável */
+    /* evita estouro de texto */
     #desc {
-        font-size: 14px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* inputs 100% */
+    input, select {
+        width: 100%;
+    }
+
+    /* lista */
+    .monster {
+        width: 100%;
+    }
+
+    /* imagem */
+    .left img {
+        width: 100%;
+        height: auto;
     }
 }
 </style>
