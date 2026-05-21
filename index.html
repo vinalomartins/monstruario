@@ -65,9 +65,11 @@ body {
 }
 
 .left img {
+    display: block;
+    margin: 0 auto 15px auto;
+
     max-width: 100%;
     border-radius: 10px;
-    margin-bottom: 15px;
     border: 2px solid #333;
 }
 
@@ -585,6 +587,41 @@ A região contendo o covil de um abolete é deformada pela presença da criatura
 },
 
 {
+    nome: "Ankheg",
+    nd: "2",
+	xp: 450,	
+	imagem: "ankheg.png",
+    regiao: ["Subterrâneo"],
+    pagina: 20,
+    descricao: `Monstruosidade Grande, imparcial
+Classe de Armadura 14 (armadura natural), 11 quando enterrado
+Pontos de Vida 39 (6d10 + 6)
+Deslocamento 9 m, escavação 3 m
+
+FOR 17 (+3)
+DES 11 (+0)
+CON 13 (+1)
+INT 1  (-5)
+SAB 13 (+1)
+CAR 6  (-2)
+
+Sentidos visão no escuro 18 m, sentido sísmico􀀃􀏭􀏴􀀃􀅵􀍕
+Percepção passiva 11
+Idiomas –`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano cortante mais 3 (1d6) de dano de ácido. Se o alvo for uma criatura Grande ou menor, ela será agarrada (CD 13 para escapar). Até o agarrão terminar, o ankheg pode morder apenas a criatura agarrada e tem vantagem nas jogadas de ataque para fazê-lo.
+
+Rajada de Ácido (Recarrega 6):
+O ankheg cospe ácido em uma linha de 9 metros de comprimento e 1,5 metro de largura, considerando que não haja qualquer criatura agarrada. Cada criatura na linha deve realizar um teste de resistência de Destreza CD 13, sofrendo 10 (3d6) de dano de ácido se falhar na resistência, ou metade desse dano se obtive sucesso.`,
+
+lore:`Um ankheg lembra um enorme inseto cheio de pernas, suas longas antenas convulsionam em resposta a qualquer movimento a sua volta. Suas pernas terminam em ganchos afiados adaptados para esburacar e destroçar suas presas e suas poderosas mandíbulas podem cortar uma árvore pequena ao meio.
+Espreitadores na Terra. Os ankhegs usam suas poderosas mandíbulas para cavar sinuosos túneis nas profundezas do solo. Quando ele caça, um ankheg se enterra, esperando embaixo da superfície até que suas antenas detectem movimento acima. Então, ele emerge da terra e agarra sua presa com suas mandíbulas, esmagando e dilacerando ao mesmo tempo que secreta enzimas ácidas digestivas. Essas enzimas ajudam a dissolver a vítima para facilitar o engolimento, mas o ankheg também pode cuspir ácido para derrubar inimigos.
+Tormento de Campos e Florestas. Apesar dos ankhegs receberem uma certa porção dos seus nutrientes do solo que eles escavam, eles devem suplementar sua dieta com carne fresca. Pastagens cheias de gado e florestas com numerosos presas são os campos de caça preferidos do ankheg. Por isso, os ankhegs são o tormento de fazendeiros e patrulheiros em todos os cantos.
+Túneis Terrestres. À medida que ele se escava a terra, o ankheg deixa um túnel estreito e parcialmente desmoronado no caminho. Nesses túneis, pode-se encontrar os restos de quitina das patas do ankheg, ovos eclodidos ou restos mortais de suas vítimas, incluindo moedas ou outros tesouros espalhados durante o ataque da criatura.`
+},
+
+{
     nome: "Anomalia Da Água",
     nd: "3",
 	xp: 700,
@@ -623,6 +660,98 @@ lore:`Uma anomalia da água é um guardião elemental vinculado a um local cheio
 Anomalias Boas e Más. Como a maioria dos elementais, uma anomalia da água não tem conceito de bem ou mal. No entanto, uma anomalia da água vinculada a uma fonte de água sagrada ou profana começa a tomar a natureza desse lugar, tornando-se neutro e bom ou neutro e mau. 
 Uma anomalia da água neutra e boa tenta afugentar os intrusos ao invés de mata-los, enquanto que uma  anomalia da água maligna mata suas vítimas por prazer e pode se voltar contra seu invocador. Uma anomalia da água perde sua tendência maligna se a água for purificada com a magia purificar alimentos.
 Natureza Elemental. Uma anomalia da água não precisa respirar, comer, beber ou dormir.`
+},
+
+{
+    nome: "Aparição",
+    nd: "5",
+	xp: 1800,	
+	imagem: "aparicao.png",
+    regiao: ["Ruínas"],
+    pagina: 22,
+    descricao: `Morto-vivo Médio, neutro e mau
+Classe de Armadura 13
+Pontos de Vida 67 (9d8 + 27)
+Deslocamento 0 m, voo 18 m (planar)
+
+FOR 6  (-2)
+DES 16 (+3)
+CON 16 (+3)
+INT 12 (+1)
+SAB 14 (+2)
+CAR 15 (+2)
+
+Resistência a Dano ácido, elétrico, fogo, frio, trovejante; concussão, perfurante e cortante de ataques não-mágicos que não sejam de prata
+Imunidade a Dano necrótico, veneno
+Imunidade a Condição agarrado, caído, enfeitiçado, envenenado, exausto, impedido, inconsciente, paralisado, petrificado
+Sentidos visão no escuro 18 m, Percepção passiva 12
+Idiomas os idiomas que ela conhecia em vida`,
+
+habilidades:`Movimento Incorpóreo:
+A aparição pode se mover através de criaturas e objetos como se eles fossem terreno difícil. Ela sofre 5 (1d10) de dano de energia se terminar seu turno dentro de um objeto.
+
+Sensibilidade à Luz Solar:
+Enquanto estiver sob luz solar, a aparição tem desvantagem nas jogadas de ataque, assim como em testes de Sabedoria (Percepção) relacionados a visão.`,
+
+acoes:`Drenar Vida: 
+Ataque Corpo-a-Corpo com Magia: +6 para atingir, alcance 1,5 m, uma criatura. Acerto: 21 (4d8 + 3) de dano necrótico. O alvo deve ser bem sucedido num teste de resistência de Constituição CD 14 ou seu máximo de pontos de vida será reduzido em um valor igual ao dano sofrido. Essa redução dura até o alvo terminar um descanso longo. O alvo morre se esse efeito reduzir seu máximo de pontos de vida a 0. 
+
+Criar Espectro:
+A aparição afeta um humanoide a até 3 metros dela, que esteja morto a não mais de 1 minuto e tenha morrido violentamente. O espírito do alvo se ergue como um espectro no espaço do seu corpo ou no espaço desocupado mais próximo. O espectro está sob o controle da aparição. A aparição não pode ter mais de sete espectros sob seu controle ao mesmo tempo.`,
+
+lore:`Uma aparição é a encarnação da malícia, concentrada em uma forma incorpórea que busca extinguir toda a vida. A criatura é impregnada de energia negativa e sua mera passagem pelo mundo deixa as plantas próximas negras e murchas. Animais fogem ante sua presença. Até mesmo pequenas chamas se extinguem pela sucção de esquecimento da horrenda existência da aparição. 
+Esquecimento Vil. Quando um humanoide mortal vive uma vida aviltada ou realiza um pacto diabólico, ele condena sua alma a danação eterna nos Planos Inferiores. No entanto, as vezes a alma se torna tão impregnada de energia negativa que ela sucumbi a si mesma e deixa de existir um instante antes de embarcar numa terrível vida após a morte. Quando isso ocorre, o espírito se torna uma aparição desalmada – um vácuo maléfico preso no plano onde ele morreu. Praticamente nada da vida anterior da aparição é preservado; em sua nova forma, ela existe apenas para aniquilar outras vidas.
+Desprovido de Corpo. Uma aparição pode se mover através de criaturas e objetos sólidos tão facilmente quando uma criatura mortal se move na neblina. 
+Uma aparição pode manter algumas poucas memórias de sua vida mortal como ecos sombrios. No entanto, até mesmo os eventos e emoções mais marcantes tornam-se nada além de vagas impressões, tão efêmeros quanto a fraca lembrança deum sonho. Uma aparição pode parar para observar algo que a fascinava em vida, ou ela pode reduzir a sua ira ao reconhecer uma amizade passada. Tais momentos ocorrem raramente, no entanto, já que a maioria das aparições desprezam o que elas foram como um lembrete do que elas se tornaram.
+Comandantes Mortos-Vivos. Uma aparição pode criar um servo morto-vivo de um espírito de uma criatura humanoide que tenha sofrido recentemente uma morte violenta. Esse fragmento de aflição se torna um espectro, rancoroso de tudoque vive.
+As aparições, às vezes, comandam as legiões de mortos, conspirando para a danação das criaturas vivas. Quando elas emergem de suas tumbas para a batalha, vida e esperança murcham perante ela. Mesmo que oexército de uma aparição seja forçado a recuar, as terras ocupadas por suas forças ficam tão devastadas e estéreis que os que vivem nelas geralmente ficam famintos e morrem.
+Natureza Morta-Viva. Uma aparição não precisa respirar, comer, beber ou dormir.`
+},
+
+{
+    nome: "Arbusto Errante",
+    nd: "5",
+	xp: 1800,	
+	imagem: "arbusto_errante.png",
+    regiao: ["Floresta"],
+    pagina: 23,
+    descricao: `Planta Grande, imparcial
+Classe de Armadura 15 (armadura natural)
+Pontos de Vida 136 (16d10 + 48)
+Deslocamento 6 m, natação 6 m
+
+FOR 18 (+4)
+DES 8  (-1)
+CON 16 (+3)
+INT 5  (-3)
+SAB 10 (+0)
+CAR 5  (-3)
+
+Perícias Furtividade +2
+Resistência a Dano frio, fogo
+Imunidade a Dano elétrico
+Imunidade a Condição cego, surdo, exausto
+Sentidos percepção às cegas 18 m (cego além desse raio), Percepção passiva 10
+Idiomas –`,
+
+habilidades:`Absorção de Eletricidade:
+Sempre que o arbusto errante for alvo de dano elétrico, ele não sofrerá nenhum dano e recuperará uma quantidade de pontos de vida igual ao dano elétrico causado.`,
+
+acoes:`Ataques Múltiplos:
+O arbusto errante realiza dois ataques de pancada. Se ambos os ataques atingirem um alvo Médio ou menor, o alvo estará agarrado (CD 14 para escapar) e o arbusto errante usa seu Engolfar nele.
+
+Pancada: Ataque Corpo-a-Corpo com Arma: +7 para atingir, alcance 1,5 m, um alvo. Acerto: 13 (2d8 + 4) de dano de concussão.
+
+Engolfar: O arbusto errante engolfa uma criatura Média ou menor que ele tenha agarrado. A criatura engolfada está cega, impedida e incapaz de respirar e deve ser bem sucedida num teste de resistência de Constituição CD 14 no início de cada turno do errante ou sofrerá 13 (2d8 + 4) de dano de concussão. Se o errante se mover a criatura engolfada se move com ele. O errante pode ter apenas uma criatura engolfada por vez.`,
+
+lore:`Um arbusto errante, às vezes chamado apenas de errante, vagam lentamente por pântanos desolados, charcos lúgubres e florestas tropicais, consumindo qualquer matéria orgânica em seu caminho. Este amontoado podre de vegetação animada tem aproximadamente a altura de um humano e meio, terminando em uma “cabeça” sem rosto no topo.
+Devoradores que Consomem Tudo: Um arbusto errante se alimenta de qualquer material orgânico, consumindo incansavelmente plantas enquanto se move e devorando animais que não conseguem escapar dele. Apenas a raridade e lentidão do arbusto errante previne que ele destrua um ecossistema inteiro. Mesmo assim, a presença deles incomoda o ambiente natural das plantas e vida animal e uma calma inquietante permeia os pântanos e florestas assombrados por esses horrores insaciáveis.
+Caçadores Ocultos: Compostos de folhas, vinhas, raízes e outros compostos naturais apodrecidos de pântanos e florestas, errantes podem se misturar ao seus ambientes. Já que eles se movem lentamente, eles raramente tentam perseguir e pegar presas. Ao invés disso, eles permanecem parados, sustentando-se absorvendo nutrientes das suas redondezas enquanto esperam as presas virem até eles. Quando uma criatura passa próximo ou pousa sobre um arbusto errante, o monstro ganha vida, agarrando e absorvendo a presa desavisada.
+Gerados por Relâmpagos: Um arbusto errante é resultado de um fenômeno em que relâmpagos ou magia feérica revigora o que outrora foi uma planta pantanosa comum. À medida que a planta renasce para sua segunda vida, ela sufoca a vida de planas e animais a sua volta, cobrindo seus corpos numa pilha ao redor de suas raízes. Essas raízes, eventualmente, se desprendem do solo, direcionando o amontoado trôpego em busca de novas fontes de alimento. 
+A Erva que Anda: O instinto que guia o arbusto errante é um pedúnculo de raiz central, entocada em algum lugar dentro da forma maciça. Os restos do errante consistem em um amontoado apodrecido que, ao mesmo tempo, ele acumula e alimenta, o qual protege o pedúnculo de raiz que o anima para esmagar e sufocar a vida de qualquer criatura.
+A densa massa do corpo do arbusto errante encolhe-se sob o efeito de frio e fogo. A eletricidade revigora o pedúnculo de raiz, fortalecendo o arbusto errante e potencializando seu ímpeto consumidor.
+Independentemente de sua forma monstruosa, o arbusto errante é uma planta viva que necessita de ar e suprimentos. Apesar de ela não dormir como os animais fazem, ela pode ficar adormecida por dias antes de se erguer para caçar comida.
+A Ameaça que Ressurge: Se um arbusto errante enfrentar a derrota perante um oponente avassalador, o pedúnculo de raiz pode fingir-se de morto, desmoronando os restos do errante. Se não for morto subsequentemente, o pedúnculo de raiz reativa os restos do errante, lentamente recompondo seu corpo inteiro, então, mais uma vez, se ergue para consumir tudo o que puder. Desta maneira, as infestações do arbusto errante que se pensava terem sido destruídos a muito, podem ocorrer novamente e novamente.`
 },
 
 {
@@ -5344,13 +5473,11 @@ Envenenamento em área:  Raio de 9m, esporos de veneno. CD 12 de constituição 
 {
     nome: "Soldado - Infantaria Corrompida - Custom",
     nd: "1/8",
+	xp: 25,
 	tags: ["Custom", "Lorian", "Campanha"],
     regiao: ["Qualqer"],
     pagina: 0,
-    descricao: `Combatentes comuns endurecidos pela violência constante. Muitos já não distinguem ordem de crueldade.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Humanoide Médio (qualquer raça)
+    descricao: `Tipo: Humanoide Médio (qualquer raça)
 CA: 14 (cota de malha leve + escudo)
 PV: 11 (2d8 + 2)
 Deslocamento: 9 m
@@ -5363,36 +5490,29 @@ INT 10 (+0)
 SAB 10 (+0)
 CAR 9 (-1)
 
-Habilidades:
 - Perícias Percepção +2
 - Sentidos Percepção passiva 12
-- Idiomas Comum
+- Idiomas Comum`,
 
-Habilidade Especial:
-Formação de Combate:
-Se houver outro soldado a até 1,5m do alvo, o soldado tem +1 nas jogadas de ataque.
+habilidades:`Formação de Combate:
+Se houver outro soldado a até 1,5m do alvo, o soldado tem +1 nas jogadas de ataque.`,
 
-Ações:
-Espada Curta:
-Ataque Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo.
-Acerto: 5 (1d6 + 1) de dano cortante.
+acoes:`Espada Curta:
+Ataque Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 5 (1d6 + 1) de dano cortante.
 
-Besta Leve:
-Ataque à Distância: +3 para acertar, alcance 24/96 m, um alvo.
-Acerto: 5 (1d8 + 1) de dano perfurante.
-`
+Besta Leve: Ataque à Distância: +3 para acertar, alcance 24/96 m, um alvo. Acerto: 5 (1d8 + 1) de dano perfurante.`,
+
+lore:`Combatentes comuns endurecidos pela violência constante. Muitos já não distinguem ordem de crueldade.`
 },
 
 {
     nome: "Capitão da Patrulha - Custom",
     nd: "1",
+	xp: 200,
     regiao: ["Civilização", "Fronteira"],
 	tags: ["Custom", "Lorian", "Campanha"],
     pagina: 0,
-    descricao: `Um líder endurecido, mais perigoso pela disciplina que impõe do que pela força bruta. Mantém controle mesmo quando tudo dá errado.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Humanoide Médio (qualquer raça)
+    descricao: `Tipo: Humanoide Médio (qualquer raça)
 CA: 15 (cota de malha + escudo)
 PV: 32 (5d8 + 10)
 Deslocamento: 9 m
@@ -5405,32 +5525,25 @@ INT 11 (+0)
 SAB 12 (+1)
 CAR 12 (+1)
 
-Habilidades:
 - Perícias Intimidação +3, Percepção +3
 - Sentidos Percepção passiva 13
-- Idiomas Comum
-
-Habilidade Especial:
-Comandar Ataque (Recarga 5–6):
-Como ação bônus, o capitão escolhe um aliado a até 9m.
-Esse aliado pode usar a reação para fazer um ataque.
+- Idiomas Comum`,
+habilidades:`Comandar Ataque (Recarga 5–6):
+Como ação bônus, o capitão escolhe um aliado a até 9m. Esse aliado pode usar a reação para fazer um ataque.
 
 Presença Ameaçadora:
-Inimigos a até 3m têm desvantagem no primeiro teste de resistência contra medo (se você quiser puxar pra dark fantasy depois).
+Inimigos a até 3m têm desvantagem no primeiro teste de resistência contra medo (se você quiser puxar pra dark fantasy depois).`,
 
-Ações:
-Ataque Múltiplo:
+acoes:`Ataque Múltiplo:
 O capitão realiza 2 ataques com espada longa.
 
 Espada Longa:
-Ataque Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo.
-Acerto: 6 (1d8 + 2) de dano cortante.
+Ataque Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d8 + 2) de dano cortante.
 
 Investida Brutal (Recarga 5–6):
-Ataque Corpo a Corpo: +4 para acertar.
-Acerto: 7 (1d10 + 2) de dano.
-Se o alvo falhar em um teste de Força CD 12, fica Caído.
-`
+Ataque Corpo a Corpo: +4 para acertar. Acerto: 7 (1d10 + 2) de dano. Se o alvo falhar em um teste de Força CD 12, fica Caído.
+`,
+lore:`Um líder endurecido, mais perigoso pela disciplina que impõe do que pela força bruta. Mantém controle mesmo quando tudo dá errado.`
 }
 
 ];
