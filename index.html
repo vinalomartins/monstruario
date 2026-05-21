@@ -71,6 +71,58 @@ body {
     border: 2px solid #333;
 }
 
+.info-box {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    border-left: 4px solid #8b0000;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+.info-box h2 {
+    margin-top: 0;
+    color: #d4af37;
+    font-size: 18px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+}
+
+.lore-box {
+    background: #161616;
+    border: 1px solid #2f2f2f;
+    border-radius: 10px;
+    padding: 15px;
+    color: #cfcfcf;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+.monster-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.monster-meta span {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 12px;
+
+    background: #1a1a1a;
+    border: 1px solid #2f2f2f;
+    border-radius: 6px;
+
+    font-size: 13px;
+    color: #cfcfcf;
+
+    line-height: 1;
+}
+
 /* DESCRIÇÃO BONITA */
 #desc {
     white-space: pre-wrap;
@@ -186,6 +238,53 @@ input:focus, select:focus {
 	box-shadow: 0 0 8px #6a1b9a;
 }
 
+.tag-filters {
+    background: #1b1b1b;
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    padding: 14px;
+    margin-bottom: 14px;
+}
+
+.tag-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #d4af37;
+
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tag-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 10px;
+
+    cursor: pointer;
+    color: #ccc;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.tag-checkbox:hover {
+    color: #fff;
+}
+
+.tag-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+
+    accent-color: #8b0000;
+
+    margin: 0;
+}
+
 /* 📱 MOBILE */
 @media (max-width: 768px) {
 
@@ -245,8 +344,14 @@ input:focus, select:focus {
     <!-- ESQUERDA -->
     <div class="left">
         <h1 id="name">Selecione um monstro</h1>
-        <p id="page"></p>        
-        <pre id="desc"></pre>
+        <div class="monster-meta">
+			<span id="page"></span>
+			<span id="xp"></span>
+		</div>      
+        <div id="statsBox" class="info-box"></div>
+		<div id="abilitiesBox" class="info-box"></div>
+		<div id="actionsBox" class="info-box"></div>
+		<div id="loreBox" class="lore-box"></div>
 		<img id="image" src="" style="display:none;">
     </div>
 
@@ -262,6 +367,35 @@ input:focus, select:focus {
         <select id="regionFilter">
             <option value="">Todas Regiões</option>
         </select>
+		
+		<!-- TAGS -->
+        <div class="tag-filters">
+
+            <div class="tag-title">
+                Tags da Campanha
+            </div>
+
+            <label class="tag-checkbox">
+                <input type="checkbox" id="campanhaFilter">
+                Campanha Principal
+            </label>
+
+            <label class="tag-checkbox">
+                <input type="checkbox" id="portoFilter">
+                Porto da Cicatriz
+            </label>
+
+            <label class="tag-checkbox">
+                <input type="checkbox" id="customFilter">
+                Custom
+            </label>
+
+            <label class="tag-checkbox">
+                <input type="checkbox" id="santuarioMusgoFilter">
+                Santuário do Musgo
+            </label>
+
+        </div>
 
         <div id="list"></div>
 
@@ -282,7 +416,7 @@ const REGIOES = [
   "Pântano",
   "Planície",
   "Subterrâneo",
-  "SubSubaquático",
+  "Subaquático",
   "Urbano",
   "Ruínas",
   "Extraplanar",
@@ -293,13 +427,11 @@ let monsters = [
 {
     nome: "Aarakocra",
     nd: "1/4",
+	xp: 50,
 	imagem: "aarakocra.png",
     regiao: ["Montanha", "Plano Elemental"],
     pagina: 12,
-    descricao: `Humanoide alado que habita grandes altitudes e serve entidades do Plano Elemental do Ar.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Humanoide Médio (aarakocra), neutro e bom
+    descricao: `Tipo: Humanoide Médio (aarakocra), neutro e bom
 Classe de Armadura: 12
 Pontos de Vida: 13 (3d8)
 Deslocamento: 6 m, voo 15 m
@@ -314,31 +446,32 @@ CAR 11 (+0)
 
 Perícias: Percepção +5
 Sentidos: Percepção passiva 15
-Idiomas: Aarakocra, Auran
+Idiomas: Aarakocra, Auran`,
 
-Habilidades:
-- Ataque de Mergulho:
-Se o aarakocra estiver voando e mergulhar, pelo menos 9 metros, em linha reta em direção de um alvo e então atingi-lo com um ataque corpo-a-corpo armado, o ataque causa 3 (1d6) de dano extra ao alvo.
+    habilidades: `Ataque de Mergulho: 
+Se o aarakocra estiver voando e mergulhar, pelo menos 9 metros, em linha reta em direção de um alvo e então atingi-lo com um ataque corpo-a-corpo armado, o ataque causa 3 (1d6) de dano extra ao alvo.`,
 
-Ações:
-- Garra: 
+    acoes: `Garra: 
 Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano cortante.
 
-- Azagaia: 
+Azagaia: 
 Ataque à Distância com Arma: +4 para atingir, alcance 1,5 m ou 9/36 m, um alvo. Acerto: 5 (1d6 + 2) de dano perfurante.
-`
+`,
+    lore: `Aarakocras alcançam o Vórtice Uivante, uma tempestade interminável de poderosos ventos e rajadas de chuva que envolvem o tranquilo reino de Aaqa no Plano Elemental do Ar. Fazendo patronos aéreos, esses humanoides
+	similares a pássaros guardam as fronteiras ventosas de seu lar contra invasores do Plano Elemental da Terra, como gárgulas, seus inimigos jurados. Inimigos do Mal Elemental. A serviço dos Duques do Vento de Aaqa, aarakocras patrulham os planos em busca de templos de Mal Elemental. Eles espiam as criaturas elementais malignas e também lutam contra essas criaturas e depois relatam aos Duques do Vento. No Plano Material, aarakocras criam ninhos nos topos das mais altas montanhas, especialmente em picos próximos de portais para o Plano Elemental do Ar. De tais alturas, aarakocras vigiam em busca de sinais de incursões elementais, assim como por ameaças que aparecerem no seu plano natal. Os aarakocras preferem viver suas vidas como o vento – aliviados e sempre em movimento – ainda que eles tenham que vigiar uma região por anos se isso for necessário para protege-la contra as incursões do Mal Elemental. Os aarakocras não possuem conceito de fronteiras políticas ou de propriedade privada e o valor de gemas, ouro e outros metais preciosos significam pouco para os aarakocras. Aos olhos deles, uma criatura deve usar o que é necessário e então jogar fora o que restar ao vento, para que outros usem. Busca pelos Sete Estilhaços. Os Duques do Vento de Aaqa vem de uma raça de seres elementais chamados vaati, que há muito governaram diversos mundos. Uma criatura chamada de Rainha do Caos surgiu e iniciou uma guerra interplanar contra o governo vaati. Para combater a ameaça, sete heróis vaati combinaram seus poderes para criar o poderoso Bastão da Lei. Em uma batalha contra o maior general da rainha, Mishka o Lobo Aranha, um vaati matou Mishka ao empurrar o bastão contra ele, como uma lança. O bastão se despedaçou em sete estilhaços que se espalharam pelo multiverso. Os aarakocras buscam sinais das localizações dos pedaços com o intuito de reconstruir o que agora é conhecido como o Bastão das Sete Partes.
+	
+	INVOCANDO ELEMENTAIS DO AR
+	Cinco aarakocras a até 9 metros entre si, podem invocar magicamente um elemental do ar. Cada um dos cinco deve usar sua ação e movimento durante três turnos consecutivos para realizar uma dança aérea e devem manter a concentração enquanto o fazem (como se estivessem se concentrando numa magia). Quando todos os três tiverem terminado o terceiro turno de dança, o elemental aparecerá em um espaço desocupado a até 18 metros deles. Ele é amigável a eles e obedece os comando falados por eles. Ele permanece por 1 hora, até que todos os seus invocadores morram ou até que qualquer de seus invocadores dispense-o com uma ação bônus. Um invocador não pode realizar a dança novamente até ter terminado um descanso curto. Quando o elemental voltar ao Plano Elemental do Ar, qualquer aarakocra a até 1,5 metro dele pode retornar com ele.`
 },
 
 {
     nome: "Abocanhador Matraqueante",	
     nd: "2",
-	XP: 450,
-    regiao: "Subterrâneo",
+	xp: 450,
+	imagem: "abocanhador_matracante.png",
+    regiao: ["Subterrâneo"],
     pagina: 13,
-    descricao: `Criatura amorfa composta por bocas e olhos que enlouquece suas vítimas com sua tagarelice constante.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Aberração Média, neutro
+    descricao: `Tipo: Aberração Média, neutro
 Classe de Armadura: 9
 Pontos de Vida: 67 (9d8 + 27)
 Deslocamento: 3 m, natação 3 m
@@ -352,45 +485,43 @@ CAR 6 (-2)
 
 Imunidade: condição caído
 Sentidos: visão no escuro 18 m, Percepção passiva 10
-Idiomas: —
+Idiomas: —`,
 
-Habilidades:
-- Solo Aberrante:
+habilidades: `Solo Aberrante:
 O solo num raio de 3 metros do abocanhador é similar a uma massa de terreno difícil. Cada criatura que comece seu turno nessa área deve ser bem sucedida num teste de resistência de Força CD 10, ou terá seu deslocamento reduzido a 0 até o início do próximo turno dela.
 
-- Tagarelice:
+Tagarelice:
 O abocanhador balbucia incoerentemente quando ele vê qualquer criatura e não está incapacitado. 
 Cada criatura que começar seu turno a até 6 metros do abocanhador e puder ouvilo, deve ser bem sucedida num teste de resistência de Sabedoria CD 10. 
 Se falhar, a criatura não poderá realizar reações até o início do próximo turno dela e joga um d8 para determinar o que ela faz nesse turno. 
 Entre 1 e 4, a criatura não faz nada. Entre 5 e 6, a criatura não realiza qualquer ação ou reação e usa seu movimento para se mover em uma direção determinada aleatoriamente.
-Entre 7 e 8, a criatura realiza um ataque corpo-a-corpo contra uma criatura determinada aleatoriamente dentro do seu alcance ou não faz nada se não puder realizar tal ataque.
+Entre 7 e 8, a criatura realiza um ataque corpo-a-corpo contra uma criatura determinada aleatoriamente dentro do seu alcance ou não faz nada se não puder realizar tal ataque.`,
 
-Ações:
-- Ataques Múltiplos. 
+acoes:`Ataques Múltiplos. 
 O abocanhador matraqueante realiza um ataque de mordida e, se puder, usa sua Cusparada Cegante.
 
-- Mordida:
+Mordida:
 Ataque Corpo-a-Corpo com Arma: +2 para atingir, alcance 1,5 m, uma criatura. Acerto: 17 (5d6) de dano perfurante.
 Se o alvo for Médio ou menor, ele deve ser bem sucedido num teste de resistência de Força CD 10 ou será derrubado no chão. 
 Se o alvo for morto por esse dano, ele será absorvido pelo abocanhador.
 
-- Cusparada Cegante (Recarga 5–6):
+Cusparada Cegante (Recarga 5–6):
 O abocanhador cospe uma bolha química num ponto que ele possa ver a até 4,5 metros dele. A bolha explode em um clarão de luz cegante no impacto. Cada criatura a até 1,5 metro do clarão deve ser bem sucedida num teste de resistência de Destreza CD 13 ou ficará cega até o final do próximo turno do abocanhador.
-`
+`,
+lore:`De todos os terrores criados por magos tolos, os abocanhadores matraqueantes estão dentre os mais apavorantes e depravados. Essa criatura é a combinação de olhos, bocas e matéria liquefeita de suas vítimas anteriores. Levadas à insanidade pela destruição de seus corpos e absorção pelo abocanhador, essas vítimas balbuciam loucuras incoerentes, forçadas a consumir tudo ao alcance. Forma Ameboide. O corpo do abocanhador matraqueante é uma forma amorfa de bocas e olhos que se impulsionam deslizando para a frente, fixando diversas bocas ao solo e puxando as massa adiante. Apesar de se mover lentamente, ele pode nadar na água, lema e areia movediça facilmente. Bocas da Loucura. Quando um abocanhador matraqueante sente sua presa, suas bocas começam a murmurar e tagarelar, cada uma com uma voz diferente: grave ou aguda, gemendo ou ululando, gritando em agonia ou êxtase. Essa tagarelice cacofônica sobrepõe os sentidos de qualquer criatura que ouvir, fazendo a maioria fugir aterrorizada. Outros são dominados pela loucura ou permanecem paralisados, fixados na horrenda criatura enquanto ela desliza adiante para consumi-los. Consome Tudo. Impelido a devorar qualquer criatura ao alcance, um abocanhador matraqueante escoa sobre suas vítimas paralisadas pelo seu discurso louco, as inúmeras vozes silenciam temporariamente, enquanto ele morte e engole carne viva. O monstro liquefaz rocha quando em contato, dificultando a fuga de criaturas que superem sua tagarelice. Um abocanhador matraqueante não deixa nada de sua presa para trás. No entanto, mesmo quando o último pedaço do corpo da vítima é consumido, seus olhos e boca emergem a superfície, prontos para se juntar ao cântico de tormento matraqueante que dá as boas-vindas à próxima refeição do monstro.`
 },
 
 {
     nome: "Abolete",
     nd: "10",
+	xp: 5900,
+	imagem: "abolete.png",
     regiao: ["Subaquático", "Subterrâneo"],
     pagina: 14,
-    descricao: `Criatura ancestral psíquica que domina mentes e habita profundezas aquáticas.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Aberração Grande, leal e mau
-Classe de Armadura: 17 (armadura natural)
-Pontos de Vida: 135 (18d10 + 36)
-Deslocamento: 3 m, natação 12 m
+    descricao: `Aberração Grande, leal e mau
+Classe de Armadura 17 (armadura natural)
+Pontos de Vida 135 (18d10 + 36)
+Deslocamento 3 m, natação 12 m
 
 FOR 21 (+5)
 DES 9 (-1)
@@ -399,49 +530,99 @@ INT 18 (+4)
 SAB 15 (+2)
 CAR 18 (+4)
 
-Testes de Resistência: CON +6, INT +8, SAB +6
-Perícias: História +12, Percepção +10
-Sentidos: visão no escuro 36 m, Percepção passiva 20
-Idiomas: Telepatia 36 m
+Testes de Resistência Con +6, Int +8, Sab +6
+Perícias História +12, Percepção +10
+Sentidos visão no escuro 36 m, Percepção passiva 20
+Idiomas Dialeto Subterrâneo, telepatia 36 m`,
 
-Habilidades:
-- Anfíbio:
-Pode respirar ar e água.
+habilidades:`Anfíbio:
+O abolete pode respirar ar e água.
 
-- Escravidão:
-Alvo deve fazer teste de Sabedoria CD 14.
-Falha: fica encantado e sob controle do abolete.
+Nuvem Mucosa:
+Quando estiver submerso, o abolete fica envolto por um muco transformador. Uma criatura que toque o abolete  u que atinja ele com um ataque corpo-a-corpo estando a até 1,5 metro dele deve ser bem sucedida num teste de resistência de Constituição CD 14. Se fracassar, a criatura fica adoecida por 1d4 horas. A criatura adoecida só pode respirar sob a água.
 
-- Nuvem de Muco:
-Criaturas na água devem fazer teste de Constituição.
-Falha: doença que impede respiração fora d'água.
+Sondagem Telepática:
+Se uma criatura se comunicar telepaticamente com o abolete, o abolete descobre os maiores desejos da criatura se o abolete puder vê-la.`,
 
-Ações:
-- Ataques Múltiplos:
-O abolete realiza 3 ataques de tentáculo.
+acoes:`Ataques Múltiplos:
+O abolete realiza três ataques de tentáculos.
 
-- Tentáculo:
-+9 para atingir, alcance 3 m.
-Dano: 2d6 + 5 contundente.
+Cauda:
+Ataque Corpo-a-Corpo com Arma: +􀏵 para atingir, alcance 3 m, um alvo. Acerto: 15 (3d6 + 5) de dano de concussão.
 
-- Cauda:
-+9 para atingir.
-Dano: 3d6 + 5 contundente.
+Escravizar (3/Dia):
+O abolete afeta uma criatura que ele possa ver a até 9 metros dele. O alvo deve ser bem sucedido num teste de resistência de Sabedoria CD 14, ou ficará magicamente enfeitiçado pelo abolete até que ele morra ou esteja em um plano de existência diferente do alvo. O alvo enfeitiçado está sob o controle do abolete e não pode realizar reações e, o abolete e o alvo, podem se comunicar telepaticamente um com o outro a qualquer distância.
+Sempre que o alvo enfeitiçado sofrer dano, ele pode repetir o teste de resistência. Se for bem sucedido, o efeito termina.
+Não mais de uma vez a cada 24 horas, o alvo também pode repetir o teste de resistência quando ele estiver a pelo menos 1,5 quilômetro de distância do abolete.
 
-- Escravizar (3/dia):
-Teste de Sabedoria CD 14.
-Falha: controle mental total.
+Tentáculo: Ataque Corpo-a-Corpo com Arma: +9 para atingir, alcance 3 m, um alvo. Acerto: 12 (2d6 + 5) de dano de concussão. Se o alvo for uma criatura, ele deve ser bem sucedido num teste de resistência de Constituição CD 14 ou ficará adoecido. A doença não causa nenhum efeito por 1 minuto e pode ser removida por qualquer magia que cure doenças. Após 1 minuto, a pele da criatura adoecida se torna translucida e viscosa, a criatura não pode recuperar pontos de vida a não ser que esteja submersa e a doença só pode ser removida por cura completa ou por outra mágica de curar doenças de 6° nível ou superior. Quando a criatura estiver fora de um corpo de água, ela sofre 6 (1d12) de dano de ácido a cada 10 minutos, a menos que a pele dela seja umedecida antes de 10 minutos se passarem.
 
 Ações Lendárias:
-- Detectar:
-Realiza teste de Sabedoria (Percepção).
+O abolete pode realizar 3 ações lendárias, escolhidas dentre as opções abaixo. Apenas uma ação lendária pode ser usada por vez e apenas no final do turno de outra criatura. O abolete recupera as ações lendárias gastas no começo do turno dele.
+Chicotear com a Cauda: 
+O abolete realiza um ataque de cauda.
 
-- Chicotada de Cauda:
-Ataque de cauda adicional.
+Detectar: 
+O abolete realiza um teste de Sabedoria (Percepção).
 
-- Drenar Psíquico:
-Causa dano psíquico e cura o abolete.
-`
+Dreno Psíquico (Custa 2 Ações): Uma criatura enfeitiçada pelo abolete sofre 10 (3d6) de dano psíquico e o abolete recupera uma quantidade de pontos de vida igual ao dano sofrido pela criatura.
+`,
+lore:`Antes da chegada dos deuses, os aboletes espreitavam nos oceanos primordiais e em lagos subterrâneos. Eles chegaram com suas mentes e tomaram controle das formas de vida florescentes do reino mortal, fazendo dessas criaturas seus escravos. Sua dominação os torna similares a deuses. Então, os verdadeiros deuses apareceram, esmagando o império abolete e libertando seus escravos. Os aboletes nunca esqueceram. Memórias Eternas. Os aboletes possuem memórias impecáveis. Eles passam seus conhecimentos e experiências de geração em geração. Então, a injuria da derrota deles pelos deuses permanece perfeitamente preservada em suas mentes. A mente dos aboletes são preciosos conhecimentos antigos, relembrando de momentos da pré-história com perfeita clareza. Eles tramaram pacientemente e intrincadamente através das eras. Poucas criaturas podem conceber a extensão dos planos de um abolete. Deuses no Lago. Os aboletes habitam ambientes aquáticos, incluindo abismos oceânicos, lagos profundos e o Plano Elemental da Água. Nesses domínios e nas terras adjacentes, os aboletes são como deuses, demandando veneração e obediência dos seus subordinados. Quando eles consomem outras criaturas, os aboletes adicionam o conhecimento e as experiências de suas prezas às suas memórias eternas. Os aboletes usam seus poderes telepáticos para ler a mente de criaturas e descobrir seus desejos. Um abolete usa esse conhecimento para ganhar a lealdade da criatura, prometendo satisfazer tais necessidades em troca de obediência. Dentro do seu covil, o abolete pode, posteriormente, usar seus poderes para enganar os sentidos, fornecendo às criaturas, como seus seguidores, a ilusão das recompensas prometidas. Inimigos dos Deuses. A queda do poder dos aboletes está escrita com total claramente em suas memórias impecáveis, pois os aboletes nunca morrem de verdade. Se o corpo de um abolete for destruído, seu espírito retorna para o Plano Elemental da Água, onde um novo corpo se funde a ele ao longo de dias ou meses. Em última análise, os aboletes sonham em destituir os deuses e recuperar o controle sobre o mundo. Os aboletes tiveram incalculáveis eras para tramar e preparar seus planos para uma perfeita execução.
+
+O COVIL DO ABOLETE
+O covil de um abolete em lagos subterrâneos ou nas profundezas rochosas do oceano, frequentemente é cercado pelas ruínas de uma antiga cidade abolete caída. Um abolete passa a maior parte de sua existência submerso, emergindo ocasionalmente para lidar com visitantes ou adoradores dementes.
+
+AÇÕES DE COVIL
+Quando estiver lutando dentro de seu covil, um abolete pode invocar a magia ambiente para realizar ações de covil. No valor de iniciativa 20 (quebrando toda a sequência de iniciativa), o abolete realiza uma ação de covil fazendo um dos efeitos a seguir: 􀁸 O abolete conjura força fantasmagórica (nenhum componente é necessário) em qualquer quantidade de criaturas que ele possa ver, a até 18 metros dele. Enquanto mantiver a concentração nesse efeito, o abolete não pode realizar outras ações de covil. Se um alvo for bem sucedido no teste de resistência ou se o efeito terminar para ele, o alvo ficará imune a ação de covil força fantasmagórica do abolete pelas próximas 24 horas, apesar de tal criatura poder escolher ser afetada.
+- Poças de água a até 27 metros do abolete formam marés agarradoras. Qualquer criatura no solo a até 6 metros de tais poças deve ser bem sucedida num teste de resistência de Força CD 14, ou será puxada 6 metros para dentro da água e ficará caída. O abolete não pode usar essa ação de covil novamente até ter usado uma ação diferente.
+- A água no covil do abolete magicamente se transforma um condutor para a ira da criatura. O abolete pode afetar qualquer número de criaturas dentro da água que ele possa ver a até 27 metros dele. Um alvo deve ser bem sucedido num teste de resistência de Sabedoria CD 14 ou sofrerá 7 (2d6) de dano psíquico. O abolete não pode usar essa ação de covil novamente até ter usado uma ação diferente.
+
+EFEITOS REGIONAIS
+A região contendo o covil de um abolete é deformada pela presença da criatura, o que cria um ou mais dos seguintes efeitos:
+- Superfícies subterrâneas a até 1,5 quilômetro do covil de um abolete fica viscosa e úmida se torna terreno difícil.
+- Fontes de água a até 1,5 quilômetro do covil ficam sobrenaturalmente poluídas. Os inimigos do abolete que beberem dessa água vomitarão dentro de minutos.
+- Com uma ação, o abolete pode criar uma imagem ilusória de si mesmo a até 1,5 quilômetro do seu covil. A cópia pode aparecer em qualquer lugar que o abolete já tenha visto anteriormente ou em qualquer lugar que uma criatura enfeitiçada pelo abolete possa ver atualmente. Uma vez criada, a imagem dura enquanto o abolete mantiver a concentração, como se ele estivesse se concentrando em uma magia. Apesar da imagem ser intangível, ela se parece, emite sons e se move como o abolete. O abolete pode sentir, falar e usar telepatia da posição da imagem como se estivesse presente nessa posição. Se a imagem sofrer qualquer dano, ela desaparece. Se o abolete morrer, os primeiros dois efeitos desvanecem dentro de 3d10 dias.`
+},
+
+{
+    nome: "Anomalia Da Água",
+    nd: "3",
+	xp: 700,
+	tags: ["Campanha", "Porto Cicatriz"],
+	imagem: "anomalia_da_agua.png",
+    regiao: ["Subaquático"],
+    pagina: 21,
+    descricao: `Elemental Grande, neutro
+Classe de Armadura 13
+Pontos de Vida 58 (9d10 + 9)
+Deslocamento 0 m, natação 18 m
+
+FOR 17 (+3)
+DES 16 (+3)
+CON 13 (+1)
+INT 11 (+0)
+SAB 10 (+0)
+CAR 10 (+0)
+
+Resistência a Dano fogo; concussão, perfurante e cortante de ataques não-mágicos
+Imunidade a Dano veneno
+Imunidade a Condição agarrado, caído, envenenado, exausto, impedido, inconsciente, paralisado
+Sentidos percepção às cegas 9 m, Percepção passiva 10
+Idiomas compreende Aquan, mas não pode falar`,
+
+habilidades:`Invisível na Água:
+A anomalia da água é invisível enquanto estiver totalmente imersa em água.
+
+Vínculo com a Água: 
+A anomalia da água morre se abandonar a água a qual foi vinculada ou se a água for destruída.`,
+
+acoes:`Constrição: 
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 3 m, uma criatura. Acerto: 13 (3d6 + 3) de dano de concussão. Se o alvo for Médio ou menor, ele será agarrado (CD 13 para escapar) e puxado 1,5 metro para a anomalia da água. Até que esse agarrão termine, o alvo está impedido e a anomalia da água tentará afoga-lo e a anomalia da água não pode constringir outro alvo.`,
+
+lore:`Uma anomalia da água é um guardião elemental vinculado a um local cheio de água especifico, como uma piscina ou fonte. Invisível enquanto está imerso na água, seu corpo serpentino torna-se claro apenas quando ele emerge para atacar, usando suas espirais para esmagar qualquer criatura diferente do seu invocador e aqueles que o invocador declarar fora dos limites. Quando é morta, uma anomalia da água torna-se uma poça inanimada de água.
+Anomalias Boas e Más. Como a maioria dos elementais, uma anomalia da água não tem conceito de bem ou mal. No entanto, uma anomalia da água vinculada a uma fonte de água sagrada ou profana começa a tomar a natureza desse lugar, tornando-se neutro e bom ou neutro e mau. 
+Uma anomalia da água neutra e boa tenta afugentar os intrusos ao invés de mata-los, enquanto que uma  anomalia da água maligna mata suas vítimas por prazer e pode se voltar contra seu invocador. Uma anomalia da água perde sua tendência maligna se a água for purificada com a magia purificar alimentos.
+Natureza Elemental. Uma anomalia da água não precisa respirar, comer, beber ou dormir.`
 },
 
 {
@@ -538,6 +719,49 @@ Ações:
 - Sopro Elétrico (Recarga 5–6):
 Linha de 6 m, dano 12d10 elétrico, CD 16 DES.
 `
+},
+
+{
+    nome: "Bruxa Do Mar",
+    nd: "2",
+	xp: 450,
+	tags: ["Campanha", "Porto Cicatriz"],
+	imagem: "bruxa_da_noite.png",
+    regiao: ["Subaquático", "Costa"],
+    pagina: 30,
+    descricao: `Fada Média, caótico e mau
+Classe de Armadura 14 (armadura natural)
+Pontos de Vida 52 (7d8 + 21)
+Deslocamento 9 m, natação 12 m
+
+FOR 16 (+3)
+DES 13 (+1)
+CON 16 (+3)
+INT 12 (+1)
+SAB 12 (+1)
+CAR 13 (+1)
+
+Sentidos visão no escuro 18 m, Percepção passiva 11
+Idiomas Aquan, Comum, Gigante`,
+
+habilidades:`Anfíbio: 
+A bruxa pode respirar ar e água. Aparência Horripilante. Qualquer humanoide que começar seu turno a até 9 metros da bruxa e puder vê-la em sua verdadeira forma, deve realizar um teste de resistência de Sabedoria CD 11. Se falhar na resistência, a criatura fica amedrontada por 1 minuto. A criatura pode repetir o teste de resistência no final de cada um dos seus turnos, com desvantagem se a bruxa estiver na sua linha de visão, terminando o efeito sobre si, se obtiver sucesso. Se a criatura for bem sucedido no teste, ou o se o efeito terminar nela, ela fica imune à Aparência Horripilante da bruxa pelas próximas 24 horas.
+A não ser que o alvo esteja surpreso ou que a revelação da aparência verdadeira da bruxa tenha sido repentina, o alvo pode desviar seu olhar e evitar o teste de resistência inicial. Até o início do seu próximo turno, uma criatura que esteja desviando o olhar terá desvantagem nas jogadas de ataque contra a bruxa.
+`,
+
+acoes:`Garras: 
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano cortante.
+
+Olhar Mortal: 
+A bruxa afeta uma criatura amedrontada que ela possa ver, a até 9 metros dela. Se o alvo puder ver a bruxa, ele deve ser bem sucedido num teste de resistência de Sabedoria CD 11 contra essa magia ou cairá a 0 pontos de vida.
+
+Aparência Ilusória: 
+A bruxa encobre a si mesma e a tudo que ela esteja vestindo ou carregando com uma ilusão mágica que faz com que ela se pareça com uma criatura feia de tamanho similar ao seu e de formato humanoide. O efeito termina se a bruxa usar uma ação bônus para termina-lo ou se ela morrer. 
+As mudanças forjadas por esse efeito falham em se manter durante uma inspeção física. Por exemplo, a bruxa pode parecer não possuir garras, mas alguém que toque a mão dela poderá sentir as garras. Do contrário, uma criatura deve realizar uma ação para inspecionar visualmente a ilusão e passar num teste de Inteligência (Investigação) CD 16 para perceber que a bruxa está disfarçada.`,
+
+lore:`As bruxas do mar vivem em covis submersos funestos e poluídos, cercados por merrows e outros monstros aquáticos. A beleza leva a bruxa do mar a ter acessos de raiva. Quando confrontada por algo belo, a bruxa pode simplesmente atacar ou desfigurar a coisa. Se uma coisa bela traz esperanças, a bruxa quer que ela cause desespero. Se ela inspira coragem, a bruxa quer que cause medo.
+Feia por Dentro e por Fora. As bruxas do mar são, de longe, as mais feias dentre as bruxas, com escamas viscosas cobrindo sua pele pálida. O cabelo de uma bruxa do mar lembra algas marinhas, cobrindo seu corpo emaciado e seus olhos vítreos parecem tão sem vida quanto os de uma boneca. Apesar da bruxa do mar poder esconder sua forma verdadeira através de um véu de ilusão, a bruxa é amaldiçoada para se parecer feia eternamente. Sua forma ilusória parece desfigurada, na melhor das hipóteses.
+Convenções. Uma bruxa do mar que faça parte de uma convenção (veja a nota “Convenção de Bruxas”) tem um nível de desafio de 4 (1.100 XP).`
 },
 
 {
@@ -677,15 +901,15 @@ Teste de Destreza CD 18 para metade do dano.
 {
     nome: "Chuul",
     nd: "4",
+	xp: 1100,
+	tags: ["Campanha", "Porto Cicatriz"],
+	imagem: "chuul.png",
     regiao: ["Subaquático","Subterrâneo"],
     pagina: 42,
-    descricao: `Criatura anfíbia que paralisa suas vítimas.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Aberração Grande
-Classe de Armadura: 16 (armadura natural)
-Pontos de Vida: 93 (11d10 + 33)
-Deslocamento: 9 m, natação 9 m
+    descricao: `Aberração Grande, caótico e mau
+Classe de Armadura 16 (armadura natural)
+Pontos de Vida 93 (11d10 + 33)
+Deslocamento 9 m, natação 9 m
 
 FOR 19 (+4)
 DES 10 (+0)
@@ -694,18 +918,33 @@ INT 5 (-3)
 SAB 11 (+0)
 CAR 5 (-3)
 
-Sentidos: visão no escuro 18 m
+Perícias Percepção +4
+Imunidade a Dano veneno
+Imunidade a Condição envenenado
+Sentidos visão no escuro 18 m, Percepção passiva 14
+Idiomas compreendem Dialeto Subterrâneo, mas não podem falar`,
 
-Ações:
-- Pinça:
-+6 para atingir, alcance 3 m.
-Dano: 2d6 + 4 contundente.
-Alvo fica agarrado (CD 14).
+habilidades:`Anfíbio:
+O chuul pode respirar ar e água.
 
-- Tentáculos:
-Criaturas agarradas devem fazer teste de Constituição CD 13.
-Falha: ficam paralisadas por 1 minuto.
-`
+Sentir Magia:
+O chuul sente magia a até 36 metros dele, à vontade. Esse traço, no mais, funciona como a magia detectar magia, mas não é mágico por si próprio.`,
+
+acoes:`Ataques Múltiplos:
+O chuul realiza dois ataques de pinça. Se o chuul estiver agarrando uma criatura, ele também pode usar seus tentáculos uma vez. 
+
+Pinças:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 3 m, um alvo. Acerto: 11 (2d6 + 4) de dano de concussão. O alvo fica agarrado (CD 14 para escapar) se for uma criatura Grande ou menor e o chuul não tenha duas outras criaturas agarradas.
+
+Tentáculos:
+Uma criatura agarrada pelo chuul deve ser bem sucedida num teste de resistência de Constituição CD 13 ou ficará envenenada por 1 minuto. Até esse veneno acabar, o alvo fica paralisado. O alvo pode repetir o teste de resistência ao final de cada um dos seus turnos, terminando o efeito em si caso obtenha sucesso.`,
+
+lore:`Sobreviventes do antigo império abolete, chuuls são crustáceos que os aboletes modificaram e dotaram com senciência. Eles seguem as diretivas arraigadas dos seus criadores, como eles tem feito desde a aurora dos tempos.
+Lembranças Primitivas. Nas eras primitivas, aboletes governavam um vasto império espalhado pelos oceanos do mundo. Nesses dias, os aboletes usaram magia poderosa e dobraram as mentes das criaturas nascentes do reino mortal. No entanto, eles estavam presos a água e não podiam exercer sua vontade além dela sem servos. Por esse motivo, eles criaram os chuul.
+Perfeitamente obedientes, os chuul capturam criaturas racionais e magias ao comando dos aboletes. Os chuul foram feitos para durar pelas eras do mundo, aumentando de tamanho e força à medida que o tempo passa. Quando o império abolete ruiu com a ascensão dos deuses, os chuuls ficaram à deriva. No entanto, essas criaturas continua a fazer o que faziam para os aboletes, lentamente capturando humanoides, coletando tesouros, acumulando magias e consolidando poder.
+Guardiões Incansáveis. Um chuul continua guardando as ruínas do antigo império abolete. Eles se mantem em silêncio cumprindo os comandos de eras passadas. Rumores e mapas antigos às vezes trazem caçadores de tesouro para essas ruínas, mas a recompensa por sua ousadia é a morte.
+Sejam quais forem as riquezas trazidas pelos exploradores consigo, contribui para o tesouro guardado pelos chuuls. Os chuuls podem sentir magia à distância. Esse sentido se junta com o impulso inato que os leva a matar exploradores, tomar seus pertences e enterra-los em locais secretos ordenados pelos aboletes eras atrás. 
+Servos em Espera. Apesar do império abolete ancestral ter sucumbido há muitas eras, os elos psíquicos entre eles e seus servos criados permanecem intactos. Os chuuls que entram em contato com aboletes imediatamente assumem seus antigos papeis. Tais chuuls direcionam sua compulsão por servir aos sinistros propósitos do abolete.`
 },
 
 {
@@ -1158,27 +1397,54 @@ Habilidades:
 {
     nome: "Elemental da Água",
     nd: "5",
-    regiao: "Plano Elemental",
+    regiao: ["Plano Elemental", "Subaquático"],
+	imagem: "elemental_da_agua.png",
+	tags: ["Campanha", "Porto Cicatriz"],
+	xp: 1800,
     pagina: 125,
-    descricao: `Ser feito de água viva.
+    descricao: `Elemental Grande, neutro
+Classe de Armadura 14
+Pontos de Vida 114 (12d10 + 48)
+Deslocamento 9 m, natação 27 m
 
-=== BLOCO DE ESTATÍSTICAS ===
-CA: 14
-PV: 114
-Deslocamento: 9 m, natação 27 m
+FOR 18 (+4)
+DES 14 (+2)
+CON 18 (+4)
+INT 5  (-3)
+SAB 10 (+0)
+CAR 8  (-1)
 
-FOR 18
-DES 14
-CON 18
+Resistência a Dano ácido; concussão, cortante e perfurante de ataques não-mágicos
+Imunidade a Dano veneno
+Imunidade a Condição agarrado, caído, envenenado, exausto, impedido, inconsciente, paralisado, petrificado
+Sentidos: visão no escuro 18 m, Percepção passiva 10
+Idiomas: Aquan`,
+habilidades:`Forma de Água:
+O elemental pode entrar no espaço de uma criatura hostil e ficar parado nele. Ele pode se mover através de um espaço de até 2,5 centímetros de espessura sem se espremer.
 
-Ações:
-- Golpe:
-+7 para atingir.
-Dano: 2d8+4.
+Congelar:
+Se o elemental sofrer dano de frio, ele congela parcialmente; seu deslocamento é reduzido em 6 metros até o final do seu próximo turno.`,
 
-- Engolfar:
-CD 15 FOR ou fica preso.
-`
+acoes:`Ataques Múltiplos:
+O elemental realiza dois ataques de pancada.
+
+Pancada:
+Ataque Corpo-a-Corpo com Arma: +7 para atingir, alcance 1,5 m, um alvo. Acerto: 13 (2d8 + 4) de dano concussão.
+
+Engolfar (Recarrega 4–6):
+Cada criatura no espaço do elemental deve realizar um teste de resistência de Força CD 15. Se falhar, umalvo sofre 13 (2d8 + 4) de dano de concussão. Caso ele seja Grande ou menor, ele também fica agarrado (CD 14 para escapar). Até o agarrão acabar, o alvo fica impedido e incapaz de respirar a não ser que possa respirar na água. Se o teste de resistência for bem sucedido, o alvo é empurrado para fora do espaço do elemental.
+O elemental pode agarrar uma criatura Grande ou duas Médias ou menores ao mesmo tempo. No início de cada turno do elemental, cada criatura agarrada por ele sofre 13 (2d8 + 4) de dano de concussão. Uma criatura a até 1,5 metro do elemental pode puxar uma criatura ou objeto para fora dele ao usar uma ação para realizar um teste de Força CD 14 bem sucedido.`,
+
+lore:`Os elementais são encarnações dos elementos que constituem o multiverso: água, ar, fogo e terra. Embora não sejam mais do que energia animada em seus planos de existência, eles podem ser convocador por conjuradores e seres poderosos para ganhar forma e realizar tarefas.
+Elementos Vivos. Em seu plano natal, um elemental é uma força vital imaterial. Sua consciência só se manifesta em forma física quando focado pelo poder de magia. Um espírito selvagem de força elemental não possui desejos, exceto seguir o curso do elemento do seu plano nativo. Como as bestas do Plano Material, esses espíritos elementais não possuem sociedade ou cultura e pouca razão de ser.
+Conjurados por Magia. Certas magias e itens mágicos podem conjurar um elemental, invocando-o dos Planos Interiores para o Plano Material. Os elementais, instintivamente, ficam ressentidos por serem tirados de seus planos nativos e forçados a servir. Uma criatura que invoque um elemental deve exercer sua força de vontade para controla-lo.
+Obrigado e Formado. Magia poderosa pode vincular um espírito elemental a entrar em um material modelo que define um uso e função específicos. Caçadores invisíveis são elementais do ar vinculados a uma forma específica, assim como os elementais da água podem ser modelados em anomalias da água.
+A força da magia e materiais que vinculam um elemental determinam o quão bem o elemental funciona em uma forma vinculada. Golens são espíritos elementais vinculados a formas físicas, porém, matérias mais frágeis como carne e barro não podem vincular poder elemental suficiente. Materiais resistentes como pedra e ferro requerem magia mais forte, consequentemente vinculando um elemental com mais segurança.
+Natureza Elemental. Um elemental não precisa respirar, comer, beber ou dormir.
+
+ELEMENTAL DA ÁGUA
+Um elemental da água é uma onda coroante que flui pelo chão, tornando-se praticamente invisível quando se desloca através de um corpo de água maior. Ele engolfa as criaturas que se colocarem no seu caminho, enchendo as bocas e pulmões delas tão facilmente quanto apagam chamas.` 
+
 },
 {
     nome: "Elemental do Ar",
@@ -3041,31 +3307,169 @@ Alvo puxado e agarrado.
 {
     nome: "Sahuagin",
     nd: "1/2",
+	xp: 100,
+	tags: ["Campanha", "Porto Cicatriz"],
+	imagem: "sahuagin.png",
     regiao: ["Subaquático"],
-    pagina: 263,
-    descricao: `Humanoide marinho feroz e organizado.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Humanoide Médio (sahuagin), leal e maligno
-CA: 12
-PV: 22 (4d8 + 4)
-Deslocamento: 9 m, natação 12 m
+    pagina: 272,
+    descricao: `Humanoide Médio (sahuagin), leal e mau
+Classe de Armadura 12 (armadura natural)
+Pontos de Vida 22 (4d8 + 4)
+Deslocamento 9 m, natação 12 m
 
 FOR 13 (+1)
 DES 11 (+0)
 CON 12 (+1)
 INT 12 (+1)
 SAB 13 (+1)
-CAR 9 (-1)
+CAR 9  (-1)
 
-Habilidades:
-- Frenesi de Sangue
+Perícias Percepção +5
+Sentidos visão no escuro 36 m, Percepção passiva 15
+Idiomas Sahuagin`,
+habilidades:`Anfíbio Limitado:
+O sahuagin pode respirar ar e água, mas ele precisa submergir, pelo menos, a cada 4 horas para evitar sufocação.
 
-Ações:
-- Tridente:
-+3 para atingir.
-Dano: 1d6 + 1 perfurante.
-`
+Frenesi de Sangue:
+O sahuagin tem vantagem nas jogadas de ataque corpo-a-corpo contra qualquer criatura que não esteja com todos os seus pontos de vida.
+
+Telepatia com Tubarões:
+O sahuagin pode comandar magicamente qualquer tubarão a até 36 metros dele, usando uma telepatia limitada.`,
+
+acoes:`Ataques Múltiplos:
+O sahuagin realiza dois ataques: um com sua mordida e um com suas garras ou lança. 
+
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, um alvo. Acerto: 3 (1d4 + 1) de dano perfurante. 
+
+Garras:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, um alvo. Acerto: 3 (1d4 + 1) de dano cortante. 
+
+Lança:
+Ataque Corpo-a-Corpo ou à Distância com Arma: +3 para atingir, alcance 1,5 m, distância 6/18 m, um alvo. Acerto: 4 (1d6 + 1) de dano perfurante, ou 5 (1d8 + 1) de dano perfurante se usada com as duas mãos para realizar ataques corpo-a-corpo.`,
+
+lore:`Pelas costas envoltas em névoa ou pelo crescente oceano interminável, um zumbido sinistro soou em uma concha, congelando o coração de todos que o ouviram. Esse é o som da trompa de caça sahuagin – um chamado para ataque e batalha. Moradores costeiros referem-se aos sahuagin como “diabos do mar”, pois os sahuagin não tem qualquer compaixão, massacrando as tripulações dos navios e dizimando aldeias costeiras.
+Diabos das Profundezas. Os sahuagin são uma raça písceo e predatória que se aventura 􀁑as profundezas escuras do oceano para caçar as criaturas de águas rasas e do litoral. Embora eles habitem nas mais profundas fendas oceânicas, os sahuagin veem todo o domínio aquático como seu reino e as criaturas nele como presas para seus grupos de caça.
+Os governantes autoproclamados dos domínios oceânicos dos sahuagin são grandes mutantes machos com um par de braços secundário. Eles são oponentes terríveis em batalha e todos os sahuagin ajoelham-se perante esses poderosos barões.
+Caminho do Tubarão. Os sahuagin veneram o deustubarão Sekolah. Apenas as sahuagin fêmeas são consideradas dignas de canalizar o poder do deus e as sacerdotisas possuem uma enorme influência nas comunidades sahuagin.
+Os sahuagin entram em frenesi quando sentem cheiro de sangue fresco. Como adoradores de Sekolah, eles também tem uma afinidade especial com os tubarões, os quais eles treina􀁐 como animais de ataque. Mesmo os tubarões destreinados reconhecem os sahuagin como aliados e não como suas presas.
+Inimizade Élfica. Os sahuagin poderiam controlar os oceanos, se não fosse a presença de seus inimigos mortais, os elfos aquáticos. Guerras entre as duas raças tem ocorrido por séculos por todas as costas e mares do mundo, prejudicando o comércio marítimo e trazendo outras raças para esse conflito sangrento.
+O ódio dos sahuagin pelos elfos aquáticos é tão intenso que os diabos do mar se adaptaram para combater seus antigos adversários. Um sahuagin que nasça próximo o bastante de uma comunidade de elfos aquáticos pode vir ao mundo como um malenti – um sahuagin que lembra fisicamente um elfo aquático em todas as formas. Os sahuagin são propensos a mutação, mas se esse raro fenômeno é resultado das guerras entre os sahuagin e os elfos aquáticos – ou se eles precederam ou mesmo deram início ao conflito – ninguém pode dizer.
+Os sahuagin fazem bom uso dos malenti como espiões e assassinos nas cidades de elfos aquáticos e sociedades de outras criaturas que representem um ameaça aos sahuagin. A mera sombra da ameaça malenti incita a paranoia e desconfiança entre os elfos aquáticos, cuja resistência é enfraquecida com o prelúdio de uma efetiva invasão sahuagin.`
+},
+
+{
+    nome: "Barão Sahuagin",
+    nd: "5",
+	xp: 1800,
+	imagem: "barao_sahuagin.png",
+	tags: ["Campanha", "Porto Cicatriz"],
+    regiao: ["Subaquático"],
+    pagina: 273,
+    descricao: `Humanoide Grande (sahuagin), leal e mau
+Classe de Armadura 16 (peitoral)
+Pontos de Vida 76 (9d10 + 27)
+Deslocamento 9 m, natação 15 m
+
+FOR 19 (+4)
+DES 15 (+2)
+CON 16 (+3)
+INT 14 (+2)
+SAB 13 (+1)
+CAR 17 (+3)
+
+Testes de Resistência Des +5, Con +6, Int +5, Sab +4
+Perícias Percepção +7
+Sentidos visão no escuro 36 m, Percepção passiva 17
+Idiomas Sahuagin`,
+
+habilidades:`Anfíbio Limitado:
+O sahuagin pode respirar ar e água, mas ele precisa submergir, pelo menos, a cada 4 horas para evitar sufocação.
+
+Frenesi de Sangue:
+O sahuagin tem vantagem nas jogadas de ataque corpo-a-corpo contra qualquer criatura que não esteja com todos os seus pontos de vida.
+
+Telepatia com Tubarões:
+O sahuagin pode comandar magicamente qualquer tubarão a até 36 metros dele, usando uma telepatia limitada.`,
+
+acoes:`Ataques Múltiplos:
+O sahuagin realiza três ataques: um com sua mordida e dois com suas garras ou tridente.
+
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +7 para atingir, alcance 1,5 m, um alvo. Acerto: 9 (2d4 + 4) de dano perfurante.
+
+Garras:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, um alvo. Acerto: 11 (2d6 + 4) de dano cortante.
+
+Tridente:
+Ataque Corpo-a-Corpo ou à Distância com Arma: +7 para atingir, alcance 1,5 m, distância 6/18 m, um alvo. Acerto: 11 (2d6 + 4) de dano perfurante, ou 13 (2d8 + 4) de dano perfurante se usada com as duas mãos para realizar ataques corpo-a-corpo.`,
+
+lore:`Pelas costas envoltas em névoa ou pelo crescente oceano interminável, um zumbido sinistro soou em uma concha, congelando o coração de todos que o ouviram. Esse é o som da trompa de caça sahuagin – um chamado para ataque e batalha. Moradores costeiros referem-se aos sahuagin como “diabos do mar”, pois os sahuagin não tem qualquer compaixão, massacrando as tripulações dos navios e dizimando aldeias costeiras.
+Diabos das Profundezas. Os sahuagin são uma raça písceo e predatória que se aventura 􀁑as profundezas escuras do oceano para caçar as criaturas de águas rasas e do litoral. Embora eles habitem nas mais profundas fendas oceânicas, os sahuagin veem todo o domínio aquático como seu reino e as criaturas nele como presas para seus grupos de caça.
+Os governantes autoproclamados dos domínios oceânicos dos sahuagin são grandes mutantes machos com um par de braços secundário. Eles são oponentes terríveis em batalha e todos os sahuagin ajoelham-se perante esses poderosos barões.
+Caminho do Tubarão. Os sahuagin veneram o deustubarão Sekolah. Apenas as sahuagin fêmeas são consideradas dignas de canalizar o poder do deus e as sacerdotisas possuem uma enorme influência nas comunidades sahuagin.
+Os sahuagin entram em frenesi quando sentem cheiro de sangue fresco. Como adoradores de Sekolah, eles também tem uma afinidade especial com os tubarões, os quais eles treina􀁐 como animais de ataque. Mesmo os tubarões destreinados reconhecem os sahuagin como aliados e não como suas presas.
+Inimizade Élfica. Os sahuagin poderiam controlar os oceanos, se não fosse a presença de seus inimigos mortais, os elfos aquáticos. Guerras entre as duas raças tem ocorrido por séculos por todas as costas e mares do mundo, prejudicando o comércio marítimo e trazendo outras raças para esse conflito sangrento.
+O ódio dos sahuagin pelos elfos aquáticos é tão intenso que os diabos do mar se adaptaram para combater seus antigos adversários. Um sahuagin que nasça próximo o bastante de uma comunidade de elfos aquáticos pode vir ao mundo como um malenti – um sahuagin que lembra fisicamente um elfo aquático em todas as formas. Os sahuagin são propensos a mutação, mas se esse raro fenômeno é resultado das guerras entre os sahuagin e os elfos aquáticos – ou se eles precederam ou mesmo deram início ao conflito – ninguém pode dizer.
+Os sahuagin fazem bom uso dos malenti como espiões e assassinos nas cidades de elfos aquáticos e sociedades de outras criaturas que representem um ameaça aos sahuagin. A mera sombra da ameaça malenti incita a paranoia e desconfiança entre os elfos aquáticos, cuja resistência é enfraquecida com o prelúdio de uma efetiva invasão sahuagin.`
+},
+
+{
+    nome: "Sacerdotisa Sahuagin",
+    nd: "3",
+	xp: 700,
+	tags: ["Campanha", "Porto Cicatriz"],
+	imagem: "sacerdotisa_sahuagin.png",
+    regiao: ["Subaquático"],
+    pagina: 273,
+    descricao: `Humanoide Médio (sahuagin), leal e mau
+Classe de Armadura 12 (armadura natural)
+Pontos de Vida 33 (6d8 + 6)
+Deslocamento 9 m, natação 12 m
+
+FOR 13 (+1)
+DES 11 (+0)
+CON 12 (+1)
+INT 12 (+1)
+SAB 14 (+1)
+CAR 13 (+1)
+
+Perícias Religião +3, Percepção +6
+Sentidos visão no escuro 36 m, Percepção passiva 16
+Idiomas Sahuagin`,
+
+habilidades:`Anfíbio Limitado:
+O sahuagin pode respirar ar e água, mas ele precisa submergir, pelo menos, a cada 4 horas para evitar sufocação.
+
+Conjuração:
+A sahuagin é uma conjuradora de 6° nível. Sua habilidade de conjuração é Sabedoria (CD de resistência de magia 12, +4 para atingir com ataques com magia). Ela possui as seguintes magias de clérigo preparadas: Truques (à vontade): orientação, taumaturgia 
+1° nível (4 espaços): bênção, detectar magia, raio teleguiado
+2° nível (3 espaços): arma espiritual (tridente), imobilizar pessoa
+3° nível (3 espaços): idiomas, palavra de cura em massa
+
+Frenesi de Sangue:
+O sahuagin tem vantagem nas jogadas de ataque corpo-a-corpo contra qualquer criatura que não esteja com todos os seus pontos de vida.
+
+Telepatia com Tubarões:
+O sahuagin pode comandar magicamente qualquer tubarão a até 36 metros dele, usando uma telepatia limitada.`,
+
+acoes:`Ataques Múltiplos:
+A sahuagin realiza dois ataques: um com sua mordida e um com suas garras.
+
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, um alvo. Acerto: 3 (1d4 + 1) de dano perfurante.
+
+Garras:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, um alvo. Acerto: 3 (1d4 + 1) de dano cortante.`,
+
+lore:`Pelas costas envoltas em névoa ou pelo crescente oceano interminável, um zumbido sinistro soou em uma concha, congelando o coração de todos que o ouviram. Esse é o som da trompa de caça sahuagin – um chamado para ataque e batalha. Moradores costeiros referem-se aos sahuagin como “diabos do mar”, pois os sahuagin não tem qualquer compaixão, massacrando as tripulações dos navios e dizimando aldeias costeiras.
+Diabos das Profundezas. Os sahuagin são uma raça písceo e predatória que se aventura 􀁑as profundezas escuras do oceano para caçar as criaturas de águas rasas e do litoral. Embora eles habitem nas mais profundas fendas oceânicas, os sahuagin veem todo o domínio aquático como seu reino e as criaturas nele como presas para seus grupos de caça.
+Os governantes autoproclamados dos domínios oceânicos dos sahuagin são grandes mutantes machos com um par de braços secundário. Eles são oponentes terríveis em batalha e todos os sahuagin ajoelham-se perante esses poderosos barões.
+Caminho do Tubarão. Os sahuagin veneram o deustubarão Sekolah. Apenas as sahuagin fêmeas são consideradas dignas de canalizar o poder do deus e as sacerdotisas possuem uma enorme influência nas comunidades sahuagin.
+Os sahuagin entram em frenesi quando sentem cheiro de sangue fresco. Como adoradores de Sekolah, eles também tem uma afinidade especial com os tubarões, os quais eles treina􀁐 como animais de ataque. Mesmo os tubarões destreinados reconhecem os sahuagin como aliados e não como suas presas.
+Inimizade Élfica. Os sahuagin poderiam controlar os oceanos, se não fosse a presença de seus inimigos mortais, os elfos aquáticos. Guerras entre as duas raças tem ocorrido por séculos por todas as costas e mares do mundo, prejudicando o comércio marítimo e trazendo outras raças para esse conflito sangrento.
+O ódio dos sahuagin pelos elfos aquáticos é tão intenso que os diabos do mar se adaptaram para combater seus antigos adversários. Um sahuagin que nasça próximo o bastante de uma comunidade de elfos aquáticos pode vir ao mundo como um malenti – um sahuagin que lembra fisicamente um elfo aquático em todas as formas. Os sahuagin são propensos a mutação, mas se esse raro fenômeno é resultado das guerras entre os sahuagin e os elfos aquáticos – ou se eles precederam ou mesmo deram início ao conflito – ninguém pode dizer.
+Os sahuagin fazem bom uso dos malenti como espiões e assassinos nas cidades de elfos aquáticos e sociedades de outras criaturas que representem um ameaça aos sahuagin. A mera sombra da ameaça malenti incita a paranoia e desconfiança entre os elfos aquáticos, cuja resistência é enfraquecida com o prelúdio de uma efetiva invasão sahuagin.`
 },
 
 {
@@ -4870,6 +5274,7 @@ Dano: 1d6 + 2.
 {
     nome: "Praga de Vinheda/Videiras Vinha - Custom",
     nd: "1",
+	tags: ["Custom", "Santuário do Musgo", "Campanha"],
     regiao: ["Floresta"],
     pagina: 0,
     descricao: `Plantas despertas dotadas dos poderes de inteligência e mobilidade, as pragas assolam terras contaminadas pela escuridão. Ao beber a escuridão do solo, uma praga executa a vontade de um mal ancestral e tenta espalhá-lo por onde passa.
@@ -4903,6 +5308,7 @@ Restringir: Ataque com Arma Corpo a Corpo: +4 para acertar, alcance 3 m, um alvo
 {
     nome: "Chefe: Coração Enraizado de Bjorn - Custom",
     nd: "1",
+	tags: ["Custom", "Santuário do Musgo", "Campanha"],
     regiao: ["Floresta"],
     pagina: 0,
     descricao: `Uma fusão de raiz + cadáver + resquício espiritual.
@@ -4938,6 +5344,7 @@ Envenenamento em área:  Raio de 9m, esporos de veneno. CD 12 de constituição 
 {
     nome: "Soldado - Infantaria Corrompida - Custom",
     nd: "1/8",
+	tags: ["Custom", "Lorian", "Campanha"],
     regiao: ["Qualqer"],
     pagina: 0,
     descricao: `Combatentes comuns endurecidos pela violência constante. Muitos já não distinguem ordem de crueldade.
@@ -4980,6 +5387,7 @@ Acerto: 5 (1d8 + 1) de dano perfurante.
     nome: "Capitão da Patrulha - Custom",
     nd: "1",
     regiao: ["Civilização", "Fronteira"],
+	tags: ["Custom", "Lorian", "Campanha"],
     pagina: 0,
     descricao: `Um líder endurecido, mais perigoso pela disciplina que impõe do que pela força bruta. Mantém controle mesmo quando tudo dá errado.
 
@@ -5107,32 +5515,78 @@ function getNDClass(nd) {
 
 // 📋 LISTA
 function renderList() {
+
     let search = document.getElementById("search").value.toLowerCase();
     let nd = document.getElementById("ndFilter").value;
     let region = document.getElementById("regionFilter").value;
 
+    // CHECKBOXES
+    let campanha = document.getElementById("campanhaFilter").checked;
+    let porto = document.getElementById("portoFilter").checked;
+    let custom = document.getElementById("customFilter").checked;
+    let santuario = document.getElementById("santuarioMusgoFilter").checked;
+
     let list = document.getElementById("list");
     list.innerHTML = "";
 
-    let filtrados = monsters
-        .filter(m =>
-            m.nome.toLowerCase().includes(search) &&
-            (nd === "" || m.nd === nd) &&
-            (region === "" || m.regiao.includes(region))
+    let filtrados = monsters.filter(m => {
+
+        // filtros básicos
+        let matchSearch =
+            m.nome.toLowerCase().includes(search);
+
+        let matchND =
+            nd === "" || m.nd === nd;
+
+        let matchRegion =
+            region === "" || m.regiao.includes(region);
+
+        // evita erro caso o monstro não tenha tags
+        let tags = m.tags || [];
+
+        // filtros de tags
+        let matchCampanha =
+            !campanha || tags.includes("Campanha");
+
+        let matchPorto =
+            !porto || tags.includes("Porto Cicatriz");
+
+        let matchCustom =
+            !custom || tags.includes("Custom");
+
+        let matchBoss =
+            !santuario || tags.includes("Santuário do Musgo");
+
+        // retorna tudo junto
+        return (
+            matchSearch &&
+            matchND &&
+            matchRegion &&
+            matchCampanha &&
+            matchPorto &&
+            matchCustom &&
+            matchBoss
         );
 
-    // ORDENAÇÃO ALFABÉTICA PADRÃO
+    });
+
+    // ORDENAÇÃO
     filtrados = filtrados.sort((a, b) =>
-        a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' })
+        a.nome.localeCompare(b.nome, 'pt-BR', {
+            sensitivity: 'base'
+        })
     );
 
     filtrados.forEach(m => {
+
         let div = document.createElement("div");
         div.className = "monster";
 
         div.innerHTML = `
             <strong>${m.nome}</strong>
-            <span class="nd ${getNDClass(m.nd)}">ND ${m.nd}</span>
+            <span class="nd ${getNDClass(m.nd)}">
+                ND ${m.nd}
+            </span>
         `;
 
         div.onclick = () => showMonster(m);
@@ -5143,10 +5597,38 @@ function renderList() {
 
 // 📖 MOSTRAR MONSTRO
 function showMonster(m) {
-    document.getElementById("name").textContent = m.nome;
-    document.getElementById("page").textContent = "Página: " + m.pagina;
-    document.getElementById("desc").textContent = m.descricao;
 
+    // NOME
+    document.getElementById("name").textContent = m.nome;
+
+    // META
+    document.getElementById("page").textContent =
+        "Página: " + (m.pagina || "-");
+
+    document.getElementById("xp").textContent =
+        "XP: " + (m.xp || "-");
+
+    // STATUS
+    document.getElementById("statsBox").innerHTML = m.descricao
+        ? `<h2>Status</h2>${m.descricao.replace(/\n/g, "<br>")}`
+        : "";
+
+    // HABILIDADES
+    document.getElementById("abilitiesBox").innerHTML = m.habilidades
+        ? `<h2>Habilidades</h2>${m.habilidades.replace(/\n/g, "<br>")}`
+        : "";
+
+    // AÇÕES
+    document.getElementById("actionsBox").innerHTML = m.acoes
+        ? `<h2>Ações</h2>${m.acoes.replace(/\n/g, "<br>")}`
+        : "";
+
+    // LORE
+    document.getElementById("loreBox").innerHTML = m.lore
+        ? `<h2>Lore</h2>${m.lore.replace(/\n/g, "<br>")}`
+        : "";
+
+    // IMAGEM
     let img = document.getElementById("image");
 
     if (m.imagem) {
@@ -5155,12 +5637,13 @@ function showMonster(m) {
     } else {
         img.style.display = "none";
     }
-	
-	if (window.innerWidth <= 768) {
-    document.querySelector('.left').scrollIntoView({
-        behavior: 'smooth'
-		});
-	}
+
+    // MOBILE
+    if (window.innerWidth <= 768) {
+        document.querySelector('.left').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
 }
 
 
@@ -5169,6 +5652,12 @@ function showMonster(m) {
 document.getElementById("search").addEventListener("input", renderList);
 document.getElementById("ndFilter").addEventListener("change", renderList);
 document.getElementById("regionFilter").addEventListener("change", renderList);
+
+//Filtro dos checkboxes
+document.getElementById("campanhaFilter").addEventListener("change", renderList);
+document.getElementById("portoFilter").addEventListener("change", renderList);
+document.getElementById("customFilter").addEventListener("change", renderList);
+document.getElementById("santuarioMusgoFilter").addEventListener("change", renderList);
 
 </script>
 
