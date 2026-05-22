@@ -755,17 +755,59 @@ A Ameaça que Ressurge: Se um arbusto errante enfrentar a derrota perante um opo
 },
 
 {
+    nome: "Azer",
+    nd: "2",
+	xp: 450,	
+	imagem: "azer.png",
+    regiao: ["Subterra","Montanha"],
+    pagina: 24,
+    descricao: `Elemental Médio, leal e neutro
+Classe de Armadura 17 (armadura natural, escudo)
+Pontos de Vida 39 (6d8 + 12)
+Deslocamento 9 m
+
+FOR 17 (+3)
+DES 12 (+1)
+CON 15 (+2)
+INT 12 (+1)
+SAB 13 (+1)
+CAR 10 (+0)
+
+Testes de Resistência Con +4
+Imunidade a Dano fogo, veneno
+Imunidade a Condição envenenado
+Sentidos Percepção passiva 11
+Idiomas Ígneo`,
+
+habilidades:`Armas Ardentes:
+Quando um azer atinge com uma arma corpo-acorpo de metal, ele causa 3 (1d6) de dano de fogo extra (incluso no ataque).
+
+Corpo Ardente:
+Uma criatura que toque o azer ou atinja ele com um ataque corpo-a-corpo a até 1,5 metro dele, sofre 5 (1d10) de dano de fogo.
+
+Iluminação: O azer emite luz plena num raio de 3 metros e penumbra por mais 3 metros adicionais.`,
+
+acoes:`Martelo de Guerra:
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (1d8 + 3) de dano de concussão ou 8 (1d10 + 3) de dano de concussão se for usado com duas mãos para realizar ataques corpo-a-corpo, mais 3 (1d6) de dano de fogo.`,
+
+lore:`Nativos do Plano Elemental do Fogo, os azers são mestres da forja, mineiros peritos e inimigos jurados dos efreet. Em relação à aparência e maneiras, um azer
+assemelhasse a um anão, mas só na fachada. Sob sua pele de aparência metálica, um azer é um ser de fogo, que por fora se manifesta em seu cabelo e barba flamejantes. Construídos, Não Nascidos. Os azers não se reproduzem. Cada um deles é construído de bronze por outro azer e imbuído com uma porção da chama interior do construtor. Cada azer é esculpido com características únicas. Esse processo de construção limita o crescimento populacional dos azers e é a razão principal para essas criaturas continuarem raras.
+Habitantes Vulcânicos: Os azers habitam em reinos nas fronteiras entre o Plano Elemental da Terra e o Plano Elemental do Fogo – uma cadeia de montanha e vulcões cujos cumes erguem-se como sequencias de fortalezas. Sob os picos das montanhas, abaixo de caldeiras vulcânicas e entre rios de magma, os azers extraem metal incandescente e gemas brilhantes da terra. Esquadrões de azers patrulham as passagens e túneis para seu reino rechaçando as investidas de salamandras cujos mestres efreet ordenam ataques contra os reinos azer.
+Inimigos dos Efreet: Há muito tempo, os efreet e os azers eram aliados. Os azers ajudaram a criar a Cidade de Bronze, forjando aquele lar dos efreet em um dos lugares mais maravilhosos já criados. Quando os azers terminaram o trabalho deles, os efreet os traíram, realizando uma tentativa falha de escravizar os azers e de proteger os segredos da cidade. Apesar das incursões ocasionais e conflitos, no entanto, os dois lados abstiveram-se, até agora, de um conflito direto. Os azers acreditam que apenas a ameaça de serem reveladas as passagens escondidas para a Cidade de Bronze mantem os efreet em xeque.
+Mestres do Metal e das Gemas. Os azers são artesãos memoráveis e criam trabalhos maravilhosos com as gemas e metais preciosos encontrados no habitat vulcânico. Eles avaliam o valor de tais tesouros acima de todas as outras coisas, por vezes, enviando grupos para os planos em busca de metais e gemas raros.
+Quando os azers são evocados através de magia para o Plano Material, em geral é para ajudar a forjar um elaborado item mágico ou obra de arte, pois dizem que sua perícia com tal ofício é incomparável. Fogo Vivo. Um azer não precisa comer, beber ou dormir.`
+},
+
+{
     nome: "Banshee",
     nd: "4",
+	xp: 1100,
     regiao: ["Ruínas", "Floresta"],
     pagina: 25,
-    descricao: `Espírito amaldiçoado cujo lamento pode matar.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Morto-vivo Médio, caótico e maligno
-CA: 12
-PV: 58 (13d8)
-Deslocamento: voo 12 m
+    descricao: `Morto-vivo Médio, caótico e mau
+Classe de Armadura 12
+Pontos de Vida 58 (13d8)
+Deslocamento 0 m, voo 12 m (planar)
 
 FOR 1 (-5)
 DES 14 (+2)
@@ -774,21 +816,33 @@ INT 12 (+1)
 SAB 11 (+0)
 CAR 17 (+3)
 
-Resistências: ácido, fogo, elétrico
-Imunidades: frio, necrótico, veneno
+Testes de Resistência Sab +2, Car +5
+Resistência a Dano ácido, elétrico, fogo, frio, trovejante; concussão, perfurante e cortante de ataques não-mágicos
+Imunidade a Condição agarrado, caído, enfeitiçado, envenenado, exausto, impedido, inconsciente, paralisado, petrificado
+Sentidos visão no escuro 18 m, Percepção passiva 10
+Idiomas Comum, Élfico`,
 
-Habilidades:
-- Incorpórea:
-Atravessa objetos e criaturas.
+Habilidades:`Detectar Vida: 
+A banshee pode sentir magicamente a presença de criaturas vivas a até 7,5 quilômetros de distância. Ela sabe a direção geral delas, mas não sua localização exata.
 
-Ações:
-- Toque Corruptor:
-+4 para atingir, dano 3d6 necrótico.
+Movimento Incorpóreo:
+A banshee pode se mover através de criaturas e objetos como se eles fossem terreno difícil. Ela sofre 5 (1d10) de dano de energia se terminar seu turno dentro de um objeto.`,
 
-- Lamento (1/dia):
-Criaturas a 9 m fazem teste CON CD 13.
-Falha: 0 PV.
-`
+acoes:`Toque Corruptor:
+Ataque Corpo-a-Corpo com Magia: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 12 (3d6 + 2) de danonecrótico.
+
+Aspecto Horripilante: 
+Cada criatura não morta-viva a até 18 metros da banshee que puder vê-la, deve ser bem sucedida num teste de resistência de Sabedoria CD 13 ou ficará amedrontada por 1 minuto. Um alvo amedrontado pode repetir o teste de resistência no final de cada um dos seus turnos, com desvantagem se a banshee estiver na sua linha de visão, terminando o efeito sobre si, se obtiver sucesso. Se o alvo for bem sucedido no teste, ou o se o efeito terminar nele, ele fica imune ao Aspecto Horripilante da banshee pelas próximas 24 horas.
+
+Grito (1/Dia):
+A banshee libera um grito lúgubre, considerando que ela não esteja sob a luz do sol. Esse grito não produz efeito em constructos e mortos-vivos. Todas as outras criaturas a até 9 metros dela, que puderem ouvi-la, devem realizar um teste de resistência de Constituição CD 13. Se falhar, uma criatura cai a 0 pontos de vida. Se obtiver sucesso, a criatura sofre 10 (3d6) de dano necrótico.`,
+
+lore:`Quando a noite cai, viajantes desafortunados ouvem um choros baixos da morta desamparada. Esse espírito lamentável é uma banshee, uma criatura rancorosa formada a partir do espírito de uma elfa. 
+As banshees parecem esquálidas formas luminosas que lembram vagamente suas características mortais. O rosto de uma banshee está envolto em um emaranhado de cabelos, o corpo vestido com trapos esfarrapados que vibram à medidaque ela se move.
+Ira Divina: As banshees são os mortos-vivos remanescentes de elfas que, abençoadas com grande beleza, fracassaram em usar sua dádiva para trazer alegria ao mundo. Ao invés disso, elas usaram sua beleza para corromper e controlar os outros. As elfas afetadas pela maldição da banshee não experimentam qualquer alegria, sentindo apenas angústia na presença dos vivos. À medida que a maldição cobra seu preço, suas mentes e corpos decaem, até que a morte complete suas transformações em monstros mortos-vivos.
+Limite do Sofrimento: Uma banshee torna-se eternamente limitada ao lugar de seu falecimento, incapaz de se aventurar a mais de sete quilômetros e meio desse lugar. Ela é forçada a reviver cada momento de sua vida com perfeita memória, ainda assim se recusa a aceitar a responsabilidade por sua ruína.
+Cobiçadoras da Beleza: A vaidade que inspirou a criação da maldição da banshee persiste na morte-vida. Essas criaturas cobiçam belos objetos: joias finas, pinturas, estátuas e outros objetos de arte. Ao mesmo tempo, uma banshee abomina qualquer superfície espelhada, pois não consegue suportar ver o horror de sua própria existência. Um único vislumbre de si mesma é suficiente para levar a banshee à fúria.
+Natureza Morta-Viva. Uma banshee não precisa respirar, comer, beber ou dormir` 
 },
 
 {
