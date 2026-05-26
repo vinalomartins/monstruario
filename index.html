@@ -848,31 +848,36 @@ Natureza Morta-Viva. Uma banshee não precisa respirar, comer, beber ou dormir`
 {
     nome: "Basilisco",
     nd: "3",
+	xp: 700,
     regiao: ["Deserto", "Ruínas"],
     pagina: 26,
-    descricao: `Criatura cujo olhar petrifica.
+    descricao: `Monstruosidade Média, imparcial
+Classe de Armadura 15 (armadura natural)
+Pontos de Vida 52 (8d8 + 16)
+Deslocamento 6 m
 
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Monstruosidade Média
-CA: 15
-PV: 52 (8d8+16)
-Deslocamento: 6 m
+FOR 16 (+3)
+DES 8  (-1)
+CON 15 (+2)
+INT 2  (-4)
+SAB 8  (-1)
+CAR 7  (-2)
 
-FOR 16
-DES 8
-CON 15
-INT 2
-SAB 8
-CAR 7
+Sentidos visão no escuro 18 m, Percepção passiva 9
+Idiomas –`,
 
-Habilidades:
-- Olhar Petrificante:
-Teste CON CD 12 ou começa a petrificar.
+habilidades:`Olhar Petrificante:
+Se uma criatura começar seu turno a até 9 metros do basilisco e ambos puderem se ver, o basilisco pode forçar a criatura a realizar um teste de resistência de Constituição CD 12 se ele não estiver incapacitado. Se falhar na resistência, a criatura magicamente começa a se transformar em pedra e fica impedida. Ela deve repetir o teste de resistência no final do próximo turno dela. Se obtiver sucesso, e efeito termina. Se fracassar, a criatura é petrificada até ser liberta pela magia restauração maior ou outro efeito mágico.
+Uma criatura que não esteja surpresa pode desviar seu olhar para evitar o teste de resistência no início do turno dela. Se ela o fizer, ela não poderá ver o basilisco até o início do próximo turno dela, quando ela poderá desviar seu olhar novamente. Se olhar para o basilisco nesse meio tempo, ela deve imediatamente realizar a resistência.
+Se o basilisco ver seu reflexo a até 9 metros sob luz plena, ele confundirá a si mesmo com um rival e usará seu olhar em si próprio.`,
 
-Ações:
-- Mordida:
-+5 para atingir, dano 2d6+3 perfurante.
-`
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano perfurante mais 7 (2d6) de dano de veneno`,
+
+lore:`Viajantes, às vezes encontram objetos que se parecem com pedaços de esculturas de pedra extremamente realistas de animais selvagens. As partes que faltam parecem ter sido arrancadas a dentada. Exploradores experientes reconhecem esses restos como avisos, sabendo que o basilisco que as criou possivelmente esteja próximo. 
+Predadores Adaptáveis: Os basiliscos sobrevivem em climas áridos, temperados ou tropicais. Eles repousam em cavernas ou em outros locais abrigados. Na maioria das vezes, os basiliscos são encontrados no subterrâneo. Um basilisco que nascer e crescer em cativeiro pode ser domesticado e treinado. Um basilisco treinado sabe como evitar o encontro dos seus olhos com os do seu mestre para protege-lo do seu olhar, mas isso faz dele uma besta guardiã assustadora. Devido a esse uso, os ovos de basilisco são extremamente valorizados.
+Olhar Pétreo: Os basiliscos são lentos para caçar criaturas, mas eles não precisam perseguir presas. Fitar o olhar sobrenatural de um basilisco pode ser o suficiente para ser afetado por uma rápida transformação, transformando a vítima em pedra porosa. Os basiliscos, com suas poderosas mandíbulas, são capazes de consumir a pedra. A pedra volta a forma orgânica no esôfago do basilisco.
+Alguns alquimistas dizem saber como processar o esôfago do basilisco e os fluidos contidos dentro dele. Manuseado corretamente, o esôfago produz um óleo que pode retornar criaturas petrificadas em carne e à vida. Infelizmente,  para tais vítimas, quaisquer partes perdidas na forma de pedra continua faltando se a criatura for revivida. A revivificação usando o óleo é impossível se uma parte vital da criatura petrificada, como sua cabeça, estiver faltando.`
 },
 
 {
@@ -880,28 +885,132 @@ Ações:
     nd: "11",
     regiao: "Montanhas",
     pagina: 27,
-    descricao: `Serpente gigante que cospe relâmpagos.
+	xp: 7200,
+    descricao: `Monstruosidade Enorme, neutro e mau
+Classe de Armadura 17 (armadura natural)
+Pontos de Vida 168 (16d12 + 64)
+Deslocamento 15 m, escalada 12 m
 
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Monstruosidade Enorme
-CA: 17
-PV: 168
-Deslocamento: 15 m
+FOR 23 (+6)
+DES 16 (+3)
+CON 18 (+4)
+INT 7  (-2)
+SAB 14 (+2)
+CAR 12 (+1)
 
-FOR 23
-DES 16
-CON 18
-INT 7
-SAB 14
-CAR 12
+Perícias Furtividade +7, Percepção +6
+Imunidade a Dano elétrico
+Sentidos visão no escuro 27 m, Percepção passiva 16
+Idiomas Dracônico`,
 
-Ações:
-- Mordida:
-+10 para atingir, dano 3d10+6.
+acoes:`Ataques Múltiplos:
+O behir realiza dois ataques: um com sua mordida e um de constrição.
 
-- Sopro Elétrico (Recarga 5–6):
-Linha de 6 m, dano 12d10 elétrico, CD 16 DES.
-`
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +10 para atingir, alcance 3 m, um alvo. Acerto: 22 (3d10 + 6) de dano perfurante.
+
+Constrição:
+Ataque Corpo-a-Corpo com Arma: +10 para atingir, alcance 1,5 m, uma criatura Grande ou menor. Acerto: 17 (2d10 + 6) de dano de concussão mais 17 (2d10 + 6) de dano cortante. O alvo fica agarrado (CD 16 para escapar) se o behir ainda não estiver constringindo uma criatura e o alvo é impedido até o agarrão terminar.
+
+Sopro Elétrico (Recarrega 5–6):
+O behir expele uma linha de eletricidade de 6 metros de comprimento por 1,5 metro de largura. Cada criatura na linha deve realizar um teste de resistência de Destreza CD 16, sofrendo 66 (12d10) de dano elétrico se falhar na resistência ou metade desse dano se obtiver sucesso.
+
+Engolir:
+O behir realiza um ataque de mordida contra um alvo Médio ou menor que esteja agarrando. Se o ataque atingir, o alvo também será engolido e o agarrão termina. Enquanto estiver engolido, o alvo estará cego e impedido, ele terá cobertura total contra ataques e outros efeitos de fora do behir e sofre 21 (6d6) de dano ácido no começo de cada turno do behir. Um behir pode ter apenas uma criatura engolida por vez.
+Se o behir sofrer 30 de dano ou mais em um único turno por uma criatura engolida, o behir deve ser bem sucedido num teste de resistência de Constituição CD 14 no final desse turno ou regurgitará a criatura, que cairá em um espaço a até 3 metros do behir. Se o behir morrer, uma criatura engolida não estará mais impedida por ele e poderá escapar do corpo usando 4,5 metro de movimento, estando caída ao sair.`,
+
+lore: `O sinuoso behir rasteja pelo solo e escala pelas paredes para alcançar suas presas. Seu sopro elétrico pode incinerar a maioria das criaturas, até mesmo oponentes mais poderosos são constringidos em seu corpo enrolado e devorados vivos.
+A forma monstruosa do behir lembra uma combinação de uma centopeia com um crocodilo. Sua pele escamada vai da coloração ultramarina até azul escuro, esmaecendo para o azul claro em sua parte inferior. 
+Predadores de Caverna: Os behirs repousam em lugares inacessíveis para outras criaturas, preferindo locais onde intrusos precisem realizar uma escalada lancinante para alcança-los. Abismos profundos, cavernas elevadas em paredes de penhascos e cavernas alcançadas apenas se espremendo, túneis sinuosos são locais privilegiados para o behir efetuar uma emboscada. As dozes patas do behir permitem que ele perambule pelo seu covil com facilidade. Quando não está escalando, ele se move ainda mais rápido dobrando suas pernas para fora de seu corpo e deslizando como uma cobra.
+Os behirs engolem suas presas inteiras, depois disso eles entram num período de hibernação enquanto as digerem. Enquanto estiver hibernando, um behir escolhe um local escondido onde os intrusos no seu covil possam não percebe-lo.
+Adversários dos Dragões: Numa época a muito esquecida, gigantes e dragões se engajaram numa guerra aparentemente interminável. Gigantes da tempestade criaram os primeiros behirs como armas contra os dragões e os behirs guardaram um ódio natural pelos seres dracônicos.
+Um behir nunca faz seu covil numa área que ele saiba ser habitada por um dragão. Se um dragão tentar estabelecer seu covil dentro de algumas dezenas de quilômetros do covil de um behir, o behir é compelido a matar o dragão ou a afugenta-lo. Apenas se o dragão se mostrar muito poderoso para se enfrentar, um behir irá desistir, buscando um novo local para seu covil o mais longe possível.`},
+
+{
+    nome: "Bruxas",
+    nd: "0",
+	xp: 0, 
+	habilidade: `CONVENÇÃO DE BRUXAS
+Quando as bruxas tem que trabalhar juntas, elas formam convenções, apesar da natureza egoísta delas. Uma convenção é feita por bruxas de quaisquer tipos, todas sendo consideradas iguais dentro do grupo. No entanto, cada uma das bruxas continua a desejar mais poder pessoal.
+Uma convenção consiste em três bruxas, portanto, qualquer discussão entre duas bruxas pode ser decidida pela terceira. Se mais de três bruxas se juntarem, como poderia acontecer se duas convenções entrassem em conflito, o resultado geralmente é o caos.
+Conjuração Partilhada. Enquanto todos os três membros da convenção de bruxas estiverem a até 9 metros um do outro, eles podem conjurar as seguintes magias da lista de magias de mago, mas devem partilhar o espaço de magia entre eles:
+1° nível (4 espaços): identificação, raio adoecente
+2° nível (3 espaços): imobilizar pessoa, localizar objeto
+3° nível (3 espaços): rogar maldição, contramágica, relâmpago
+4° nível (3 espaços): assassino fantasmagórico, metamorfose
+5° nível (2 espaços): contato extraplanar, vidência
+6° nível (1 espaço): ataque visual
+Para conjurar essas magias, cada bruxa é considerada um conjurador de 12° nível que usa Inteligência como habilidade de conjuração. A magia tem CD 12 + o modificador de Inteligência da bruxa e o bônus de ataque da magia é 4 + o modificador de
+Inteligência da bruxa: Olho de Bruxa. Uma convenção de bruxas pode construir um item mágico chamado olho de bruxa, que é feito a partir de um olho de verdade envernizado e, muitas vezes, preso a um pingente ou outro item que se possa vestir. O olho de bruxa geralmente é confiado a um lacaio para que ele guarde e transporte. Uma bruxa em uma convenção pode realizar uma ação para ver o que o olho de bruxa vê se ambos estiverem no mesmo plano de existência. Um olho de bruxa tem CA 10, 1 ponto de vida e visão no escuro com alcance de 18 metros de raio. Se for destruído, cada membro da convenção sofre 3d10 de danopsíquico e fica cego por 24 horas.
+Uma convenção de bruxas pode ter apenas um olho de bruxa por vez e criar um novo requer que todos os três membros da convenção realizem um ritual. O ritual leva 1 hora e as bruxas não podem realiza-lo enquanto estiverem cegas. Durante o ritual, se as bruxas fizerem qualquer ação diferente da realização do ritual, elas devem começa-lo novamente.`,
+
+    lore: `As bruxas representam tudo que é mal e cruel. Apesar de elas se parecem com velhas enrugadas, não existe nada mortal sobre essas criaturas monstruosas, cujas formas refletem apenas a perversidade em seus corações.
+	Faces da Maldade: Seres ancestrais com origens em Faéria, as bruxas são úlceras no mundo mortal. Seus rostos enrugados são emoldurados por longos cabelos desgrenhados, pústulas e verrugas horrendas pontilham sua pele manchada e seus longos e finos dedos terminam em garras que podem cortar a carne ao toque. Suas vestes simples estão sempre esfarrapadas e sujas.
+	Todas as bruxas possuem poderes mágicos e algumas tem afinidade com conjuração. Elas podem alterar suas formas ou amaldiçoar seus inimigos e sua arrogância as inspira a ver sua magia como uma provocação à magia dos deuses, blasfemando em todas as oportunidades. As bruxas se intitulam de formas obscuramente excêntricas, reivindicando alcunhas como Morwen Negra, Peggy Pé de Porco, Vovó Titchwillow, Nana Shug, Ethel Podre ou Auntie Dente de Verme. 
+	Maternidade Monstruosa: As bruxas se propagam ao raptar e devorar infantes humanos. Após usurpar um bebê do seu berço ou do ventre da mãe a bruxa devora a pobre criança. Uma semana depois, a bruxa dá a luz a uma filha que se parece humana até seu décimo terceiro aniversário, que é quando a criança se transforma em uma imagem cuspida de sua mãe bruxa. As bruxas, às vezes criam as filhas que elas geram, criando convenções. Uma bruxa também pode retornar a criança para seus pais de luto, apenas para ver das sombras a criança crescer até se tornar um horror. Barganhas Obscuras. Arrogantes ao extremo, bruxas acreditam serem as mais espertas das criaturas e elas tratam todos os outros como inferiores. Mesmo assim, uma bruxa está aberta a negociar com mortais contanto que esses mortais mostrem o devido respeito e deferência. Ao longo de suas longas vidas, as bruxas acumulam muito conhecimento da sabedoria local, das criaturas sombrias e da magia que elas tem o prazer de negociar.
+	As bruxas gostam de assistir os mortais trazerem suas próprias ruínas e barganhar com uma bruxa é sempre perigoso. Os termos de tais barganhas geralmente envolvem demandas para comprometer princípios ou desistir de algo estimado – especialmente se a coisa perdida diminuir ou invalidar algum conhecimento adquirido através da barganha. 
+	Uma Natureza Imunda: As bruxas adoram o macabro e enfeitam seus trajes com coisas mortas e acentuam sua aparência com ossos, pedaços de carne e imundícies. Elas ostentam manchas e criam feridas para produzir pranto e carne supurada. Criaturas atraentes causam nojo em uma bruxa, o que pode “ajudar” tais criaturas ao desfigura-las e transforma-las. Esse abraço perturbador e desagradável estende-se a todos os aspectos da vida de uma bruxa. Uma bruxa poderia voar em uma caveira mágica gigante, pousando em uma árvore moldada para se parecer com um enorme corpo sem cabeça. Outra pode viajar com uma coletânea de monstros e escravos mantidos enjaulados e disfarçados através de ilusão para enganar criaturas desatentas que se aproximem. As bruxas afiam seus dentes em mós e torcem tecidos intestinais de suas vítimas, reagindo com satisfação ao horror provocado por suas ações.
+	Irmandade Obscura: As bruxas mantem contato umas com as outras e partilham conhecimento. Através de tais contatos, é como se cada bruxa soubesse de cada outra bruxa que exista. As bruxas não se gostam, mas elas respeitam um código de conduta eterno. As bruxas anunciam sua presença antes de cruzarem o território de outra bruxa, trazendo presentes quando adentram na residência de outra bruxa e não quebram promessas dados por outras bruxas – contanto que a promessa não tenha sido feita com os dedos cruzados. Alguns humanoides cometem o erro de pensar que os códigos de conduta das bruxas se aplicam a todas as criaturas. Quando confronta tais indivíduos, um bruxa pode achar divertido enrolar o tolo por um tempo antes de ensiná-lo uma lição permanente. 
+	Covis Sombrios: As bruxas habitam em florestas escuras e retorcidas, charnecas desoladas, costas litorâneas tempestuosas e pântanos sombrios. Com o tempo, a paisagem ao redor do covil de uma bruxa começa a refletir a ansiedade da criatura de tal forma que a própria terra pode atacar e matar invasores. Árvores retorcidas pelas trevas atacam transeuntes, enquanto que vinhas serpenteiam por debaixo da terra para enrolar e puxas as criaturas, uma por vez. Nevoeiros fedorentos de poluição tornam o ar venenoso e ocultam poças de areia movediça e sumidouros que consomem os andarilhos desatentos.`	
+	},
+	
+	{
+    nome: "Bruxa Da Noite",
+    nd: "2",
+	xp: 450,
+	regiao: ["Subaquático", "Costa"],
+    pagina: 30,
+    descricao: `Fada Média, caótico e mau
+Classe de Armadura 14 (armadura natural)
+Pontos de Vida 52 (7d8 + 21)
+Deslocamento 9 m, natação 12 m
+
+FOR 16 (+3)
+DES 13 (+1)
+CON 16 (+3)
+INT 12 (+1)
+SAB 12 (+1)
+CAR 13 (+1)
+
+Sentidos visão no escuro 18 m, Percepção passiva 11
+Idiomas Aquan, Comum, Gigante`,
+
+habilidades:`Anfíbio: 
+A bruxa pode respirar ar e água. Aparência Horripilante. Qualquer humanoide que começar seu turno a até 9 metros da bruxa e puder vê-la em sua verdadeira forma, deve realizar um teste de resistência de Sabedoria CD 11. Se falhar na resistência, a criatura fica amedrontada por 1 minuto. A criatura pode repetir o teste de resistência no final de cada um dos seus turnos, com desvantagem se a bruxa estiver na sua linha de visão, terminando o efeito sobre si, se obtiver sucesso. Se a criatura for bem sucedido no teste, ou o se o efeito terminar nela, ela fica imune à Aparência Horripilante da bruxa pelas próximas 24 horas.
+A não ser que o alvo esteja surpreso ou que a revelação da aparência verdadeira da bruxa tenha sido repentina, o alvo pode desviar seu olhar e evitar o teste de resistência inicial. Até o início do seu próximo turno, uma criatura que esteja desviando o olhar terá desvantagem nas jogadas de ataque contra a bruxa.
+`,
+
+acoes:`Garras: 
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano cortante.
+
+Olhar Mortal: 
+A bruxa afeta uma criatura amedrontada que ela possa ver, a até 9 metros dela. Se o alvo puder ver a bruxa, ele deve ser bem sucedido num teste de resistência de Sabedoria CD 11 contra essa magia ou cairá a 0 pontos de vida.
+
+Aparência Ilusória: 
+A bruxa encobre a si mesma e a tudo que ela esteja vestindo ou carregando com uma ilusão mágica que faz com que ela se pareça com uma criatura feia de tamanho similar ao seu e de formato humanoide. O efeito termina se a bruxa usar uma ação bônus para termina-lo ou se ela morrer. 
+As mudanças forjadas por esse efeito falham em se manter durante uma inspeção física. Por exemplo, a bruxa pode parecer não possuir garras, mas alguém que toque a mão dela poderá sentir as garras. Do contrário, uma criatura deve realizar uma ação para inspecionar visualmente a ilusão e passar num teste de Inteligência (Investigação) CD 16 para perceber que a bruxa está disfarçada.`,
+
+lore:`ITENS DA BRUXA DA NOITE
+Uma bruxa da noite carrega dois itens mágicos muito raros que ela mesma deve construir. Se quaisquer desses objetos for perdido, a bruxa da noite não medirá esforços para recuperá-lo, já que a criação de um novo demanda tempo e esforço. 
+
+Pedra-Coração: Essa gema negra e lustrosa permite que uma bruxa da noite torne-se etérea enquanto a possuir. O toque da pedra-coração também cura qualquer doença. Construir uma pedra-coração leva 30 dias.
+
+Sacola de Almas: Quando um humanoide maligno morre como resultado do Pesadelo Assombrado da bruxa da noite, a bruxa  oleta a alam nesse saco preto feito de pele costurada. Uma sacola de almas pode conter apenas uma alma maligna por vez e apenas a bruxa da noite que construiu a sacola pode coletar uma alma com ela. Construir uma sacola de alma requer 7 dias e um sacrifício humanoide (do qual a pele é usada para fazer a sacola).
+
+Astutas e subversivas, bruxas da noite querem ver a virtuosidade se tornar vilania: amor se torna obsessão, bondade em ódio, devoção em desrespeito e generosidade em egoísmo. As bruxas da noite sentem um prazer perverso em corromper os mortais.
+As bruxas da noite certa vez foram criaturas de Faéria, mas sua obscenidade fez com que fossem exiladas para o Hades há muito tempo atrás, onde elas se degeneraram em corruptores. As bruxas da noite, hámuito tempo se  espalharam pelos Planos Inferiores.
+Traficante de Almas. Enquanto um humanoide dorme, a bruxa da noite pode ficar sobre a pessoa etereamente e invadir seus sonhos. Qualquer criatura
+com visão verdadeira pode ver a forma espectral da bruxa
+sobre sua presa. A bruxa etérea enche a cabeça de sua
+vítima com dúvidas e temores, na esperança de leva-la a realizar atos malignos no mundo quando despertar. A
+bruxa continua suas visitas noturnas até a vítima
+finalmente morrer durante o sono. Se a bruxa levar a
+vítima a cometer feitos malignos, ela prende a alma
+corrompida em sua sacola de almas (veja a nota “Itens da
+Bruxa da Noite”) para transporta-la para o Hades.
+Convenções. Uma bruxa da noite que faça parte de
+uma convenção (veja a nota “Convenção de Bruxas”) tem
+um nível de desafio de 7 (2.900 XP).`
 },
 
 {
@@ -5456,72 +5565,79 @@ Dano: 1d6 + 2.
 
 {
     nome: "Praga de Vinheda/Videiras Vinha - Custom",
-    nd: "1",
+    nd: "1/4",
+	xp: 50,
 	tags: ["Custom", "Santuário do Musgo", "Campanha"],
     regiao: ["Floresta"],
     pagina: 0,
-    descricao: `Plantas despertas dotadas dos poderes de inteligência e mobilidade, as pragas assolam terras contaminadas pela escuridão. Ao beber a escuridão do solo, uma praga executa a vontade de um mal ancestral e tenta espalhá-lo por onde passa.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Besta Média
-CA: 15
-PV: 28
-Deslocamento: 12 m
+    descricao: `Tipo: Besta Média
+CA: 13
+PV: 20
+Deslocamento: 9 m
 XP: 200
 
-FOR 17 (+3)
-DES 12 (+1)
-CON 14 (+2)
-INT 5 (-3)
+FOR 14 (+2)
+DES 10 (+0)
+CON 12 (+1)
+INT 2  (-4)
 SAB 10 (+0)
-CAR 3 (-4)
+CAR 3  (-4)
 
-Habilidades:
-- Perícias Furtividade +1
-- Imunidades a Condições cego, surdo
-- Sentidos visão às cegas 18 m (cego além desse raio), Percepção passiva 10
-- Idiomas Comum
-- Vulnerabilidade ao fogo
 
-Ações:
-Restringir: Ataque com Arma Corpo a Corpo: +4 para acertar, alcance 3 m, um alvo. Acerto: 6 (2d6) de dano de impacto, e um alvo Grande ou menor é agarrado (CD 12 para escapar destreza). Enquanto estiver agarrado, o alvo fica impedido de se mover, e a praga não pode constringir outro alvo.
-`
+Perícias Furtividade +1
+Imunidades a Condições cego, surdo, enfeitiçado, amendrontado
+Sentidos visão às cegas 18 m (cego além desse raio), Percepção passiva 10
+Vulnerabilidade ao fogo`,
+
+habilidades:`Renascimento da Raiz:
+Quando morre, a vinha afunda no solo. No início do turno do "Coração Enraizado de Bjorn", a Praga retorna com HP cheio em um espaço de terra/raízes a até 9m do cajado, SE ninguém estiver segurando o cajado.`,
+
+acoes:`Restringir/Engolfar: 
+A criatura deve ser ter sucesso em um teste de força CD 12, ou ficará engolfada pelas raízes. Caso falhe, sofre 1d4 dano contusão no início do turno. A vinha não pode atacar outro alvo enquanto engolfa. A criatura pode usar ação para tentar escapar.
+
+Chicote: +4 para acertar, alcance 3m. 1d6+2 contusão.
+`,
+
+lore:`Plantas despertas dotadas dos poderes de inteligência e mobilidade, as pragas assolam terras contaminadas pela escuridão. Ao beber a escuridão do solo, uma praga executa a vontade de um mal ancestral e tenta espalhá-lo por onde passa.`
 },
 
 {
     nome: "Chefe: Coração Enraizado de Bjorn - Custom",
-    nd: "1",
+    nd: "4",
+	xp: 1100,
 	tags: ["Custom", "Santuário do Musgo", "Campanha"],
     regiao: ["Floresta"],
     pagina: 0,
-    descricao: `Uma fusão de raiz + cadáver + resquício espiritual.
+    descricao: `Tipo: Besta Média
+CA: 16
+PV: 70
+Deslocamento: 9 m
 
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Besta Média
-CA: 17
-PV: 45
-Deslocamento: 12 m
-XP: 400
+FOR 18 (+4)
+DES 10 (+0)
+CON 18 (+4)
+INT 6  (-2)
+SAB 14 (+2)
+CAR 10 (+0)
 
-FOR 16 (+2)
-DES 8 (-1)
-CON 14 (+2)
-INT 5 (-3)
-SAB 10 (+0)
-CAR 3 (-4)
+Resistências a danos  cortante, perfurante e contundente de armas não mágicas
+Imunidade a enfeitiçado, amedrontado, envenenado`,
 
-Habilidades:
-- Perícias Furtividade +1
-- Imunidades a Condições cego, surdo
-- Sentidos visão às cegas 18 m (cego além desse raio), Percepção passiva 10
-- Idiomas Comum
-- Vulnerabilidade ao fogo
+habilidades:`Enquanto o cajado estiver livre possui imunidade a TODO dano.
 
-Ações:
-Restringir: Ataque com Arma Corpo a Corpo: +4 para acertar, alcance 3 m, um alvo. Acerto: 7 (1d12 + 2) de dano de impacto, e um alvo Grande ou menor é agarrado (CD 14 para escapar destreza). Enquanto estiver agarrado, o alvo fica impedido de se mover, e a praga não pode constringir outro alvo.
+Aura de Raízes:  Terreno difícil em 6m ao redor. Quando criatura inicia turno na aura: Teste DES CD 13. Falha: velocidade reduzida à metade.  Falha por 5+: fica caída.
 
-Envenenamento em área:  Raio de 9m, esporos de veneno. CD 12 de constituição se não envenenado. Se passar, metade do dano. Dano de veneno 1d4 +1;
-`
+Fase de Desespero (Opcional)
+
+Quando chega em 40 HP:  o coração no peito se abre; luz púrpura pulsa pelas raízes.  
+Efeitos:  Boss recebe multiataque (ataca 2x)`,
+
+acoes:`Golpe de Galho:
++6 para acertar. 2d6+4 contusão.
+
+Envenenamento em área:  Raio de 9m, esporos de veneno. CD 12 de constituição se não envenenado. Se passar, metade do dano. Dano de veneno 1d4 +1;`,
+
+lore:`Uma fusão de raiz + cadáver + resquício espiritual.`
 },
 
 {
