@@ -469,8 +469,7 @@ Ataque à Distância com Arma: +4 para atingir, alcance 1,5 m ou 9/36 m, um alvo
 {
     nome: "Abocanhador Matraqueante",	
     nd: "2",
-	xp: 450,
-	imagem: "abocanhador_matracante.png",
+	xp: 450,	
     regiao: ["Subterrâneo"],
     pagina: 13,
     descricao: `Tipo: Aberração Média, neutro
@@ -516,8 +515,7 @@ lore:`De todos os terrores criados por magos tolos, os abocanhadores matraqueant
 {
     nome: "Abolete",
     nd: "10",
-	xp: 5900,
-	imagem: "abolete.png",
+	xp: 5900,	
     regiao: ["Subaquático", "Subterrâneo"],
     pagina: 14,
     descricao: `Aberração Grande, leal e mau
@@ -590,7 +588,6 @@ A região contendo o covil de um abolete é deformada pela presença da criatura
     nome: "Ankheg",
     nd: "2",
 	xp: 450,	
-	imagem: "ankheg.png",
     regiao: ["Subterrâneo"],
     pagina: 20,
     descricao: `Monstruosidade Grande, imparcial
@@ -625,8 +622,8 @@ Túneis Terrestres. À medida que ele se escava a terra, o ankheg deixa um túne
     nome: "Anomalia Da Água",
     nd: "3",
 	xp: 700,
-	tags: ["Campanha", "Porto Cicatriz"],
 	imagem: "anomalia_da_agua.png",
+	tags: ["Campanha", "Porto Cicatriz"],
     regiao: ["Subaquático"],
     pagina: 21,
     descricao: `Elemental Grande, neutro
@@ -666,7 +663,6 @@ Natureza Elemental. Uma anomalia da água não precisa respirar, comer, beber ou
     nome: "Aparição",
     nd: "5",
 	xp: 1800,	
-	imagem: "aparicao.png",
     regiao: ["Ruínas"],
     pagina: 22,
     descricao: `Morto-vivo Médio, neutro e mau
@@ -712,7 +708,6 @@ Natureza Morta-Viva. Uma aparição não precisa respirar, comer, beber ou dormi
     nome: "Arbusto Errante",
     nd: "5",
 	xp: 1800,	
-	imagem: "arbusto_errante.png",
     regiao: ["Floresta"],
     pagina: 23,
     descricao: `Planta Grande, imparcial
@@ -758,7 +753,6 @@ A Ameaça que Ressurge: Se um arbusto errante enfrentar a derrota perante um opo
     nome: "Azer",
     nd: "2",
 	xp: 450,	
-	imagem: "azer.png",
     regiao: ["Subterra","Montanha"],
     pagina: 24,
     descricao: `Elemental Médio, leal e neutro
@@ -956,39 +950,48 @@ Uma convenção de bruxas pode ter apenas um olho de bruxa por vez e criar um no
 	
 	{
     nome: "Bruxa Da Noite",
-    nd: "2",
-	xp: 450,
-	regiao: ["Subaquático", "Costa"],
-    pagina: 30,
-    descricao: `Fada Média, caótico e mau
-Classe de Armadura 14 (armadura natural)
-Pontos de Vida 52 (7d8 + 21)
-Deslocamento 9 m, natação 12 m
+    nd: "5",
+	xp: 1800,
+	regiao: ["Qualquer", "Floresta", "Pântano", "Montanha", "Planície",  "Urbano", "Ruínas",],
+    pagina: 29,
+    descricao: `Corruptor Médio, neutro e mau
+Classe de Armadura 17 (armadura natural)
+Pontos de Vida 112 (15d8 + 45)
+Deslocamento 9 m
 
-FOR 16 (+3)
-DES 13 (+1)
+FOR 18 (+4)
+DES 15 (+2)
 CON 16 (+3)
-INT 12 (+1)
-SAB 12 (+1)
-CAR 13 (+1)
+INT 16 (+3)
+SAB 14 (+2)
+CAR 16 (+3)
 
-Sentidos visão no escuro 18 m, Percepção passiva 11
-Idiomas Aquan, Comum, Gigante`,
+Perícias Enganação +7, Furtividade +6, Intuição +6, Percepção +6
+Resistência a Dano fogo, frio; concussão, perfurante e cortante de
+ataques não-mágicos que não sejam de prata
+Imunidade a Condição enfeitiçado
+Sentidos visão no escuro 36 m, Percepção passiva 16
+Idiomas Abissal, Comum, Infernal, Primordial`,
 
-habilidades:`Anfíbio: 
-A bruxa pode respirar ar e água. Aparência Horripilante. Qualquer humanoide que começar seu turno a até 9 metros da bruxa e puder vê-la em sua verdadeira forma, deve realizar um teste de resistência de Sabedoria CD 11. Se falhar na resistência, a criatura fica amedrontada por 1 minuto. A criatura pode repetir o teste de resistência no final de cada um dos seus turnos, com desvantagem se a bruxa estiver na sua linha de visão, terminando o efeito sobre si, se obtiver sucesso. Se a criatura for bem sucedido no teste, ou o se o efeito terminar nela, ela fica imune à Aparência Horripilante da bruxa pelas próximas 24 horas.
-A não ser que o alvo esteja surpreso ou que a revelação da aparência verdadeira da bruxa tenha sido repentina, o alvo pode desviar seu olhar e evitar o teste de resistência inicial. Até o início do seu próximo turno, uma criatura que esteja desviando o olhar terá desvantagem nas jogadas de ataque contra a bruxa.
-`,
+habilidades:`Conjuração Inata:
+A habilidade de conjuração de uma bruxa é Carisma (CD de resistência de magia 14, +6 para atingir com ataques de magia). Ela pode conjurar, inatamente, as seguintes magias, sem necessidade de componentes materiais: 
 
-acoes:`Garras: 
-Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano cortante.
+À vontade:
+detectar magia, mísseis mágicos 2/dia cada: viagem planar (pessoal apenas), raio do enfraquecimento, sono
 
-Olhar Mortal: 
-A bruxa afeta uma criatura amedrontada que ela possa ver, a até 9 metros dela. Se o alvo puder ver a bruxa, ele deve ser bem sucedido num teste de resistência de Sabedoria CD 11 contra essa magia ou cairá a 0 pontos de vida.
+Resistência à Magia:
+A bruxa possui vantagem nos testes de resistência contra magias e outros efeitos mágicos.`,
 
-Aparência Ilusória: 
-A bruxa encobre a si mesma e a tudo que ela esteja vestindo ou carregando com uma ilusão mágica que faz com que ela se pareça com uma criatura feia de tamanho similar ao seu e de formato humanoide. O efeito termina se a bruxa usar uma ação bônus para termina-lo ou se ela morrer. 
-As mudanças forjadas por esse efeito falham em se manter durante uma inspeção física. Por exemplo, a bruxa pode parecer não possuir garras, mas alguém que toque a mão dela poderá sentir as garras. Do contrário, uma criatura deve realizar uma ação para inspecionar visualmente a ilusão e passar num teste de Inteligência (Investigação) CD 16 para perceber que a bruxa está disfarçada.`,
+acoes:`Garras (Forma de Bruxa Apenas):
+ Ataque Corpo-a-Corpo com Arma: +7 para atingir, alcance 1,5 m, um alvo. Acerto: 13 (2d8 + 4) de dano cortante.
+ 
+Mudar Forma:
+A bruxa magicamente se metamorfoseia em uma fêmea humanoide Pequena ou Média ou de volta para sua forma verdadeira. As estatísticas de jogo dela são as mesmas em cada forma. Qualquer equipamento que ela esteja usando ou carregando é transformado. Ela volta a sua forma verdadeira se morrer.
+
+Forma Etérea:
+A bruxa magicamente entra no Plano Etéreo do Plano Material ou vice-versa. Para fazê-lo, a bruxa deve ter uma pedra-coração consigo. 
+
+Pesadelo Assombrado (1/Dia): Quando estiver no Plano Etéreo, a bruxa toca magicamente um humanoide dormindo no Plano Material. Uma magia proteção contra o bem e mal conjurada no alvo previne esse contato, assim como um círculo mágico. Enquanto o contato durar, o alvo terá terríveis visões. Se essas visões durarem por pelo menos 1 hora, o alvo não recebe qualquer benefício pelo descanso e seu máximo de pontos de vida é reduzido em 5 (1d10). Se esse efeito reduzir o máximo de pontos de vida do alvo a 0, o alvo morre e, se o alvo for mau, sua alma é aprisionada na sacola de almas da bruxa. A redução no máximo de pontos de vida do alvo dura até ser removida pela magia restauração maior ou uma magia similar`,
 
 lore:`ITENS DA BRUXA DA NOITE
 Uma bruxa da noite carrega dois itens mágicos muito raros que ela mesma deve construir. Se quaisquer desses objetos for perdido, a bruxa da noite não medirá esforços para recuperá-lo, já que a criação de um novo demanda tempo e esforço. 
@@ -999,26 +1002,18 @@ Sacola de Almas: Quando um humanoide maligno morre como resultado do Pesadelo As
 
 Astutas e subversivas, bruxas da noite querem ver a virtuosidade se tornar vilania: amor se torna obsessão, bondade em ódio, devoção em desrespeito e generosidade em egoísmo. As bruxas da noite sentem um prazer perverso em corromper os mortais.
 As bruxas da noite certa vez foram criaturas de Faéria, mas sua obscenidade fez com que fossem exiladas para o Hades há muito tempo atrás, onde elas se degeneraram em corruptores. As bruxas da noite, hámuito tempo se  espalharam pelos Planos Inferiores.
-Traficante de Almas. Enquanto um humanoide dorme, a bruxa da noite pode ficar sobre a pessoa etereamente e invadir seus sonhos. Qualquer criatura
-com visão verdadeira pode ver a forma espectral da bruxa
-sobre sua presa. A bruxa etérea enche a cabeça de sua
-vítima com dúvidas e temores, na esperança de leva-la a realizar atos malignos no mundo quando despertar. A
-bruxa continua suas visitas noturnas até a vítima
-finalmente morrer durante o sono. Se a bruxa levar a
-vítima a cometer feitos malignos, ela prende a alma
-corrompida em sua sacola de almas (veja a nota “Itens da
-Bruxa da Noite”) para transporta-la para o Hades.
-Convenções. Uma bruxa da noite que faça parte de
-uma convenção (veja a nota “Convenção de Bruxas”) tem
-um nível de desafio de 7 (2.900 XP).`
+Traficante de Almas. Enquanto um humanoide dorme, a bruxa da noite pode ficar sobre a pessoa etereamente e invadir seus sonhos. Qualquer criatura com visão verdadeira pode ver a forma espectral da bruxa sobre sua presa. A bruxa etérea enche a cabeça de sua vítima com dúvidas e temores, na esperança de leva-la a realizar atos malignos no mundo quando despertar. A bruxa continua suas visitas noturnas até a vítima finalmente morrer durante o sono. Se a bruxa levar a vítima a cometer feitos malignos, ela prende a alma corrompida em sua sacola de almas (veja a nota “Itens da Bruxa da Noite”) para transporta-la para o Hades. 
+
+Convenções: Uma bruxa da noite que faça parte de uma convenção (veja a nota “Convenção de Bruxas”) tem um nível de desafio de 7 (2.900 XP).` 
+
 },
 
 {
     nome: "Bruxa Do Mar",
     nd: "2",
 	xp: 450,
-	tags: ["Campanha", "Porto Cicatriz"],
-	imagem: "bruxa_da_noite.png",
+	imagem: "bruxa_do_mar.png",
+	tags: ["Campanha", "Porto Cicatriz"],	
     regiao: ["Subaquático", "Costa"],
     pagina: 30,
     descricao: `Fada Média, caótico e mau
@@ -1057,111 +1052,453 @@ Convenções. Uma bruxa do mar que faça parte de uma convenção (veja a nota �
 },
 
 {
+    nome: "Bruxa Verde",
+    nd: "3",
+	xp: 700,		
+    regiao: ["Floresta", "Pântano"],
+    pagina: 31,
+    descricao: `Fada Média, neutro e mau
+Classe de Armadura 17 (armadura natural)
+Pontos de Vida 82 (11d8 + 33)
+Deslocamento 9 m
+
+FOR 18 (+4)
+DES 12 (+1)
+CON 16 (+3)
+INT 13 (+1)
+SAB 14 (+2)
+CAR 14 (+2)
+
+Perícias Arcanismo +3, Enganação +4, Furtividade +3, Percepção +4
+Sentidos visão no escuro 18 m, Percepção passiva 14
+Idiomas Comum, Dracônico, Silvestre`,
+
+habilidades:`Anfíbio:
+A bruxa pode respirar ar e água.
+
+Conjuração Inata:
+A habilidade de conjuração de uma bruxa é Carisma (CD de resistência de magia 12). Ela pode conjurar, inatamente, as seguintes magias, sem necessidade de componentes materiais:
+
+À vontade: 
+globos de luz, ilusão menor, zombaria viciosa
+
+Mimetismo:
+A bruxa pode imitar sons de animais e vozes humanoides. Uma criatura que ouvir os sons pode dizer que são imitações se for bem sucedido num teste de Sabedoria (Intuição)CD 14.`,
+
+acoes:`Garras:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 13 (2d8 + 4) de dano cortante. 
+
+Aparência Ilusória:
+A bruxa encobre a si mesma e a tudo que ela esteja vestindo ou carregando com uma ilusão mágica que faz com que ela se pareça com uma criatura de tamanho similar ao seu e de formato humanoide. O efeito  termina se a bruxa usar uma ação bônus para termina-lo ou se ela morrer. 
+As mudanças forjadas por esse efeito falham em se manter durante uma inspeção física. Por exemplo, a bruxa pode parecer ter uma pele lisa, mas alguém que a toque poderá sentir sua carne rugosa. Do contrário, uma criatura deve realizar uma ação para inspecionar visualmente a ilusão e passar num teste de Inteligência (Investigação) CD 20 para perceber que a bruxa está disfarçada.
+
+Passagem Invisível:
+A bruxa magicamente torna-se invisível até que ela ataque ou conjure uma magia ou até que a concentração dela termina (como se estivesse se concentrando em uma magia). Enquanto estiver invisível, ela não deixa qualquer evidencia física de sua passagem, portanto ela só pode ser rastreada através de magia. Qualquer equipamento que ela esteja vestindo ou carregando fica invisível com ela.`,
+
+lore:`As miseráveis e odiosas bruxas verdes habitam em florestas moribundas, pântanos solitários e charcos nebulosos, fazendo seus lares em cavernas. As bruxas verdes adoram manipular outras criaturas para que façam suas vontades, mascarando suas intenções atrás de camadas de enganação. Elas atraem suas vítimas para si ao imitar vozes clamando por socorro ou dispersando visitantes desatentos ao imitar o grito de bestas ferozes.
+Obcecada por Tragédia: As bruxas verdes deleitamse com as falhas e tragédias de outras criaturas. Elas se alegram ao levar as pessoas ao desânimo e ver esperança se transformar em desespero, e não apenas para os indivíduos, mas também para nações inteiras.
+Convenções: Uma bruxa verde que faça parte de uma convenção (veja a nota “Convenção de Bruxas”) tem um nível de desafio de 5 (1.800 XP).`
+},
+
+{
     nome: "Bugbear",
     nd: "1",
-    regiao: "Floresta",
+	xp: 200,
+    regiao: ["Qualquer"],
     pagina: 32,
-    descricao: `Goblinoide furtivo e brutal.
+    descricao: `Humanoide Médio (goblinoide), caótico e mau
+Classe de Armadura 16 (gibão de peles, escudo)
+Pontos de Vida 27 (5d8 + 5)
+Deslocamento 9 m
 
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Humanoide Médio
-CA: 16
-PV: 27
-Deslocamento: 9 m
+FOR 15 (+2)
+DES 14 (+2)
+CON 13 (+1)
+INT 8  (-1)
+SAB 11 (+0)
+CAR 9  (-1)
 
-FOR 15
-DES 14
-CON 13
+Perícias Furtividade +6, Sobrevivência +2
+Sentidos visão no escuro 18 m, Percepção passiva 10
+Idiomas Comum, Goblin`,
 
-Habilidades:
-- Ataque surpresa:
-+2d6 dano extra.
+habilidades: `Ataque Surpresa:
+Se o bugbears surpreender uma criatura e atingi-la com um ataque durante a primeira rodada de combate, o alvo sofre 7 (2d6) de dano extra nesse ataque.
 
-Ações:
-- Maça:
-+4 para atingir, dano 2d8+2.
-`
+Brutamontes:
+Um ataque corpo-a-corpo com arma causa um dado extra de dano quando o bugbears atinge com ele (incluso no ataque).`,
+
+acoes:`Maça Estrela:
+Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 11 (2d8 + 2) de dano perfurante.
+
+Azagaia:
+Ataque Corpo-a-Corpo ou à Distância com Arma: +4 para atingir, alcance 1,5 m ou distância 9/36 m, um alvo. Acerto: 9 (2d6 + 2) de dano perfurante corpo-a-corpo ou 5 (1d6 +2) de dano perfurante à distância.`,
+
+lore:`Os bugbears nasceram para a batalha e mutilação. Sobrevivendo de assaltos e caçadas, eles oprimem os fracos e desprezam ser chefiados, mas o amor deles por carnificina significa que eles irão lutar por mestres poderosos se derramamento de sangue e tesouros forem assegurados.
+Goblinoides: Os bugbears são, muitas vezes, encontrados na companhia de seus primos, hobgoblins e goblins. Bugbears geralmente escravizam os goblins que eles encontram e eles oprimem os hobgoblins forçando-os a darem seu ouro e suprimentos em troca de seus serviços como batedores e tropa de choque. Mesmo quando pagos, os bugbears são os aliados mais inconstantes, mesmo assim os goblins e hobgoblins entendem que não importa o quanto os bugbears  drenem dos recursos de uma tribo, essas criaturas são uma força poderosa. 
+Seguidores de Hruggek: Os bugbears veneram Hruggek, um deus menor que reside no plano de Aqueronte. Na ausência de seus parentes goblinoides, os bugbears formam bandos dispersos, cada um liderado pelo membro mais brutal. Os bugbears acreditam que quando eles morrem, seus espíritos tem uma chance de lutar ao lado de Hruggek. Eles tentam provar seu valor derrotando o máximo de inimigos possível.
+Mercenários Emboscadores: Independentemente de sua compleição intimidante, os bugbears se movem surpreendentemente furtivos. Eles gostam de elaborar emboscadas e fogem quando superados. Eles são mercenários confiáveis, desde que sejam supridos com comida, bebida e tesouros, porém, um bugbears esquece de qualquer vínculo quando sua vida está por um fio. Um membro ferido de um bando de bugbears será deixado para trás para ajudar o resto do bando a escapar. Mais tarde, esse bugbears irá ajudar seus perseguidores a rastrear seus antigos companheiros se fazer isso salvar sua vida.`
+},
+
+{
+    nome: "Bugbear Comandante",
+    nd: "3",
+	xp: 700,
+    regiao: ["Qualquer"],
+    pagina: 32,
+    descricao: `Humanoide Médio (goblinoide), caótico e mau
+Classe de Armadura 17 (camisão de malha, escudo)
+Pontos de Vida 65 (10d8 + 20)
+Deslocamento 9 m
+
+FOR 17 (+3)
+DES 14 (+2)
+CON 14 (+2)
+INT 11 (+0)
+SAB 12 (+1)
+CAR 11 (+0)
+
+Perícias Furtividade +6, Intimidação +2, Sobrevivência +3
+Sentidos visão no escuro 18 m, Percepção passiva 11
+Idiomas Comum, Goblin`,
+
+habilidades: `Ataque Surpresa:
+Se o bugbears surpreender uma criatura e atingi-la com um ataque durante a primeira rodada de combate, o alvo sofre 7 (2d6) de dano extra nesse ataque.
+
+Brutamontes:
+Um ataque corpo-a-corpo com arma causa um dado extra de dano quando o bugbears atinge com ele (incluso no ataque).
+
+Coração de Hruggek:
+O bugbear tem vantagem em testes de resistência contra ser amedrontado, atordoado, enfeitiçado, envenenado, paralisado ou posto para dormir.`,
+
+acoes:`Ataques Múltiplos:
+O bugbear realiza dois ataques corpo-a-corpo.
+
+Maça Estrela:
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 12 (2d8 + 3) de dano perfurante.
+
+Azagaia:
+Ataque Corpo-a-Corpo ou à Distância com Arma: +5 para atingir, alcance 1,5 m ou distância 9/36 m, um alvo. Acerto: 10 (2d6 + 3) de dano perfurante corpo-a-corpo ou 6 (1d6 +3) de dano perfurante à distância.`,
+
+lore:`Os bugbears nasceram para a batalha e mutilação. Sobrevivendo de assaltos e caçadas, eles oprimem os fracos e desprezam ser chefiados, mas o amor deles por carnificina significa que eles irão lutar por mestres poderosos se derramamento de sangue e tesouros forem assegurados.
+Goblinoides: Os bugbears são, muitas vezes, encontrados na companhia de seus primos, hobgoblins e goblins. Bugbears geralmente escravizam os goblins que eles encontram e eles oprimem os hobgoblins forçando-os a darem seu ouro e suprimentos em troca de seus serviços como batedores e tropa de choque. Mesmo quando pagos, os bugbears são os aliados mais inconstantes, mesmo assim os goblins e hobgoblins entendem que não importa o quanto os bugbears  drenem dos recursos de uma tribo, essas criaturas são uma força poderosa. 
+Seguidores de Hruggek: Os bugbears veneram Hruggek, um deus menor que reside no plano de Aqueronte. Na ausência de seus parentes goblinoides, os bugbears formam bandos dispersos, cada um liderado pelo membro mais brutal. Os bugbears acreditam que quando eles morrem, seus espíritos tem uma chance de lutar ao lado de Hruggek. Eles tentam provar seu valor derrotando o máximo de inimigos possível.
+Mercenários Emboscadores: Independentemente de sua compleição intimidante, os bugbears se movem surpreendentemente furtivos. Eles gostam de elaborar emboscadas e fogem quando superados. Eles são mercenários confiáveis, desde que sejam supridos com comida, bebida e tesouros, porém, um bugbears esquece de qualquer vínculo quando sua vida está por um fio. Um membro ferido de um bando de bugbears será deixado para trás para ajudar o resto do bando a escapar. Mais tarde, esse bugbears irá ajudar seus perseguidores a rastrear seus antigos companheiros se fazer isso salvar sua vida.`
 },
 
 {
     nome: "Bulette",
     nd: "5",
-    regiao: "Subterrâneo",
+	xp: 1800,
+    regiao: ["Subterrâneo"],
     pagina: 33,
-    descricao: `Predador subterrâneo.
+    descricao: `Monstruosidade Grande, imparcial
+Classe de Armadura 17 (armadura natural)
+Pontos de Vida 94 (9d10 + 45)
+Deslocamento 12 m, escavação 12 m
 
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Monstruosidade Grande
-CA: 17
-PV: 94
-Deslocamento: 12 m
+FOR 19 (+4)
+DES 11 (+0)
+CON 21 (+5)
+INT 2  (–4)
+SAB 10 (+0)
+CAR 5  (–3)
 
-FOR 19
-DES 11
-CON 21
+Perícias Percepção +6
+Sentidos visão no escuro 18 m, sentido sísmico 18 m,
+Percepção passiva 16
+Idiomas –`,
 
-Ações:
-- Mordida:
-+7 para atingir, dano 4d12+4.
+habilidades:`Salto Parado:
+O salto em distância do bulette é de até 9 metros e seu salto em altura é de até 4,5 metros, com ou sem uma corrida inicial.`,
 
-- Salto:
-Área de impacto com dano.
-`
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +7 para atingir, alcance 1,5 m, um alvo. Acerto: 30 (4d12 + 4) de dano perfurante. 
+
+Salto Mortal:
+Se o bulette pular pelo menos 4,5 metros como parte do seu movimento, ele pode então, usar sua ação para aterrissar em pé num espaço contendo uma ou mais criaturas. Cada uma dessas criaturas deve ser bem sucedida num teste de resistência de Força ou Destreza (à escolha do alvo) CD 16 ou será derrubado no chão e sofrerá 14 (3d6 + 4) de dano de concussão mais 14 (3d6 + 4) de dano cortante. Se obtiver sucesso na resistência, a criatura sofre apenas metade desse dano, não fica caída no chão e é empurrada 1,5 metro para longe do espaço do bulette para um espaço desocupado à escolha da criatura. Se não houver nenhum espaço desocupado ao alcance, a criatura, ao invés, fica caída no espaço do bulette.
+`,
+
+lore:`Um bulette é um predador robusto que aterroriza quaisquer locais que ele habitar. Também chamado de “tubarão terrestre”, ele vive apenas para comer. Irascíveis e vorazes, bulettes não temem nenhuma outra criatura e eles  atacam sem receio de superioridade numérica ou força.
+Caçadores Subterrâneos: Os bulettes usam suas poderosas garras para criar túneis na terra quando eles caçam. Ignorando obstruções, eles arrancam árvores, causam deslizamentos de terra em encostas soltas e deixam buracos para trás. Quando as vibrações no solo e pedras alertam um bulette de movimentação, ele emerge da superfície, com suas mandíbulas bem abertas ao atacar.
+Monstro Errante: Um bulette vagueia por terras temperadas, se alimentando de quaisquer animais e humanoides que encontrar pelo caminho. Essas criaturas tem aversão a carne anã e élfica, apesar de eles geralmente matarem-nos antes de perceberem o que eles são. Um bulette adora a carne de halfling mais que todas e não pode ficar mais feliz do que quando persegue halflings gorduchos por todo um campo aberto.
+Um bulette não possui covil, mas perambula por um território de caça de até quarenta e cinco quilômetros de extensão. Seu único critério para o território é a disponibilidade de comida e, quando tiver comido tudo na área, um bulette segue adiante. Essas criaturas muitas vezes se instalam em assentamentos humanoides, aterrorizando-os até que seus residentes fujam em pânicoou até o bulette ser morto.
+Todas as criaturas evitam os bulettes, que considera qualquer coisa que se mova como comida – até mesmo outros predadores e bulettes. Os bulettes se juntam apenas para acasalar, resultando num sanguinário ato de garras e dentes que, geralmente termina com a morte e consumo do macho.
+Criação Arcana: Alguns sábios acreditam que o bulette é resultado de experimentos de um mago louco no cruzamento de tartarugas e tatus com infusões de pus de demônio. Acreditava-se que os bulettes haviam sido extintos diferentes vezes, mas após anos sem ser avistado, a criatura inevitavelmente reaparece. Devido a seus filhotes nunca serem vistos, alguns sábios suspeitam que os bulettes mantem ninhos secretos enterrados dos quais os adultos emergem para o mundo.`
 },
 
 {
-    nome: "Carniçal (Ghoul)",
+    nome: "Bullywug",
+    nd: "1/4",
+	xp: 50,
+    regiao: ["Pântano", "Subterrâneo", "Subaquático"],
+    pagina: 34,
+    descricao: `Humanoide Médio (bullywug), neutro e mau
+Classe de Armadura 15 (gibão de peles, escudo)
+Pontos de Vida 11 (2d8 + 2)
+Deslocamento 6 m, natação 12 m
+
+FOR 12 (+1)
+DES 12 (+1)
+CON 13 (+1)
+INT 7  (–2)
+SAB 10 (+0)
+CAR 7  (–2)
+
+Perícias Furtividade +3
+Sentidos Percepção passiva 10
+Idiomas Bullywug`,
+
+habilidades:`Anfíbio:
+O bullywug pode respirar ar e água.
+
+Camuflagem Pantanosa:
+O bullywug tem vantagem em testes de Destreza (Furtividade) feitos para se esconder em terreno pantanoso.
+
+Falar com Sapos e Rãs:
+O bullywug pode comunicar conceitos simples para sapos e rãs quando ele fala Bullywug. Salto Parado. O salto em distância do bullywug é de até 6 metros e seu salto em altura é de até 3 metros, com ou sem uma corrida inicial.`,
+
+acoes:`Ataques Múltiplos:
+O bullywug realiza dois ataques: um com sua mordida e um com sua lança. 
+
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, um alvo. Acerto: 3 (1d4 + 1) de dano de concussão.
+
+Lança:
+Ataque Corpo-a-Corpo ou à Distância com Arma: +3 para atingir, alcance 1,5 m ou distância 6/18 m, um alvo. Acerto: 4 (1d6 + 1) de dano perfurante ou 5 (1d8 + 1) de dano perfurante se usada com as duas mãos para realizar um ataque corpo-a-corpo.`,
+
+lore:`A vida como um bullywug é desagradável, brutal e molhada. Esses humanoides anfíbios com cabeça de sapo devem ficar constantemente úmidos, habitando florestas chuvosas, brejos e cavernas úmidas. Sempre famintos e completamente malignos, bullywugs subjugam oponentes com superioridade numérica quando podem, mas eles fogem de ameaças sérias em busca de presas mais fáceis. Os bullywugs tem pele verde, cinza ou mosqueada de amarelo que varia entre tons de cinza, verde e marrom, permitindo que eles se mesclem com seus arredores. Eles vestem armaduras rudes e empunham armas simples e podem desferir uma poderosa mordida nos inimigos que se aproximarem demais.
+Aristocracia Corrupta: Bullywugs consideram-se os governantes por direito dos pântanos. Eles seguem um tipo de etiqueta quando lidam com forasteiros e uns com os outros, sujeitos aos caprichos e desejos de seu líder – um autodenominado senhor do estrume. Os bullywug apresentam-se com títulos de sonoridade grandiosa, fazendo grandes apresentações ao se curvar e bajular ante seus superiores e competem interminavelmente para ganhar as graças de seus superiores. 
+Um bullywug tem duas maneiras de avançar entre os de sua espécie. Ele pode tanto matar seus rivais, mas deve tomar cuidado para manter seus atos criminosos em segredo, quanto pode encontrar um tesouro ou item mágico e apresenta-lo como tributo ou sinal de reverência ao seu suserano. Um bullywug que assassinar seus rivais sem cautela provavelmente será executado, por isso é mais comum para os bullywug realizarem assaltos contra caravanas e assentamentos, com o objetivo de adquirir bugigangas preciosas para impressionar seus senhores e cair nas suas graças. Invariavelmente, essas mercadorias finas são reduzidas a entulhos imundos através de abuso e negligência. Quando um presente perde seu brilho, um senhor bullywug, invariavelmente, exige que seus súditos tragam mais tesouros em sua homenagem.
+Diplomacia Rebelde: Bullywugs adoram ordenar aqueles que invadem seus territórios mais que tudo. Seus guerreiros tentam capturar os intrusos ao invés de simplesmente matá-los.
+Os cativos são arrastados perante o rei ou rainha – um bullywug de tamanho excepcionalmente grande – e forçados a suplicar por misericórdia. Subornos, tesouros e bajulação podem iludir o governante bullywug a deixar os cativos partirem, mas não antes de tentar impressionar seus “convidados” com a majestade de seus tesouros e reino. Acometidos por um profundo complexo de inferioridade, senhores bullywug se imaginam como reis e rainhas mas, anseiam desesperadamente pelo medo e respeito dos forasteiros.
+Aliados Anfíbios: Os bullywugs falam um idioma que permite que eles se comuniquem por extensas áreas ao coaxarem como sapos. Notícias sobre intrusos ou outros eventos no pântano se espalham em minutos através desse sistema de comunicação rude.
+Conceitos simples do idioma são compreendidos por sapos e rãs. Bullywugs usam essa capacidade para formar fortes elos com sapos gigantes, os quais eles treinam como guardiões e caçadores. Espécimes maiores às vezes são usadas como montaria também. A habilidade dos sapos de engolir criaturas inteiras concede ao bando de caça bullywug uma maneira fácil de levar suas presas de volta para suas vilas.`
+
+},
+
+{
+    nome: "Caçador Invisível",
+    nd: "6",
+	xp: 2300,
+    regiao: ["Qualquer"],
+    pagina: 35,
+    descricao: `Elemental Médio, neutro
+Classe de Armadura 14
+Pontos de Vida 104 (16d8 + 32)
+Deslocamento 15 m, voo 15 m (planar)
+
+FOR 16 (+3)
+DES 19 (+4)
+CON 14 (+2)
+INT 10 (+0)
+SAB 15 (+2)
+CAR 11 (+0)
+
+Perícias Furtividade +10, Percepção +8
+Resistência a Dano concussão, perfurante e cortante de ataques não-mágicos
+Imunidade a Dano veneno 
+Imunidade a Condição agarrado, caído, envenenado, exausto, impedido, inconsciente, paralisado
+Sentidos visão no escuro 18 m, Percepção passiva 18
+Idiomas Auran, compreende Comum mas não pode falar`,
+
+habilidades:`Invisibilidade:
+O caçador é invisível.
+
+Rastreador Impecável: O caçador recebe uma presa do seu invocador. O caçador sabe a direção e distância da presa, contanto que ambos estejam no mesmo plano de existência. O caçador também sabe a localização do seu invocador.`,
+
+acoes:`Ataques Múltiplos:
+O caçador realiza dois ataques de pancada.
+
+Pancada: Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano de concussão.`,
+
+lore:`Um caçador invisível é um elemental do ar que foi invocado do seu plano de origem e transformado através de magia poderosa. Seu único propósito é caçar criaturas e recuperar objetos para seu invocador. Quando ele é derrotado ou a magia que o prende expira, um caçador invisível desaparece em uma lufada de vento. 
+Caçador Direcionado: Quando um caçador invisível é criado, ele permanece do lado do seu invocador até que lhe seja dada uma tarefa para realizar. Caso a atribuição não envolva caçar ou matar uma criatura específica ou recuperar um objeto, a magia que criou o caçador invisível termina e o elemental é libertado. Do contrário, ele completa a tarefa, então retornando para o seu invocador para mais comandos, obrigado a servir até a magia que o prende expirar. Se seu invocador morrer nesse período, o caçador invisível desaparece depois de completar a tarefa. Um caçador invisível, na melhor das hipóteses, é um servo disposto. Ele se ressente de qualquer obrigação que lhe é atribuída. Uma missão que requeira um tempo significativo pode levar o caçador invisível a perverter a intenção do comando a menos que esse seja redigido cuidadosamente.
+Ameaça Oculta: Os caçadores invisíveis são compostos de ar e são naturalmente invisíveis. Uma criatura pode ouvir e sentir um caçador invisível passando, mas o elemental permanece invisível até mesmo ao atacar. Uma magia que permita alguém ver o invisível revela apenas o vago contorno do caçador invisível.
+Natureza Elemental: Um caçador invisível não precisa respirar, comer, beber ou dormir.`
+
+},
+
+{
+    nome: "Cambion",
+    nd: "5",
+	xp: 1800,
+    regiao: ["Qualquer"],
+    pagina: 36,
+    descricao: `Corruptor Médio, qualquer tendência maligna
+Classe de Armadura 19 (brunea)
+Pontos de Vida 82 (11d8 + 33)
+Deslocamento 9 m, voo 18 m
+
+FOR 18 (+4)
+DES 18 (+4)
+CON 16 (+3)
+INT 14 (+2)
+SAB 12 (+1)
+CAR 16 (+3)
+
+Perícias Enganação +6, Furtividade +7, Intimidação +6,
+Percepção +4
+Resistência a Dano elétrico, fogo, frio, veneno; concussão, cortante e perfurante de ataques não-mágicos
+Sentidos visão no escuro 18 m, Percepção passiva 14
+Idiomas Abissal, Comum, Infernalr`,
+
+habilidades:`Bênção Infernal:
+CA do cambion inclui bônus de Carisma (incluso).
+
+Conjuração Inata:
+A habilidade de conjuração de um cambion é Carisma (CD de resistência de magia 14). Ele pode conjurar, inatamente, as seguintes magias, sem necessidade de componentes materiais:
+3/dia cada: alterar-se, comando, detectar magia
+1/dia: viagem planar (pessoal apenas)`,
+
+acoes:`Ataques Múltiplos:
+O cambion realiza dois ataques corpo-acorpo ou usa seu Raio de Fogo duas vezes.
+
+Lança:
+Ataque Corpo-a-Corpo com Arma: +7 para atingir, alcance 1,5 m ou distância 6 m/18 m, um alvo. Acerto: 7 (1d6 + 4) de dano perfurante ou 8 (1d8 + 4) de dano perfurante se usado com duas mãos para realizar um ataque corpo-a-corpo, mais 3 (1d6) de dano de fogo.
+
+Raio de Fogo:
+Ataque à Distância com Magia: +7 para atingir, distância 36 m, um alvo. Acerto: 10 (3d6) de dano de fogo.
+
+Charme Demoníaco:
+Um humanoide que o cambion possa ver, a até 9 metros, deve ser bem sucedido num teste de resistência de Sabedoria CD 14 ou ficará magicamente enfeitiçado por 1 dia. O alvo enfeitiçado obedece aos comandos falados pelo cambion. Se o alvo sofrer qualquer ferimento do cambion ou de outra criatura ou se receber um comando suicida do cambion, o alvo pode repetir o teste de resistência, terminando o efeito se obtiver sucesso. Se o teste de resistência do alvo for bem sucedido, ou se o efeito terminar nele, a criatura fica imune ao Charme Demoníaco do cambion pelas próximas 24 horas.`,
+
+lore:`Um cambion é o descendente de um corruptor (geralmente uma súcubo ou incubo) e de um humanoide (geralmente um humano). Os cambions herdam aspectos de ambos os pais, mas seus chifres, asas de couro e caudas grossas são características de seu parentesco extraplanar.
+Nascido para ser Mau: Cambions tornamse adultos desumanos cuja crueldade e perversão horroriza até o mais devotado pai mortal. Mesmo na juventude, um cambion identifica seu lugar de direito como um soberano entre os mortais. Ele pode orquestrar ataques a cidades e vilas, reunindo bandos de humanoides e diabos menores para servi-lo.
+Peões dos Poderosos: Um cambion obrigado a servir seu pai demoníaco o faz por admiração ou por temor, mas também com a expectativa de que um dia irá ascender a um lugar de destaque. Os cambions que cresceram nos Nove Infernos servem como soldados, emissários e servos pessoais para diabos maiores. No Abismo, um cambion possui apenas a autoridade que ele conseguiu reunir por puro poder e força de vontade.
+Prole de Graz’zt: O senhor demônio Graz’zt adora procriar com humanoides que fizeram pactos com demônios e ele é pai de muitos cambions que ajudaram-no a semear o caos em todo multiverso. Esses cambions são caracterizados por uma pele negra como carvão, cascos fendidos, mãos com seis dedos e uma beleza sobrenatural.`
+},
+
+{
+    nome: "Cão Infernal",
+    nd: "3",
+	xp: 700,
+    regiao: ["Qualquer"],
+    pagina: 37,
+    descricao: `Corruptor Médio, leal e mau
+Classe de Armadura 15 (armadura natural)
+Pontos de Vida 45 (7d8 + 14)
+Deslocamento 15 m
+
+FOR 17 (+3)
+DES 12 (+1)
+CON 14 (+2)
+INT 6  (–2)
+SAB 13 (+1)
+CAR 6  (–2)
+
+Perícias Percepção +5
+Imunidade a Dano fogo
+Sentidos visão no escuro 18 m, Percepção passiva 15
+Idiomas compreende Infernal mas não pode falar`,
+
+habilidades:`Audição e Faro Aguçados:
+O cão tem vantagem em testes de Sabedoria (Percepção) relacionados à audição e ao olfato.
+
+Táticas de Matilha:
+O cão tem vantagem nas jogadas de ataque contra uma criatura se, pelo menos, um dos aliados do cão estiver a 1,5 metro da criaturas e não estiver incapacitado.`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (1d8 + 3) de dano perfurante mais 7 (2d6) de dano de fogo.
+
+Sopro de Fogo (Recarrega 5–6):
+O cão expele fogo num cone de 4,5 metros. Cada criatura na área deve realizar um teste de resistência de Destreza CD 12, sofrendo 21 (6d6) de dano de fogo se falhar na resistência, ou metade desse dano se obtiver sucesso`,
+
+lore:`Corruptores monstruosos cuspidores de fogo que tomaram a forma de cachorros, cães infernais são encontrados nos campos de batalha de Aqueronte e por todos os Planos Inferiores. No Plano Material, os cães infernais são vistos com mais frequência a serviço de diabos, gigantes do fogo e outras criaturas malignas que os utilizam como animais de guarda e companheiros. 
+Fome Abrasadora: Cães infernais caçam em matilhas, alimentando-se de qualquer criatura que pareça comestível. Eles evitam oponentes potencialmente perigosos preferindo se focar em presas mais fracas com suas mordidas ferozes e hálito flamejante, demonstrando uma determinação incansável enquanto perseguem sua presa até seu amargo fim.
+Quando os cães infernais se alimentam, a carne que eles consomem alimenta o fogo infernal que queima dentro deles. Quando um cão infernal morre, o fogo consome os restos da criatura em uma erupção de fumaça esvoaçante e de brasas ardentes, não deixando nada para trás além de tufos chamuscados de pelo negro.
+Maligno ao Extremo: Cães infernais são mais espertos que as bestas mundanas e sua natureza leal torna-os ótimos para seguir ordens. No entanto, a disposição ao mal de um cão infernal significa que a criatura não pode ser treinada para mais nada além de um assassino implacável. Se um cão infernal não tiver permissão de praticar sua fome malévola, ele rapidamente abandona ou volta-se contra seu mestre.`
+},
+
+{
+    nome: "Carniçal",
     nd: "1",
+	xp: 200,
     regiao: ["Ruínas", "Subterrâneo"],
     pagina: 38,
-    descricao: `Mortos-vivos que se alimentam de carne e paralisam suas vítimas.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Morto-vivo Médio, caótico e maligno
-Classe de Armadura: 12
-Pontos de Vida: 22 (5d8)
-Deslocamento: 9 m
+    descricao: `Morto-vivo Médio, caótico e mau
+Classe de Armadura 12
+Pontos de Vida 22 (5d8)
+Deslocamento 9 m
 
 FOR 13 (+1)
 DES 15 (+2)
 CON 10 (+0)
-INT 7 (-2)
+INT 7  (–2)
 SAB 10 (+0)
-CAR 6 (-2)
+CAR 6  (–2)
 
-Imunidades a dano: veneno
-Imunidades a condição: envenenado
-Sentidos: visão no escuro 18 m, Percepção passiva 10
-Idiomas: Comum
+Imunidade a Dano veneno
+Imunidade a Condição enfeitiçado, envenenado, exausto
+Sentidos visão no escuro 18 m, Percepção passiva 10
+Idiomas Comum`,
 
-Habilidades:
-- Fedor de Carniça:
-Criaturas a até 1,5 m devem passar em teste de Constituição CD 10 ou ficam envenenadas.
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +2 para atingir, alcance 1,5 m, uma criatura. Acerto: 9 (2d6 + 2) de dano perfurante.
 
-Ações:
-- Garras:
-Ataque corpo-a-corpo: +4 para atingir, alcance 1,5 m.
-Dano: 2d4 + 2 cortante.
-Se o alvo não for morto-vivo, deve passar em teste de Constituição CD 10 ou fica paralisado por 1 minuto.
+Garras:
+Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano cortante. Se o alvo for uma criatura diferente de um morto-vivo, ela deve ser bem sucedida num teste de resistência de Constituição CD 10 ou ficará paralisada por 1 minuto. O alvo pode repetir o teste de resistência ao final de cada um dos seus turnos, terminando o efeito sobre si caso obtenha sucesso.`,
 
-- Mordida:
-Ataque corpo-a-corpo: +2 para atingir, alcance 1,5 m.
-Dano: 2d6 + 1 perfurante.
-`
+lore:`Carniçais vagam pela noite em bandos, conduzidos por uma fome insaciável por carne humanoide.
+Devoradores de Carne: Como vermes ou besouros de carniça, carniçais se desenvolvem em locais conhecidos pela decadência e morte. Um carniçal assombra qualquer lugar onde ele possa engolir carne e órgãos em decomposição. Quando ele não pode se alimentar dos mortos, ele persegue criaturas vivas e tenta torna-las cadáveres. Embora eles não recebam qualquer nutrição dos cadáveres que eles devoram, os carniçais são impulsionados por uma fome interminável que os compele a consumir. A carne morta-viva de um carniçal nunca apodrece e esse monstro pode permanecer em uma cripta ou tumba por incontáveis eras sem se alimentar.
+Origens Abissais: Carniçais registram suas origens do Abismo. Doresain, o primeiro da espécie, foi um elfo adorador de Orcus. Voltando-se contra seu próprio povo, ele fez um banquete de carne humanoide em honra ao Príncipe Demônio da Morte-Vida. Como recompensa por seu serviço, Orcus transformou Doresain no primeiro carniçal. Dorisain serviu Orcus fielmente no Abismo, criando carniçais a partir dos outros servos do senhor demoníaco até uma incursão de Yeenoghu, o Senhor Gnoll demoníaco, rapitar Doresain do seu domínio abissal. Quando Orcus não interveio em nome dele, Doresain rogou aos deuses élficos por salvação e eles tiveram pena dele e o ajudaram a escapar da destruição certa. Desde então, os elfos se tornaram imunes ao toque paralisante dos carniçais.
+Lívidos: Orcus, às vezes, infunde um carniçal com uma forte dose de energia abissal, tornando-os lívidos. Ao passo que carniçais não são mais que bestas selvagens, um lívido é esperto e pode inspirar um bando de carniçais a seguir seus comandos.`
+
+},
+
+{
+    nome: "Lívido",
+    nd: "2",
+	xp: 450,
+    regiao: ["Ruínas", "Subterrâneo"],
+    pagina: 38,
+    descricao: `Morto-vivo Médio, caótico e mau
+Classe de Armadura 13
+Pontos de Vida 36 (8d8)
+Deslocamento 9 m
+
+FOR 16 (+3)
+DES 17 (+3)
+CON 10 (+0)
+INT 11 (+0)
+SAB 10 (+0)
+CAR 8  (–1)
+
+Resistência a Dano necrótico
+Imunidade a Dano veneno
+Imunidade a Condição enfeitiçado, envenenado, exausto
+Sentidos visão no escuro 18 m, Percepção passiva 10
+Idiomas Comum`,
+
+habilidades:`Fedor:
+Qualquer criatura que comece seu turno a até 1,5 metro do lívido deve ser bem sucedida num teste de resistência de Constituição CD 10 ou ficará envenenada até o início do próximo turno dela. Se obtiver sucesso no teste de resistência, a criatura fica imune ao Fedor do lívido por 24 horas.
+
+Proteção contra Expulsão:
+O lívido e quaisquer carniçais a até 9 metros dele possuem vantagem em testes de resistência contra efeitos de expulsar mortos-vivos.`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +2 para atingir, alcance 1,5 m, uma criatura. Acerto: 9 (2d6 + 2) de dano perfurante.
+
+Garras:
+Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano cortante. Se o alvo for uma criatura diferente de um morto-vivo, ela deve ser bem sucedida num teste de resistência de Constituição CD 10 ou ficará paralisada por 1 minuto. O alvo pode repetir o teste de resistência ao final de cada um dos seus turnos, terminando o efeito sobre si caso obtenha sucesso.`,
+
+lore:`Carniçais vagam pela noite em bandos, conduzidos por uma fome insaciável por carne humanoide.
+Devoradores de Carne: Como vermes ou besouros de carniça, carniçais se desenvolvem em locais conhecidos pela decadência e morte. Um carniçal assombra qualquer lugar onde ele possa engolir carne e órgãos em decomposição. Quando ele não pode se alimentar dos mortos, ele persegue criaturas vivas e tenta torna-las cadáveres. Embora eles não recebam qualquer nutrição dos cadáveres que eles devoram, os carniçais são impulsionados por uma fome interminável que os compele a consumir. A carne morta-viva de um carniçal nunca apodrece e esse monstro pode permanecer em uma cripta ou tumba por incontáveis eras sem se alimentar.
+Origens Abissais: Carniçais registram suas origens do Abismo. Doresain, o primeiro da espécie, foi um elfo adorador de Orcus. Voltando-se contra seu próprio povo, ele fez um banquete de carne humanoide em honra ao Príncipe Demônio da Morte-Vida. Como recompensa por seu serviço, Orcus transformou Doresain no primeiro carniçal. Dorisain serviu Orcus fielmente no Abismo, criando carniçais a partir dos outros servos do senhor demoníaco até uma incursão de Yeenoghu, o Senhor Gnoll demoníaco, rapitar Doresain do seu domínio abissal. Quando Orcus não interveio em nome dele, Doresain rogou aos deuses élficos por salvação e eles tiveram pena dele e o ajudaram a escapar da destruição certa. Desde então, os elfos se tornaram imunes ao toque paralisante dos carniçais.
+Lívidos: Orcus, às vezes, infunde um carniçal com uma forte dose de energia abissal, tornando-os lívidos. Ao passo que carniçais não são mais que bestas selvagens, um lívido é esperto e pode inspirar um bando de carniçais a seguir seus comandos.`
+
 },
 
 {
     nome: "Cavaleiro da Morte",
     nd: "17",
+	xp: 18000,
     regiao: ["Ruínas","Infernal"],
     pagina: 39,
-    descricao: `Paladino corrompido transformado em morto-vivo poderoso.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Morto-vivo Médio, caótico e maligno
-Classe de Armadura: 20 (armadura completa, escudo)
-Pontos de Vida: 180 (19d8 + 95)
-Deslocamento: 9 m
+    descricao: `Morto-vivo Médio, caótico e mau
+Classe de Armadura 20 (placas, escudo)
+Pontos de Vida 180 (19d8 + 95)
+Deslocamento 9 m
 
 FOR 20 (+5)
 DES 11 (+0)
@@ -1170,30 +1507,149 @@ INT 12 (+1)
 SAB 16 (+3)
 CAR 18 (+4)
 
-Testes de Resistência: CON +11, SAB +9, CAR +10
-Imunidades: necrótico, veneno
-Condições: enfeitiçado, exausto, amedrontado, envenenado
+Testes de Resistência Des +6, Sab +9, Car +10
+Imunidade a Dano necrótico, veneno
+Imunidade a Condição enfeitiçado, envenenado, exausto
+Sentidos visão no escuro 36 m, Percepção passiva 13
+Idiomas Abissal, Comum`,
 
-Habilidades:
-- Aura de Desespero:
-Inimigos a até 3 m sofrem desvantagem em testes de resistência.
+habilidades:`Conjuração:
+O cavaleiro é um conjurador de 19° nível. Sua habilidade de conjuração é Carisma (CD de resistência de magia 18, +10 para atingir com ataques com magia). Ele possui as seguintes magias de paladino preparadas:
 
-Ações:
-- Espada Longa:
-+11 para atingir, alcance 1,5 m.
-Dano: 1d8 + 5 cortante + 4d8 necrótico.
+1° nível (4 espaços): comando, duelo compelido, destruição lancinante
+2° nível (3 espaços): arma mágica, imobilizar pessoa
+3° nível (3 espaços): arma elemental, dissipar magia
+4° nível (3 espaços): banimento, destruição estonteante
+5° nível (2 espaços): onda destrutiva (necrótico)
 
-- Orbe de Fogo (1/dia):
-Explosão de 6 m.
-Dano: 20d6 fogo.
-Teste de Destreza CD 18 para metade do dano.
-`
+Marechal Morto-vivo: A não ser que o cavaleiro esteja incapacitado, ele e as criaturas mortas-vivas à sua escolha a até 9 metros dele tem vantagem em testes de resistência contra características que expulsem mortos-vivos.
+
+Resistência à Magia:
+O cavaleiro possui vantagem nos testes de resistência contra magias e outros efeitos mágicos.`,
+
+acoes: `Ataques Múltiplos:
+O cavaleiro realiza três ataques com espada longa.
+
+Espada Longa: Ataque Corpo-a-Corpo com Arma: +11 para atingir, alcance 1,5 m, um alvo. Acerto: 9 (1d8 + 5) de dano cortante ou 10 (1d10 + 5) de dano cortante se usada com as duas mãos, mais 18 (4d8) de dano necrótico.
+
+Orbe de Fogo Infernal (1/Dia):
+O cavaleiro arremessa uma bola de fogo mágico que explode num ponto que ele possa ver, a até 36 metros dele. Cada criatura numa esfera de 6 metros, centrada no ponto, deve realizar um teste de resistência de Destreza. A esfera se espalha, dobrando esquinas. Uma criatura sofre 35 (10d6) de dano de fogo e 35 (10d6) de dano necrótico se falhar na resistência, ou metade desse dano se obtiver sucesso.
+
+REAÇÕES:
+Aparar:
+O cavaleiro adiciona 6 à sua CA contra um ataque corpoa- corpo que poderia atingi-lo. Para tanto, o cavaleiro deve poder ver o atacante e estar empunhando uma arma corpo-a-corpo.`,
+
+lore: `buscar redenção, os poderes das trevas podem transformar o que foi certa vez um cavaleiro mortal em uma detestável criatura morta-viva. Um cavaleiro da morte é um guerreiro esquelético vestido em uma armadura de placas assustadora. Embaixo do seu elmo, pode-se ver a caveira do cavaleiro com pontos luminosos malévolos queimando em suas órbitas.
+Poder Místico: O cavaleiro da morte mantem a habilidade de conjurar magias divinas. No entanto, nenhum cavaleiro da morte pode usar sua magia para curar. Um cavaleiro da morte também atrai e comando mortos-vivos inferiores, embora cavaleiros da morte que sirvam corruptores poderosos possam ter seguidores corruptores no lugar. Cavaleiros da morte geralmente utilizam cavalos esqueletos e pesadelos como montarias. 
+Imortal até ser Redimido: Um cavaleiro da morte pode se reerguer novamente, mesmo após ter sido destruído. Apenas quando ele se reparar por uma vida de maldade ou encontrar a redenção poderá finalmente escapar do seu purgatório de morte-vida e, finalmente, perecer.
+Natureza Morta-Viva: Uma cavaleiro da morte não precisa respirar, comer, beber ou dormir.`
+
+},
+
+{
+    nome: "Caveira Flamejante",
+    nd: "4",
+	xp: 1100,
+    regiao: ["Ruínas","Infernal"],
+    pagina: 40,
+    descricao: `Morto-vivo Miúdo, neutro e mau
+Classe de Armadura 13
+Pontos de Vida 40 (9d4 + 18)
+Deslocamento 0 m, voo 12 m (planar)
+
+FOR 1  (–5)
+DES 17 (+3)
+CON 14 (+2)
+INT 16 (+3)
+SAB 10 (+0)
+CAR 11 (+0)
+
+Perícias Arcanismo +5, Percepção +2
+Resistência a Dano elétrico, necrótico, perfurante
+Imunidade a Dano fogo, frio, veneno
+Imunidade a Condição amedrontado, caído, enfeitiçado, envenenado, exausto
+Sentidos visão no escuro 18 m, Percepção passiva 12
+Idiomas Comum`,
+
+habilidades:`Conjuração. A caveira flamejante é um conjurador de 5° nível. Sua habilidade de conjuração é Inteligência (CD de resistência de magia 13, +5 para atingir com ataques com magia). Ele possui as seguintes magias de mago preparadas:
+
+Truques (à vontade): mãos mágicas
+1° nível (3 espaços): escudo arcano, mísseis mágicos
+2° nível (2 espaços): esfera flamejante, nublar
+3° nível (1 espaços): bola de fogo
+
+Iluminação:
+A caveira flamejante emite ou penumbra num raio de 4,5 metros ou luz plena num raio de 4,5 metros e penumbra por mais 4,5 metros adicionais. Ela pode trocar entre essas opções com uma ação. 
+
+Resistência à Magia:
+A caveira flamejante possui vantagem nos testes de resistência contra magias e outros efeitos mágicos.
+
+Rejuvenescimento:
+Se a caveira flamejante for destruída, ela recupera todos os seus pontos de vida em 1 hora, a não ser que água benta seja aspergida sobre seus restos ou a magia dissipar magia ou remover maldição seja conjurada nela.`,
+
+acoes: `Ataques Múltiplos:
+A caveira flamejante usa o Raio de Fogo duas vezes.
+
+Raio de Fogo:
+Ataque à Distância com Magia: +5 para atingir, distância 9 m, um alvo. Acerto: 10 (3d6) de dano de fogo.`,
+
+lore: `Chamas esverdeadas e loucura ardem, ecoando segue uma gargalhada vinda de um crânio sem corpo enquanto ele patrulha seus domínios. Quando a caveira flamejante morta-viva encontra invasores, ela explode os intrusos com raios cauterizantes dos seus olhos e magias terríveis convocadas dos recessos sombrios de sua memória. Conjuradores das trevas criaram as caveiras flamejantes a partir dos restos mortais de magos. Quando o ritual é completado, chamas verdes emergem da caveira para completar sua medonha transformação.
+Legado de Vida: Uma caveira flamejante lembra-se vagamente de sua vida anterior. Apesar de ela poder falar com sua antiga voz e poder relembrar dos principais eventos do seu passado, ela não passa de um eco do seu eu anterior. No entanto, sua transformação em mortovivo garante a ela acesso total à magia que ela portava em vida, permitindo que ela conjure magias enquanto ignora os componentes materiais e somáticos que ela não pode mais realizar.
+Eternamente Limitada: Inteligente e vigilante, uma caveira flamejante serve seu criador protegendo o local de um tesouro escondido, uma câmara secreta ou um indivíduo especifico. Uma caveira flamejante mantem as diretivas dadas quando é criada e ela interpreta esses comando ao pé da letra. Um mestre de uma caveira flamejante deve formar suas instruções com cuidado para garantir que a criatura realize suas tarefas apropriadamente.
+Mortalha de Chamas: O fogo que envolve a caveira flamejante queima continuamente, concedendo a luz plena que a criatura controla. Ela usa essas chamas como arma, focando-a para disparar raios ardentes de suas órbitas oculares.
+Rejuvenescimento Místico: Os fragmentos de uma caveira flamejante se juntam a não ser que eles sejam salpicados com água benta ou alvos da magia dissipar magia ou remover maldição. Se ela não puder mais atender aos seus propósitos, a caveira flamejante reformada não tem obrigação com mais ninguém e tornase autônoma.
+Natureza Morta-Viva. Uma caveira flamejante não precisa respirar, comer, beber ou dormir.`
+
+},
+
+{
+    nome: "Centauro",
+    nd: "2",
+	xp: 450,
+    regiao: ["Ruínas", "Floresta", "Planície"],
+    pagina: 41,
+    descricao: `Monstruosidade Grande, neutro e bom
+Classe de Armadura 12
+Pontos de Vida 45 (6d10 + 12)
+Deslocamento 15 m
+
+FOR 18 (+4)
+DES 14 (+2)
+CON 14 (+2)
+INT 9  (–1)
+SAB 13 (+1)
+CAR 11 (+0)
+
+Perícias Atletismo +6, Percepção +3, Sobrevivência +3
+Sentidos Percepção passiva 13
+Idiomas Élfico, Silvestre`,
+
+habilidades:`Investida:
+Se o centauro se mover, pelo menos, 9 metros em linha reta até um alvo e então atingi-lo com um ataque de lança montada no mesmo turno, o alvo sofre 10 (3d6) de dano perfurante extra.`,
+
+acoes: `Ataques Múltiplos:
+O centauro realiza dois ataques: um com sua lança montada e outro com seus cascos ou dois com o arco longo. 
+
+Lança Montada: Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 3 m, um alvo. Acerto: 9 (1d10 + 4) de dano perfurante.
+
+Cascos:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 11 (2d6 + 4) de dano de concussão.
+
+Arco Longo: Ataque à Distância com Arma: +4 para atingir, distância 45/180 m, um alvo. Acerto: 6 (1d8 + 2) de dano perfurante.`,
+
+lore:`Andarilhos reclusos e leitores de presságios do ambiente selvagem, centauros evitam conflitos, mas lutam ferozmente quando pressionados. Eles vagam pela vastidão selvagem, mantendo-se distantes das fronteiras, leis e da companhia de outras criaturas.
+Nômades da Vastidão Selvagem: Tribos de centauros espalharam-se por terras de climas leves até quentes, onde o centauro precisa apenas de pelagens leves ou peles oleosas para lidar com as intempéries. Eles são caçadores- coletores e raramente constroem abrigos ou se quer usam tendas.
+Migrações de centauros alcançam continentes e levam décadas para se repetir, por isso que uma tribo de centauros pode não voltar pelo mesmo caminho por gerações. Esses padrões variados pode levar a conflitos quando centauros encontram assentamentos de outras criaturas ao longo de suas rotas tradicionais.
+Colonos Relutantes: Um centauro que não consiga manter o ritmo com o resto de sua tribo é deixado para trás. Centauros como estes desparecem na vastidão selvagem e nunca mais são vistos novamente. Aqueles que conseguem se virar com a perda da sua tribo instalam residência entre outras raças. Assentamentos em fronteiras valorizam o conhecimento natural dos centauros residentes. Muitas comunidades dessas devem sua sobrevivência à intuição e presciência de um centauro. 
+Independentemente de sua natureza reclusa, centauros negociam com elfos e com caravanas de outros humanoides benevolentes que eles encontram durante suas andanças. Um comerciante poderia salvar a vida de um centauro ferido ou velho demais para realizar longas viagens, escoltando-o para um assentamento onde ele possa viver pacificamente pelo resto dos seus dias.`
+
 },
 
 {
     nome: "Chuul",
     nd: "4",
 	xp: 1100,
+	imagem: "chuul.png",
 	tags: ["Campanha", "Porto Cicatriz"],
 	imagem: "chuul.png",
     regiao: ["Subaquático","Subterrâneo"],
@@ -1242,76 +1698,81 @@ Servos em Espera. Apesar do império abolete ancestral ter sucumbido há muitas 
 {
     nome: "Ciclope",
     nd: "6",
-    regiao: "Montanhas",
+	xp: 2300,
+    regiao: ["Montanhas", "Planície"],
     pagina: 43,
-    descricao: `Gigante brutal de um olho só.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Gigante Enorme
-Classe de Armadura: 14
-Pontos de Vida: 138 (12d12 + 60)
-Deslocamento: 9 m
+    descricao: `Gigante Enorme, caótico e neutro
+Classe de Armadura 14 (armadura natural)
+Pontos de Vida 138 (12d12 + 60)
+Deslocamento 9 m
 
 FOR 22 (+6)
 DES 11 (+0)
 CON 20 (+5)
-INT 8 (-1)
-SAB 6 (-2)
+INT 8  (–1)
+SAB 6  (–2)
 CAR 10 (+0)
 
-Ações:
-- Clava:
-+9 para atingir, alcance 3 m.
-Dano: 3d8 + 6 contundente.
+Sentidos Percepção passiva 8
+Idiomas Gigante`,
 
-- Pedra:
-+9 para atingir, alcance 9/36 m.
-Dano: 4d10 + 6 contundente.
-`
+habilidades:`Percepção de Profundidade Ruim:
+O ciclope tem desvantagem em qualquer jogada de ataque contra um alvo a mais de 9 metros de distância dele.`,
+
+acoes:`Ataques Múltiplos:
+O ciclope realiza dois ataques com clava grande.
+
+Clava Grande:
+Ataque Corpo-a-Corpo com Arma: +9 para atingir, alcance 3 m, um alvo. Acerto: 19 (3d8 + 6) de dano de concussão. 
+
+Rocha: Ataque à Distância com Arma: +9 para atingir, distância 9/36 m, um alvo. Acerto: 28 (4d10 + 6) de dano de concussão.`,
+
+lore: `Ciclopes são gigantes de um olho só passam suas existências miseráveis em terras selvagens. Isolacionistas por natureza, eles evitam contato com outras raças e tentam expulsar estranhos em seu território.
+Não-Religiosos: Lendas contam que os ciclopes são as crias de um dos deuses dos gigantes, mas essas criaturas dão pouca atenção a quaisquer divindades. Eles veem pouca vantagem em orar e detestam rituais, os quais eles consideram complexos e exóticos. No entanto, um ciclope que ganhe benefícios diretos de algum local de poder divino ou que seja ameaçado por uma força ou criatura sobrenatural, fará reverências enquanto o benefício ou ameaça existir.
+Simplórios: Apesar de serem razoavelmente inteligentes, os ciclopes vivem uma vida simples, reclusos, criando animais para alimentação. Eles preferem viver sozinhos ou em pequenos grupos familiares, alojando-se em cavernas, ruínas ou em estruturas rudimentares construídas com pedra seca por eles mesmos. Os ciclopes mantém seus rebanhos com eles durante à noite, selando a entrada de seus lares com pedregulhos, servindo como um celeiro.
+Um ciclope fica entocado por um dia de jornada de outro ciclope, assim eles podem se encontrar para trocar mercadorias ou buscar fêmeas. Eles constroem armas e ferramentas de madeira e pedra, mas usarão metal quando puderem encontrar. Apesar dos ciclopes entenderem a língua Gigante, eles não escrevem e falam pouco, usando grunhidos e gestos para suas interações uns com os outros.
+Os ciclopes não usam dinheiro para negocias, mas eles valorizam ouro, conchas e outros objetos brilhantes e coloridos, como joias. Um ciclope irá usar um colar ornado com penas e moedas de prata, mas também com taças de estanho, talheres e outros metais estragados. 
+Estúpidos: Ciclopes não são grandes pensadores ou estrategistas. Lentos para aprender e presos aos seus meios tradicionais, eles tem dificuldade em inovar. Apesar de serem ameaças terríveis em combate devido ao seu tamanho e força, eles podem, frequentemente, ser enganados por inimigos espertos.
+Ciclopes podem ser intimidados e impressionados com demonstrações óbvias de magia. Rudes com pouca exposição à magia, eles podem ser levados ao erro por bruxos, clérigos e outros conjuradores de figuras divinas poderosas. No entanto, seu sentimento de orgulho os faz reagir com violência sanguinária vingativa quando eles descobrem que o indivíduo que eles imaginavam ser um “deus” é um mero mortal.`
 },
+
 {
     nome: "Cocatriz",
     nd: "1/2",
+	xp: 100,
     regiao: ["Floresta","Ruínas"],
     pagina: 44,
-    descricao: `Criatura pequena com poder de petrificação ao toque.
+    descricao: `Monstruosidade Pequena, imparcial
+Classe de Armadura 11
+Pontos de Vida 27 (6d6 + 6)
+Deslocamento 6 m, voo 12 m
 
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Monstruosidade Pequena, neutro
-CA: 11
-PV: 27 (6d6 + 6)
-Deslocamento: 6 m, voo 12 m
-
-FOR 6 (-2)
+FOR 6  (–2)
 DES 12 (+1)
 CON 12 (+1)
-INT 2 (-4)
+INT 2  (–4)
 SAB 13 (+1)
-CAR 5 (-3)
+CAR 5  (–3)
 
-Sentidos: visão no escuro 18 m, Percepção passiva 11
+Sentidos visão no escuro 18 m, Percepção passiva 11
+Idiomas –`,
 
-Ações:
-- Bico:
-+3 para atingir, alcance 1,5 m.
-Dano: 1d4 + 1 perfurante.
-Se o alvo for criatura, deve fazer teste de Constituição CD 11.
-Falha: começa a petrificar (restrito) e repete o teste no próximo turno.
-`
+acoes: `Bicada:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, uma criatura. Acerto: 3 (1d4 + 1) de dano perfurante e o  alvo deve ser bem sucedido num teste de resistência de Constituição CD 11 para não ser magicamente petrificado. Se falhar na resistência, a criatura começa a virar pedra e fica impedida. Ela deve repetir o teste de resistência no final do próximo turno dela. Se obtiver sucesso, o efeito acaba. Se fracassar, a criatura fica petrificada por 24 horas.`,
+
+lore:`A cocatriz se parece com um hibrido de um lagarto, um pássaro e um morcego e é infame por sua habilidade de transformar carne em pedra. Esses onívoros tem uma dieta que consistem em frutos, nozes, flores e pequenos animais como insetos, camundongos e sapos – coisas que elas podem engolir inteiras. Elas não seriam nada ameaçadoras se não fosse pela sua ferocidade em resposta à mínima visão de perigo. Uma cocatriz voa na face de qualquer ameaça, grasnindo e batendo loucamente suas asas enquanto sua cabeça bica freneticamente. O menor arranhão da bicada de uma cocatriz pode trazer a ruína às suas vítimas, lentamente transformando-as em pedra a partir da ferida`
 },
 
 {
     nome: "Couatl",
     nd: "4",
+	xp: 1100,
     regiao: ["Floresta","Extraplanar"],
     pagina: 45,
-    descricao: `Ser celestial serpentino com grande poder mágico e proteção divina.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Celestial Médio, leal e bom
-CA: 19 (armadura natural)
-PV: 97 (13d8 + 39)
-Deslocamento: 9 m, voo 18 m
+    descricao: `Celestial Médio, leal e bom
+Classe de Armadura 19 (armadura natural)
+Pontos de Vida 97 (13d8 + 39)
+Deslocamento 9 m, voo 27 m
 
 FOR 16 (+3)
 DES 20 (+5)
@@ -1320,22 +1781,44 @@ INT 18 (+4)
 SAB 20 (+5)
 CAR 18 (+4)
 
-Resistências: radiante
-Sentidos: visão verdadeira 36 m
+Testes de Resistência Con +5, Sab +7, Car +6
+Resistência a Dano radiante
+Imunidade a Dano psíquico; concussão, cortante e perfurante de ataques não-mágicos
+Sentidos visão verdadeira 36 m, Percepção passiva 15
+Idiomas todos, telepatia 36 m`,
 
-Habilidades:
-- Conjuração Inata: magias como Detectar Pensamentos, Invisibilidade, etc.
+habilidades:`Armas Mágicas:
+Os ataques com armas do couatl são mágicos.
 
-Ações:
-- Mordida:
-+8 para atingir, alcance 1,5 m.
-Dano: 1d6 + 5 perfurante + 3d6 veneno.
-CD 13 CON ou envenenado por 24h.
+Conjuração Inata:
+A habilidade de conjuração de uma couatl é Carisma (CD de resistência de magia 14). Ele pode conjurar, inatamente, as seguintes magias, necessitando apenas de componentes verbais:
 
-- Constrição:
-+6 para atingir.
-Dano: 2d6 + 3 contundente e alvo fica agarrado (CD 15).
-`
+À vontade: 
+detectar mal e bem, detectar magia, detectar pensamentos
+
+3/dia cada: bênção, criar alimentos, curar ferimentos, escudo arcano, proteção contra veneno, restauração menor, santuário
+
+1/dia cada: restauração maior, sonho, vidência
+
+Mente Protegida: O couatl é imune à vidência e a qualquer efeito que possa sentir suas emoções, ler seus pensamentos ou detectar sua localização.`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +8 para atingir, alcance 1,5 m, uma criatura. Acerto: 8 (1d6 + 5) de dano perfurante e o alvo deve ser bem sucedido num teste de resistência de Constituição CD 13 ou ficará envenenado por 24 horas. Até esse veneno acabar, o alvo ficará inconsciente. Outra criatura pode usar uma ação para sacudir o alvo até acordá-lo.
+
+Constrição:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 3 m, uma criatura Média ou menor. Acerto: 10 (2d6 + 3) de dano de concussão e o alvo fica agarrado (CD 15 para escapar). Até esse agarrão terminar, o alvo fica impedido e o couatl não pode constringir outro alvo.
+
+Mudança de Forma:
+O couatl magicamente se metamorfoseia em um humanoide ou besta que tenha um nível de desafio igual ou inferior ao seu ou pode voltar para sua forma verdadeira. Ele reverte a sua forma verdadeira quando morre. Qualquer equipamento vestido ou carregado é absorvido ou vestido pela nova forma (à escolha do couatl).
+Na nova forma, o couatl mantem suas estatísticas de jogo e a capacidade de falar, mas sua CA, tipos de movimento, Força, Destreza e outras ações são substituídos pelos da nova forma e ele ganha quaisquer estatísticas e capacidades (exceto características de classe, ações lendárias e ações de covil) que a nova forma tenha e ele não. Se a nova forma tiver um ataque de mordida, o couatl pode usar sua mordida nessa forma.`,
+
+lore: `Couatls são seres serpentinos benevolentes de vasto intelecto e perspicácia. Suas asas coloridas brilhantes e modo gentil exprimem suas origens celestiais.
+Zeladores Divinos: Os couatls foram criados para serem guardiões e zeladores por um deus benevolente que não é cultuado desde a aurora dos tempos e que agora é esquecido de todos, exceto dos próprios couatls. Muitos dos mandatos divinos dados a esses seres foram há muito tempo cumpridos ou não. No entanto, um número de couatls permanecem zelando pelos poderes ancestrais, aguardando o cumprimento da profecia ou salvaguardando os herdeiros das criaturas que eles costumavam guiar e proteger. Independentemente da tarefa do couatl, ele prefere permanecer escondido, revelando-se apenas como último recurso.
+Contadores da Verdade: Um couatl não pode mentir, mas ele pode omitir informações, respondendo perguntas vagamente ou levando outros a tirarem conclusões precipitadas se isso for necessário para proteger algo, para manter promessas ou para esconder o segredo de sua existência.
+Antigos e Raros: Um couatl pode viver por eras sem sustento, até mesmo sobrevivendo sem ar, mas essas criaturas podem morrer de doenças ou com a passagem do tempo. Um couatl pode sentir seu fim se aproximar um século antes, mas ele não tem qualquer intuição do jeito que irá falecer.
+Se um couatl já tiver cumprido o que lhe foi designado, ele aceita seu destino. No entanto, caso sua morte iminente ponha em risco o cumprimento de seus objetivos, ele buscará ativamente outro couatl com o qual possa produzir descendentes.
+O ritual de acasalamento dos couatls é uma bela e elaborada dança de magia e luz, resultando em um ovo em formato de gema do qual um novo couatl chocará. O pai que procurou o parceiro criará o couatl recém-nascido e o instruirá dos seus deveres, assim ele poderá completar qualquer que seja a tarefa que o seu pai deixou incompleta`
+
 },
 
 {
@@ -3600,8 +4083,8 @@ Alvo puxado e agarrado.
     nome: "Sahuagin",
     nd: "1/2",
 	xp: 100,
-	tags: ["Campanha", "Porto Cicatriz"],
 	imagem: "sahuagin.png",
+	tags: ["Campanha", "Porto Cicatriz"],	
     regiao: ["Subaquático"],
     pagina: 272,
     descricao: `Humanoide Médio (sahuagin), leal e mau
@@ -3653,7 +4136,7 @@ Os sahuagin fazem bom uso dos malenti como espiões e assassinos nas cidades de 
 {
     nome: "Barão Sahuagin",
     nd: "5",
-	xp: 1800,
+	xp: 1800,	
 	imagem: "barao_sahuagin.png",
 	tags: ["Campanha", "Porto Cicatriz"],
     regiao: ["Subaquático"],
@@ -3710,8 +4193,8 @@ Os sahuagin fazem bom uso dos malenti como espiões e assassinos nas cidades de 
     nome: "Sacerdotisa Sahuagin",
     nd: "3",
 	xp: 700,
-	tags: ["Campanha", "Porto Cicatriz"],
 	imagem: "sacerdotisa_sahuagin.png",
+	tags: ["Campanha", "Porto Cicatriz"],
     regiao: ["Subaquático"],
     pagina: 273,
     descricao: `Humanoide Médio (sahuagin), leal e mau
@@ -3862,6 +4345,160 @@ Ações:
 Dano: 2d6 necrótico.
 Reduz FOR do alvo.
 `
+},
+
+{
+    nome: "Sirenídeo",
+    nd: "2",
+	xp: 450,
+	imagem: "sirenideo.png",
+    regiao: ["Ruínas","Subterrâneo"],
+    pagina: 277,
+    descricao: `Monstruosidade Grande, caótico e mau
+Classe de Armadura 13 (armadura natural)
+Pontos de Vida 45 (6d10 + 12)
+Deslocamento 3 m, natação 12 m
+
+FOR 18 (+4)
+DES 10 (+0)
+CON 15 (+2)
+INT 8  (–1)
+SAB 10 (+0)
+CAR 9  (–1)
+
+Perícias Percepção +2
+Sentidos visão no escuro 18 m, Percepção passiva 12
+Idiomas Abissal, Aquan`,
+
+habilidades:`Anfíbio:
+O sirenídeo pode respirar ar e água.`,
+
+acoes: `Ataques Múltiplos:
+O sirenídeo realiza dois ataques: um com sua mordida e um com suas garras ou arpão.
+
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 8 (1d8 + 4) de dano perfurante.
+
+Garras:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 9 (2d4 + 4) de dano cortante.
+
+Arpão:
+Ataque Corpo-a-Corpo ou à Distância com Arma: +6 para atingir, alcance 1,5 m ou distância 6/18 m, um alvo. Acerto: 11 (2d6 + 4) de dano perfurante. Se o alvo for uma criatura Enorme ou menor, ela deve ser bem sucedida num teste resistido de Força contra o sirenídeo, ou será puxada 6 metros na direção dele.`,
+
+lore: `Os sirenídeos assombram as águas costeiras, caçando o povo-peixe, povo do mar e qualquer outra criatura comestível que cruze seu caminho. Esses monstros selvagens capturam e devoram presas desatentas, arrastando corpos afogados de volta para suas grutas submersas para se alimentar.
+Povo do Mar Transformado: Muito tempo atrás, uma tribo de povo do mar encontrou um ídolo de Demogorgon no fundo do mar. Sem saber do que se tratava, eles levaram o artefato para seu rei. Todos que tocaram no ídolo foram afligidos com loucura, incluindo o rei, que decretou que um ritual de sacrifício deveria ser realizado para abrir um portal para o Abismo. O oceano ficou vermelho com o sangue do massacre do povo do mar, mas o ritual funcionou, e o rei liderou os sobreviventes através do portal submerso para a camada de Demogorgon no Abismo. O povo do mar permaneceu lá por gerações, lutando por suas vidas enquanto o Abismo os distorcia completamente, transformando-os em monstruosidades malignas brutais. Então, o primeiro sirenídeo nasceu.
+Valentões Costeiros: Sempre que uma oportunidade aparece para ele, o Príncipe dos Demônios envia sirenídeos de volta para o Plano Material para causar estragos nos oceanos. Os sirenídeos são valentões, atacando todas as criaturas menores e mais fracas que eles.
+Os sirenídeos vivem em cavernas submersas cheias de tesouros e troféus, tirados de suas vítimas e de navios naufragados. Eles amarram os corpos apodrecidos de seus inimigos mortos e de marinheiros afogados a cordões de algas marinhas para demarcar as fronteiras de seus territórios.`
+},
+
+{
+    nome: "Slaad Vermelho",
+    nd: "5",
+	xp: 1800,
+	imagem: "slaad_vermelho.png",
+    regiao: ["Qualquer"],
+	tags: ["Campanha", "Porto Cicatriz"],
+    pagina: 279,
+    descricao: `Aberração Grande, caótico e neutro
+Classe de Armadura 14 (armadura natural)
+Pontos de Vida 93 (11d10 + 33)
+Deslocamento 9 m
+
+FOR 16 (+3)
+DES 12 (+1)
+CON 16 (+3)
+INT 6  (–2)
+SAB 6  (–2)
+CAR 7  (–2)
+
+Perícias Percepção +1
+Resistência a Dano ácido, elétrico, fogo, frio, trovejante
+Sentidos visão no escuro 18 m, Percepção passiva 11
+Idiomas Slaad, telepatia 18 m`,
+
+habilidades:`Regeneração:
+O slaad recupera 10 pontos de vida no início de cada um dos seus turnos se possuir, pelo menos, 1 ponto de vida. 
+
+Resistência à Magia:
+O slaad possui vantagem nos testes de resistência contra magias e outros efeitos mágicos.`,
+
+acoes: `Ataques Múltiplos:
+O slaad realiza três ataques: um com sua mordida e dois com suas garras.
+
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 8 (2d4 + 3) de dano perfurante. 
+
+Garra:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (1d8 + 3) de dano perfurante. Se o alvo for um humanoide, ele deve ser bem sucedido num teste de resistência de Constituição CD 14 ou será infectado com uma doença – um minúsculo ovo slaad. Um hospedeiro humanoide pode carregar apenas um ovo slaad por vez. Após três meses, o ovo se move para a cavidade torácica, gestando e formando uma larva slaad. Num período de 24 horas antes do nascimento, o hospedeiro começa a se sentir mal, seu deslocamento é reduzido à metade e ele tem desvantagem nas jogadas de ataque, testes de habilidade e testes de resistência. No nascimento, a larva escava seu caminho através dos órgãos vitais e sai do peito do hospedeiro em 1 rodada, matando-o no processo. Se a doença for curada antes da larva emergir, o slaad não nascido é desintegrado.`,
+
+lore: `SLAAD VERMELHO
+Quando um slaad vermelho atinge uma criatura humanoide com sua garra, ele pode injetar um ovo a partir de uma glândula debaixo de suas garras. O ovo faz seu caminho até o hospedeiro e gesta nele, eventualmente formando uma larva slaad. Tal larva, então, devora seu caminho para fora do corpo do hospedeiro, alimentando-se dos restos do hospedeiro e então, buscando qualquer outra carne fresca que possa encontrar. A larva se transforma em um slaad azul totalmente crescido – ou em um slaad verde, se o hospedeiro tinha a capacidade de conjurar magias de 3° nível ou superior – dentro de 2d12 horas.
+
+No Caos Eternamente Mutável do Limbo, pedaços de florestas e campinas, castelos arruinados e ilhas isoladas derivam através de um alvoroço de fogo, água, terra e vento. Os principais habitantes desse plano inóspito são os sapos humanoides, slaadi. Os slaadi são indisciplinados e não possui uma hierarquia formal, apesar de os slaadi mais fracos obedecerem os mais fortes sob ameaça de aniquilação.
+A Pedra da Geração: Muito tempo atrás, Primus, senhor supremo dos modrons, criou uma gigantesca pedra geometricamente complexa imbuída com o poder da lei. Ele então, deixou-a à deriva no Limbo, acreditando que a pedra poderia trazer ordem ao caos desse plano e impedir o caos de se espalhar para os outros planos. Conforme o poder da pedra crescia, ela tornou possível para criaturas com mentes ordeiras, como os modrons e os githzerai, criarem enclaves no Limbo. Porém, a criação de Primus teve um efeito colateral imprevisto: a energia caótica absorvida pela pedra gerou os horrores que vieram a ser chamados de slaadi. Sábios se referem a maciça criação de Primus como a Pedra da Geração por essa razão. Os slaadi dizimaram todos os enclaves de modrons no Limbo. Como criaturas de caos absoluto, os slaadi abominam os modrons e os atacam à primeira vista. Porém, Primus manteve sua criação e, ou não a considerou os slaadi como uma ameaça ou optou por ignorá-los.
+Nascimento e Transformação: Os slaadi possuem um ciclo de reprodução horripilante. Eles se reproduzem tanto ao implantar ovos em hospedeiros humanoides ou ao infecta-los com uma doença transformadora chamada febre do caos. Cada cor de slaad reproduz ou transformase de uma forma diferente, com os slaadi vermelhos originando slaadi azuis e verdes, e os slaadi azuis gerando vermelhos e verdes. Cada slaad verde passa por um longo ciclo vital de transformação nos mais poderosos slaadi cinza e da morte. Em cada transformação o slaad mantem suas lembranças.
+Metamorfos: Alguns slaadi podem se transformar em criaturas humanoides das quais eles são originalmente gerados. Esses slaadi retornam ao Plano Material para semear a discórdia disfarçados de seus antigos eus.
+
+VARIAÇÃO: GEMAS DE CONTROLE DE SLAAD
+Conforme um slaad surge da Pedra de Geração, a pedra magicamente implanta um fragmento dela no cérebro do slaad. Esse fragmento toma a forma de uma gema mágica de tamanho e forma aproximados do punho de uma criança humana. A gema é da mesma cor do slaad. Outra criatura pode usar magia para alcançar a gema slaad e usa-la para subjugar o slaad. O slaad deve obedecer a quem quer que possua sua gema. Se a gema de um slaad for destruída, o slaad não poderá mais ser controlado dessa forma.
+Um slaad nascido de alguma outra forma que não da Pedra de Geração, não possuirá uma gema no seu cérebro, mas ele adquire uma caso entre em contato com a Pedra da Geração. Os slaadi no Limbo são atraídos pela Pedra de Geração, por isso muitos acabam adquirindo uma gema. Um slaad com uma gema de controle em seu cérebro possui o seguinte traço adicional. Gema de Controle. Implantada no cérebro do slaad está uma gema mágica. O slaad deve obedecer quem quer que possua a gema e é imune a ser enfeitiçado enquanto estiver sendo controlado.
+Certas magias podem ser usadas para adquirir a gema. Se o slaad falhar no teste de resistência contra a magia aprisionamento, a magia pode transferir a gema para a mão aberta do conjurador, ao invés de aprisionar o slaad. Uma magia desejo, se for conjurada na presença do slaad, também pode ser ordenada para adquirir a gema.
+Uma magia restauração maior conjurada no slaad destrói a gema sem ferir o slaad.
+Alguém que seja proficiente em Sabedoria (Medicina) pode remover a gema de um slaad incapacitado. Cada tentativa requer 1 minuto de trabalho ininterrupto e um teste de Sabedoria (Medicina) bem sucedido. Cada tentativa fracassada causa 22 (4d10) de dano psíquico ao slaad`
+},
+
+{
+    nome: "Slaad Azul",
+    nd: "7",
+	xp: 2900,
+	imagem: "slaad_azul.png",
+    regiao: ["Qualquer"],
+    pagina: 279,
+    descricao: `Aberração Grande, caótico e neutro
+Classe de Armadura 15 (armadura natural)
+Pontos de Vida 123 (13d10 + 52)
+Deslocamento 9 m
+
+FOR 20 (+5)
+DES 15 (+2)
+CON 18 (+4)
+INT 7 (–2)
+SAB 7 (–2)
+CAR 9 (–2)
+
+Perícias Percepção +1
+Resistência a Dano ácido, elétrico, fogo, frio, trovejante
+Sentidos visão no escuro 18 m, Percepção passiva 11
+Idiomas Slaad, telepatia 18 m`,
+
+habilidades:`Regeneração:
+O slaad recupera 10 pontos de vida no início de cada um dos seus turnos se possuir, pelo menos, 1 ponto de vida. 
+
+Resistência à Magia:
+O slaad possui vantagem nos testes de resistência contra magias e outros efeitos mágicos.`,
+
+acoes: `Ataques Múltiplos:
+O slaad realiza três ataques: um com sua mordida e dois com suas garras.
+
+Mordida:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 8 (2d4 + 3) de dano perfurante. 
+
+Garra:`,
+
+lore: `SLAAD AZUL
+Os gancho ósseos que brotam das costas das mãos de um slaad azul infligem uma terrível doença transformadora nos humanoides feridos por eles. Essa infecção, chamada febre do caos, transforma suas vítimas em um slaad vermelho totalmente crescido – ou em um slaad verde, se o hospedeiro era um conjurador com a capacidade de conjurar magias de 3° nível ou superior
+
+No Caos Eternamente Mutável do Limbo, pedaços de florestas e campinas, castelos arruinados e ilhas isoladas derivam através de um alvoroço de fogo, água, terra e vento. Os principais habitantes desse plano inóspito são os sapos humanoides, slaadi. Os slaadi são indisciplinados e não possui uma hierarquia formal, apesar de os slaadi mais fracos obedecerem os mais fortes sob ameaça de aniquilação.
+A Pedra da Geração: Muito tempo atrás, Primus, senhor supremo dos modrons, criou uma gigantesca pedra geometricamente complexa imbuída com o poder da lei. Ele então, deixou-a à deriva no Limbo, acreditando que a pedra poderia trazer ordem ao caos desse plano e impedir o caos de se espalhar para os outros planos. Conforme o poder da pedra crescia, ela tornou possível para criaturas com mentes ordeiras, como os modrons e os githzerai, criarem enclaves no Limbo. Porém, a criação de Primus teve um efeito colateral imprevisto: a energia caótica absorvida pela pedra gerou os horrores que vieram a ser chamados de slaadi. Sábios se referem a maciça criação de Primus como a Pedra da Geração por essa razão. Os slaadi dizimaram todos os enclaves de modrons no Limbo. Como criaturas de caos absoluto, os slaadi abominam os modrons e os atacam à primeira vista. Porém, Primus manteve sua criação e, ou não a considerou os slaadi como uma ameaça ou optou por ignorá-los.
+Nascimento e Transformação: Os slaadi possuem um ciclo de reprodução horripilante. Eles se reproduzem tanto ao implantar ovos em hospedeiros humanoides ou ao infecta-los com uma doença transformadora chamada febre do caos. Cada cor de slaad reproduz ou transformase de uma forma diferente, com os slaadi vermelhos originando slaadi azuis e verdes, e os slaadi azuis gerando vermelhos e verdes. Cada slaad verde passa por um longo ciclo vital de transformação nos mais poderosos slaadi cinza e da morte. Em cada transformação o slaad mantem suas lembranças.
+Metamorfos: Alguns slaadi podem se transformar em criaturas humanoides das quais eles são originalmente gerados. Esses slaadi retornam ao Plano Material para semear a discórdia disfarçados de seus antigos eus.
+
+VARIAÇÃO: GEMAS DE CONTROLE DE SLAAD
+Conforme um slaad surge da Pedra de Geração, a pedra magicamente implanta um fragmento dela no cérebro do slaad. Esse fragmento toma a forma de uma gema mágica de tamanho e forma aproximados do punho de uma criança humana. A gema é da mesma cor do slaad. Outra criatura pode usar magia para alcançar a gema slaad e usa-la para subjugar o slaad. O slaad deve obedecer a quem quer que possua sua gema. Se a gema de um slaad for destruída, o slaad não poderá mais ser controlado dessa forma.
+Um slaad nascido de alguma outra forma que não da Pedra de Geração, não possuirá uma gema no seu cérebro, mas ele adquire uma caso entre em contato com a Pedra da Geração. Os slaadi no Limbo são atraídos pela Pedra de Geração, por isso muitos acabam adquirindo uma gema. Um slaad com uma gema de controle em seu cérebro possui o seguinte traço adicional. Gema de Controle. Implantada no cérebro do slaad está uma gema mágica. O slaad deve obedecer quem quer que possua a gema e é imune a ser enfeitiçado enquanto estiver sendo controlado.
+Certas magias podem ser usadas para adquirir a gema. Se o slaad falhar no teste de resistência contra a magia aprisionamento, a magia pode transferir a gema para a mão aberta do conjurador, ao invés de aprisionar o slaad. Uma magia desejo, se for conjurada na presença do slaad, também pode ser ordenada para adquirir a gema.
+Uma magia restauração maior conjurada no slaad destrói a gema sem ferir o slaad.
+Alguém que seja proficiente em Sabedoria (Medicina) pode remover a gema de um slaad incapacitado. Cada tentativa requer 1 minuto de trabalho ininterrupto e um teste de Sabedoria (Medicina) bem sucedido. Cada tentativa fracassada causa 22 (4d10) de dano psíquico ao slaad`
 },
 
 {
