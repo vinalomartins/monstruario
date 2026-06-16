@@ -5780,34 +5780,262 @@ Dano: 1d6 + 2.
 },
 
 {
+    nome: "Javali",
+    nd: "1/4",
+	xp: 50,
+    regiao: ["Floresta"],
+    pagina: 331,
+    descricao: `Besta Média, imparcial
+Classe de Armadura 11 (armadura natural)
+Pontos de Vida 11 (2d8 + 2)
+Deslocamento 12 m
+
+FOR 13 (+1)
+DES 11 (+0)
+CON 12 (+1)
+INT 2  (–4)
+SAB 9  (–1)
+CAR 5  (–3)
+Sentidos Percepção passiva 9
+Idiomas –`,
+
+habilidades:`Investida:
+Se o javali se mover, pelo menos, 6 metros em linha reta em direção de uma criatura logo antes de atingi-la com seu ataque de presa, o alvo sofre 3 (1d6) de dano cortante extra e deve ser bem sucedido num teste de resistência de Força CD 11 para não cair no chão.
+
+Implacável (Recarrega Após um Descanso Curto ou Longo):
+Se o javali sofrer 7 de dano ou menos, que o reduziria a 0 pontos de vida, ele é reduzido a 1 ponto de vida, no lugar.`,
+
+acoes:`Presas:
+Ataque Corpo-a-Corpo com Arma: +3 para atingir, alcance 1,5 m, um alvo. Acerto: 4 (1d6 + 1) de dano cortante.`
+},
+
+{
+    nome: "Javali Gigante",
+    nd: "2",
+	xp: 450,
+    regiao: ["Floresta"],
+    pagina: 331,
+    descricao: `Besta Grande, imparcial
+Classe de Armadura 12 (armadura natural)
+Pontos de Vida 42 (5d10 + 15)
+Deslocamento 12 m
+
+FOR 17 (+3)
+DES 10 (+0)
+CON 16 (+3)
+INT 2  (–4)
+SAB 7  (–2)
+CAR 5  (–3)
+Sentidos Percepção passiva 8
+Idiomas –`,
+
+habilidades:`Investida:
+Se o javali se mover, pelo menos, 6 metros em linha reta em direção de uma criatura logo antes de atingi-la com seu ataque de presa, o alvo sofre 7 (2d6) de dano cortante extra e deve ser bem sucedido num teste de resistência de Força CD 13 para não cair no chão.
+
+Implacável (Recarrega Após um Descanso Curto ou Longo):
+Se o javali sofrer 10 de dano ou menos, que o reduziria a 0 pontos de vida, ele é reduzido a 1 ponto de vida, no lugar.`,
+
+acoes:`Presas:
+Ataque Corpo-a-Corpo com Arma: +5 para atingir, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano cortante.`
+},
+
+{
     nome: "Lobo",
     nd: "1/4",
+	xp: 50,
     regiao: ["Floresta","Ártico"],
-    pagina: 341,
-    descricao: `Predador em matilha que derruba inimigos.
-
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Besta Média
-CA: 13
-PV: 11 (2d8 + 2)
-Deslocamento: 12 m
+    pagina: 332,
+    descricao: `Besta Média, imparcial
+Classe de Armadura 13 (armadura natural)
+Pontos de Vida 11 (2d8 + 2)
+Deslocamento 12 m
 
 FOR 12 (+1)
 DES 15 (+2)
 CON 12 (+1)
-INT 3 (-4)
+INT 3  (–4)
 SAB 12 (+1)
-CAR 6 (-2)
+CAR 6  (–2)
 
-Habilidades:
-- Táticas de Matilha
+Perícias Furtividade +4, Percepção +3
+Sentidos Percepção passiva 13
+Idiomas –`,
 
-Ações:
-- Mordida:
-+4 para atingir.
-Dano: 2d4 + 2.
-CD 11 FOR ou fica caído.
-`
+habilidades:`Audição e Faro Aguçados:
+O lobo tem vantagem em testes de Sabedoria (Percepção) relacionados à audição e ao olfato.
+
+Táticas de Matilha:
+O lobo tem vantagem nas jogadas de ataque contra uma criatura se, pelo menos, um dos aliados do lobo estiver a 1,5 metro da criaturas e não estiver incapacitado.`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano perfurante. Se o alvo for uma criatura, ele deve ser bem sucedido num teste de resistência de Força CD 11 para não cair no chão.`
+},
+
+{
+    nome: "Lobo Artroz",
+    nd: "1",
+	xp: 200,
+    regiao: ["Floresta","Ártico"],
+    pagina: 332,
+    descricao: `Besta Grande, imparcial
+Classe de Armadura 14 (armadura natural)
+Pontos de Vida 37 (5d10 + 10)
+Deslocamento 15 m
+
+FOR 17 (+3)
+DES 15 (+2)
+CON 15 (+2)
+INT 3  (–4)
+SAB 12 (+1)
+CAR 7  (–2)
+Perícias Furtividade +4, Percepção +3
+Sentidos Percepção passiva 13
+Idiomas –`,
+
+habilidades:`Audição e Faro Aguçados:
+O lobo tem vantagem em testes de Sabedoria (Percepção) relacionados à audição e ao olfato.
+
+Táticas de Matilha: O lobo tem vantagem nas jogadas de ataque contra uma criatura se, pelo menos, um dos aliados do lobo estiver a 1,5 metro da criaturas e não estiver incapacitado.`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano perfurante. Se o alvo for uma criatura, ele deve ser bem sucedido num teste de resistência de Força CD 11 para não cair no chão.`
+},
+
+{
+    nome: "Lobo Invernal",
+    nd: "3",
+	xp: 700,
+    regiao: ["Floresta","Ártico"],
+    pagina: 332,
+    descricao: `Monstruosidade Grande, neutro e mau
+Classe de Armadura 13 (armadura natural)
+Pontos de Vida 75 (10d10 + 20)
+Deslocamento 15 m
+
+FOR 18 (+4)
+DES 13 (+1)
+CON 14 (+2)
+INT 7  (–2)
+SAB 12 (+1)
+CAR 8  (–1)
+Perícias Furtividade +3, Percepção +5
+Imunidade à Dano frio
+Sentidos Percepção passiva 15
+Idiomas Comum, Gigante, Lobo Invernal`,
+
+habilidades:`Audição e Faro Aguçados:
+O lobo tem vantagem em testes de Sabedoria (Percepção) relacionados à audição e ao olfato. Camuflagem de Neve. O lobo tem vantagem em testes de Destreza (Furtividade) feitos em terrenos de neve.
+
+Táticas de Matilha:
+O lobo tem vantagem nas jogadas de ataque  contra uma criatura se, pelo menos, um dos aliados do lobo estiver a 1,5 metro da criaturas e não estiver incapacitado.`, 
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 11 (2d6 + 4) de dano perfurante. Se o alvo for uma criatura, ela deve ser bem sucedida num teste de resistência de Força CD 14 ou será derrubada no chão. Sopro Congelante (Recarrega 5–6). O lobo expele um jato de vento congelante num cone de 4,5 metros. Cada criatura na área deve realizar um teste de resistência de Destreza CD 12, sofrendo 18 (4d8) de dano de frio caso fracasse, ou metade desse dano caso obtenha sucesso.`,
+
+lore:`O lobo invernal habita no ártico e é tão grande quanto um lobo atroz, mas possui pelagem branca como a neve e olhos azuis-claros. Os gigantes do gelo usam essas criaturas malignas como guardas e companheiros de caça, usando a arma de sopro mortal dos lobos contra seus adversários. Os lobos invernais se comunicam entre si usando grunhidos e latidos, mas eles falam Comum e Gigante bem o suficiente para realizar conversações simples.`
+},
+
+{
+    nome: "Lobo Invernal",
+    nd: "3",
+	xp: 700,
+    regiao: ["Floresta","Ártico"],
+    pagina: 332,
+    descricao: `Monstruosidade Grande, neutro e mau
+Classe de Armadura 13 (armadura natural)
+Pontos de Vida 75 (10d10 + 20)
+Deslocamento 15 m
+
+FOR 18 (+4)
+DES 13 (+1)
+CON 14 (+2)
+INT 7  (–2)
+SAB 12 (+1)
+CAR 8  (–1)
+Perícias Furtividade +3, Percepção +5
+Imunidade à Dano frio
+Sentidos Percepção passiva 15
+Idiomas Comum, Gigante, Lobo Invernal`,
+
+habilidades:`Audição e Faro Aguçados:
+O lobo tem vantagem em testes de Sabedoria (Percepção) relacionados à audição e ao olfato. Camuflagem de Neve. O lobo tem vantagem em testes de Destreza (Furtividade) feitos em terrenos de neve.
+
+Táticas de Matilha:
+O lobo tem vantagem nas jogadas de ataque  contra uma criatura se, pelo menos, um dos aliados do lobo estiver a 1,5 metro da criaturas e não estiver incapacitado.`, 
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +6 para atingir, alcance 1,5 m, um alvo. Acerto: 11 (2d6 + 4) de dano perfurante. Se o alvo for uma criatura, ela deve ser bem sucedida num teste de resistência de Força CD 14 ou será derrubada no chão. Sopro Congelante (Recarrega 5–6). O lobo expele um jato de vento congelante num cone de 4,5 metros. Cada criatura na área deve realizar um teste de resistência de Destreza CD 12, sofrendo 18 (4d8) de dano de frio caso fracasse, ou metade desse dano caso obtenha sucesso.`,
+
+lore:`O lobo invernal habita no ártico e é tão grande quanto um lobo atroz, mas possui pelagem branca como a neve e olhos azuis-claros. Os gigantes do gelo usam essas criaturas malignas como guardas e companheiros de caça, usando a arma de sopro mortal dos lobos contra seus adversários. Os lobos invernais se comunicam entre si usando grunhidos e latidos, mas eles falam Comum e Gigante bem o suficiente para realizar conversações simples.`
+},
+
+{
+    nome: "Lobo Corrupção",
+    nd: "1/4",
+	xp: 50,
+    regiao: ["Floresta"],
+	tags: ["Custom", "Santuário do Musgo", "Campanha"],     
+    descricao: `Besta Média, imparcial
+Classe de Armadura 13 (armadura natural)
+Pontos de Vida 11 (2d8 + 2)
+Deslocamento 12 m
+
+FOR 12 (+1)
+DES 15 (+2)
+CON 12 (+1)
+INT 3  (–4)
+SAB 12 (+1)
+CAR 6  (–2)
+
+Perícias Furtividade +4, Percepção +3
+Sentidos Percepção passiva 13
+Idiomas –`,
+
+habilidades:`Audição e Faro Aguçados:
+O lobo tem vantagem em testes de Sabedoria (Percepção) relacionados à audição e ao olfato.
+
+Táticas de Matilha:
+O lobo tem vantagem nas jogadas de ataque contra uma criatura se, pelo menos, um dos aliados do lobo estiver a 1,5 metro da criaturas e não estiver incapacitado.
+
+Raízes da Corrupção:
+Quando reduz uma criatura a 0 PV ou quando sofre metade dos PV raízes explodem do solo. Todas criaturas num raio de 3m fazem teste de Destreza CD 12. Se falharem tem o  deslocamento reduzido à metade até o final do turno delas`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano perfurante. Se o alvo for uma criatura, ele deve ser bem sucedido num teste de resistência de Força CD 11 para não cair no chão. Se sofretem dando, tomam 1d4 necrótico a mais.`
+},
+
+
+{
+    nome: "Lobo Artroz Corrupção",
+    nd: "1",
+	xp: 200,
+    regiao: ["Floresta"],
+	tags: ["Custom", "Santuário do Musgo", "Campanha"],    
+    descricao: `Besta Grande, imparcial
+Classe de Armadura 16 (armadura natural)
+Pontos de Vida 50
+Deslocamento 15 m
+
+FOR 17 (+3)
+DES 15 (+2)
+CON 15 (+2)
+INT 3  (–4)
+SAB 12 (+1)
+CAR 7  (–2)
+Perícias Furtividade +4, Percepção +3
+Sentidos Percepção passiva 13
+Idiomas –`,
+
+habilidades:`Audição e Faro Aguçados:
+O lobo tem vantagem em testes de Sabedoria (Percepção) relacionados à audição e ao olfato.
+
+Táticas de Matilha: O lobo tem vantagem nas jogadas de ataque contra uma criatura se, pelo menos, um dos aliados do lobo estiver a 1,5 metro da criaturas e não estiver incapacitado.
+
+Raízes da Corrupção:
+Quando reduz uma criatura a 0 PV ou quando sofre metade dos PV raízes explodem do solo. Todas criaturas num raio de 3m fazem teste de Destreza CD 12. Se falharem tem o  deslocamento reduzido à metade até o final do turno delas`,
+
+acoes:`Mordida:
+Ataque Corpo-a-Corpo com Arma: +4 para atingir, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano perfurante. Se o alvo for uma criatura, ele deve ser bem sucedido num teste de resistência de Força CD 14 para não cair no chão. Se sofretem dando, a criatura alvo não pode recuperar vida naquele turno.`
 },
 
 {
