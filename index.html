@@ -22,321 +22,9 @@
 <link rel="apple-touch-icon" href="icon.png">
 <meta name="theme-color" content="#121212">
 
-<style>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js"></script>
 
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #121212;
-    color: #eee;
-}
-
-.container {
-    display: flex;
-    height: 100vh;
-}
-
-/* LEFT - FICHA */
-.left {
-    width: 60%;
-    padding: 25px;
-    overflow-y: auto;
-    border-right: 1px solid #2a2a2a;
-    background: #181818;
-}
-
-.left h1 {
-    margin: 0 0 5px;
-    font-size: 28px;
-}
-
-#page {
-    color: #aaa;
-    margin-bottom: 15px;
-}
-
-.left img {
-    display: block;
-    margin: 0 auto 15px auto;
-
-    max-width: 100%;
-    border-radius: 10px;
-    border: 2px solid #333;
-}
-
-.info-box {
-    background: #1c1c1c;
-    border: 1px solid #333;
-    border-left: 4px solid #8b0000;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-    white-space: pre-wrap;
-    line-height: 1.5;
-}
-
-.info-box h2 {
-    margin-top: 0;
-    color: #d4af37;
-    font-size: 18px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 6px;
-    margin-bottom: 10px;
-}
-
-.lore-box {
-    background: #161616;
-    border: 1px solid #2f2f2f;
-    border-radius: 10px;
-    padding: 15px;
-    color: #cfcfcf;
-    line-height: 1.7;
-    font-style: italic;
-}
-
-.monster-meta {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.monster-meta span {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 6px 12px;
-
-    background: #1a1a1a;
-    border: 1px solid #2f2f2f;
-    border-radius: 6px;
-
-    font-size: 13px;
-    color: #cfcfcf;
-
-    line-height: 1;
-}
-
-/* DESCRIÇÃO BONITA */
-#desc {
-    white-space: pre-wrap;
-    line-height: 1.6;
-    background: #1f1f1f;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #333;
-}
-
-/* RIGHT - FILTROS */
-.right {
-    width: 40%;
-    padding: 20px;
-    overflow-y: auto;
-    background: #151515;
-}
-
-/* INPUTS */
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    background: #1f1f1f;
-    color: white;
-    border: 1px solid #333;
-    border-radius: 6px;
-    transition: 0.2s;
-}
-
-input:focus, select:focus {
-    outline: none;
-    border-color: #666;
-}
-
-/* LISTA */
-.monster {
-    padding: 14px;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    cursor: pointer;
-    background: #1b1b1b;
-    border: 1px solid transparent;
-    transition: 0.2s;
-}
-
-.monster:hover {
-    background: #252525;
-    border-color: #444;
-}
-
-/* NOME */
-.monster strong {
-    font-size: 15px;
-}
-
-/* ND BADGE */
-.nd {
-    float: right;
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-/* CORES POR ND */
-.nd-low { background: #2e7d32; }
-.nd-mid { background: #f9a825; color: #000; }
-.nd-high { background: #c62828; }
-.nd-boss { background: #6a1b9a; }
-
-/* SCROLL */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
-}
-
-.nd {
-    float: right;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-/* Fácil */
-.nd-low {
-    background: #2e7d32;
-	box-shadow: 0 0 5px #2e7d32;
-}
-
-/* Médio */
-.nd-mid {
-    background: #f9a825;
-    color: #000;
-	box-shadow: 0 0 5px #f9a825;
-}
-
-/* Difícil */
-.nd-high {
-    background: #c62828;
-	 box-shadow: 0 0 5px #c62828;
-}
-
-/* Boss */
-.nd-boss {
-    background: #6a1b9a;
-	box-shadow: 0 0 8px #6a1b9a;
-}
-
-.tag-filters {
-    background: #1b1b1b;
-    border: 1px solid #333;
-    border-radius: 10px;
-
-    padding: 14px;
-    margin-bottom: 14px;
-}
-
-.tag-title {
-    font-size: 13px;
-    font-weight: bold;
-    color: #d4af37;
-
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.tag-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    margin-bottom: 10px;
-
-    cursor: pointer;
-    color: #ccc;
-
-    font-size: 14px;
-
-    transition: 0.2s;
-}
-
-.tag-checkbox:hover {
-    color: #fff;
-}
-
-.tag-checkbox input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-
-    accent-color: #8b0000;
-
-    margin: 0;
-}
-
-/* 📱 MOBILE */
-@media (max-width: 768px) {
-
-    .container {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .left, .right {
-        width: 100%;
-        max-width: 100%;
-        padding: 12px;
-    }
-
-    .right {
-        order: 1;
-        max-height: 45vh;
-        overflow-y: auto;
-        border-bottom: 1px solid #333;
-    }
-
-    .left {
-        order: 2;
-        max-height: 55vh;
-        overflow-y: auto;
-    }
-
-    /* evita estouro de texto */
-    #desc {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-
-    /* inputs 100% */
-    input, select {
-        width: 100%;
-    }
-
-    /* lista */
-    .monster {
-        width: 100%;
-    }
-
-    /* imagem */
-    .left img {
-        width: 100%;
-        height: auto;
-    }
-}
-</style>
 </head>
 
 <body>
@@ -877,7 +565,7 @@ Alguns alquimistas dizem saber como processar o esôfago do basilisco e os fluid
 {
     nome: "Behir",
     nd: "11",
-    regiao: "Montanhas",
+    regiao: ["Montanhas"],
     pagina: 27,
 	xp: 7200,
     descricao: `Monstruosidade Enorme, neutro e mau
@@ -1826,41 +1514,251 @@ O ritual de acasalamento dos couatls é uma bela e elaborada dança de magia e l
     nd: "18",
     regiao: ["Extraplanar","Ruínas"],
     pagina: 46,
-    descricao: `Crânio arcano extremamente poderoso que consome almas.
+    xp: "20000",
+    descricao: `Morto-vivo Miúdo, neutro e mau
+Classe de Armadura 20 (armadura natural)
+Pontos de Vida 80 (20d4)
+Deslocamento 0 m, voo 9 m (planar)
 
-=== BLOCO DE ESTATÍSTICAS ===
-Tipo: Morto-vivo Pequeno
-CA: 20
-PV: 80 (20d4 + 40)
-Deslocamento: voo 9 m
-
-FOR 1 (-5)
+FOR 1  (–5)
 DES 20 (+5)
 CON 10 (+0)
 INT 20 (+5)
 SAB 17 (+3)
 CAR 20 (+5)
 
-Imunidades: necrótico, veneno
+Testes de Resistência Con +6, Int +11, Sab +9, Car +11
+
+Resistência a Dano concussão, cortante e perfurante de armas mágicas
+
+Imunidade a Dano necrótico, psíquico, veneno; concussão, cortante e perfurante de ataques não-mágicos
+
+Imunidade a Condição amedrontado, atordoado, caído, enfeitiçado, envenenado, exausto, paralisado, petrificado
+
+Sentidos visão verdadeira 36 m, Percepção passiva 13
+Idiomas –
+Nível de Desafio 18 (20.000 XP)
+`,
+
+habilidades: `Anulação:
+Se o demilich for alvo de um efeito que permita que ele faça um teste de resistência para reduzir o dano à metade, ao invés disso ele não sofre nenhum dano se obtiver sucesso no teste de resistência e sofre metade do dano se falhar. 
+
+Imunidade à Expulsão:
+O demilich é imune a efeitos de expulsar mortos-vivos.
+
+Resistência Lendária (3/Dia):
+Se o demilich fracassar num teste de resistência, ele pode escolher obter sucesso, ao invés disso.`,
+
+acoes: `Drenar Vida:
+O demilich afeta até três criatura que ele possa ver, a até 3 metros dele. Cada alvo deve ser bem sucedido num teste de resistência de Constituição CD 19 ou sofrerá 21 (6d6) de dano necrótico e o demilich recupera uma quantidade de pontos de  vida equivalente ao total de dano causado a todos os alvos.
+
+Uivo (Recarrega 5–6):
+O demilich emite um uivo descomunal. Cada criatura a até 9 metros do demilich que puder ouvir o uivo deve ser bem sucedida num teste de resistência de Constituição CD 15 ou cairá a 0 pontos de vida. Se obtiver sucesso na resistência, a criatura fica amedrontada até o final do próximo turno dela.
+
+AÇÕES LENDÁRIAS
+
+O demilich pode realizar 3 ações lendárias, escolhidas dentre as opções abaixo. Apenas uma ação lendária pode ser usada por vez e apenas no final do turno de outra criatura. O demilich recupera as ações lendárias gastas no começo do turno dele. 
+
+Drenar Energia (Custa 2 Ações):
+Cada criatura a até 9 metros do demilich deve realizar um teste de resistência de Constituição CD 15. Se falhar na resistência, o máximo de pontos de vida da criatura é magicamente reduzido em 10 (3d6). Se o máximo de pontos de vida de uma criatura for reduzido a 0 por esse efeito, a criatura morre. O máximo de pontos de vida de uma criatura pode ser restaurado pela magia restauração maior ou uma magia similar.
+
+Maldição Vil (Custa 3 ações):
+O demilich afeta uma criatura que ele possa ver, a até 9 metros dele. O alvo deve ser bem sucedido num teste de resistência de Sabedoria CD 15 ou será magicamente amaldiçoado. Até a maldição terminar, o alvo tem desvantagem nas jogadas de ataque e testes de resistência. O alvo pode repetir o teste de resistência no final de cada um dos seus turnos, terminando a maldição se obtiver sucesso.
+
+Nuvem de Poeira:
+O demilich magicamente espalha seus restos poeirentos. Cada criatura a até 3 metros do demilich, incluindo os dentro de corredores, devem ser bem sucedida em um teste de resistência de Constituição CD 15 ou ficará cega até o final do próximo turno do demilich. Uma criatura que seja bem sucedida no teste de resistência fica imune a esse efeito até o final do próximo turno do demilich. 
+
+Voo:
+O demilich voa até metade do seu deslocamento de voo.
+`,
+
+lore:`A imortalidade concedida a um lich dura apenas enquanto ele alimentar sua filactéria com almas mortais. Se ele falhar em cumprir essa tarefa, seus ossos se tornam pó até restar apenas sua caveira. Esse “demilich” contém apenas uma fração da força vital malevolente do lich – apenas o suficiente para, caso perturbado, esses restos ergam-se no ar e assumam uma forma fantasmagórica. A caveira então, emite um uivo apavorante que pode matar os de coração fraco e deixar os outros tremendo de medo. Se deixada em paz, ela volta ao repousa e torna-se o pedaço vazio de sua existência.
+
+Alguns liches buscam se tornar demiliches, pois isso significa o fim da existência que esperavam preservar ao se tornarem mortos-vivos. No entanto, o tempo pode desgastar a razão e memória do lich, fazendo-o fugir para sua tumba remota e esquecer de alimentar-se de almas. As magias que eles conheciam desaparecem de suas mentes e ele não canaliza mais a energia arcana que portava quando um lich. No entanto, mesmo apenas como uma caveira, ele ainda é um inimigo mortal e enfadonho.
+
+Existência Duradoura:
+Mesmo depois que um lich é reduzido ao estado de demilich, sua filactéria sobrevive. Enquanto sua filactéria permanecer intacta, o demilich não pode ser destruído permanentemente. Sua caveira se reconstrói após 1d10 dias, restaurando a criatura ao seu estado miserável. Se ele tiver a presença de consciência para fazê-lo, um demilich pode restaurar seu poder anterior ao alimentar sua filactéria com pelo menos uma alma. Fazer isso restaura o demilich a sua forma de lich, reconstituindo seu corpo morto-vivo.
+
+Natureza Morta-Viva:
+Um demilich não precisa respirar, comer, beber ou dormir. A vontade de sobreviver de um demilich é tão forte que ele sempre tem o máximo de pontos de vida por Dado de Vida, ao invés da média de pontos de vida.
+
+O COVIL DO DEMILICH
+
+Um demilich esconde seus restos mortais e tesouros em uma tumba labiríntica guardada por monstros e armadilhas. No coração do labirinto descansa a caveira do demilich e o pó dos seus outros ossos.
+Em sua cripta, um demilich tem acesso às ações de covil e à usos adicionais de suas ações lendárias. Seu covil inteiro também possui características únicas. Um demilich em seu covil tem um nível de desafio 20 (25.000 XP).
+
+AÇÕES DE COVIL
+
+No valor de iniciativa 20 (quebrando toda a sequência de iniciativa), o demilich rola um d20. Em um resultado 11 ou superior, o demilich realiza uma ação de covil fazendo um dos efeitos a seguir. Ele não pode usar o mesmo efeito em duas rodadas consecutivas:
+
+- A tumba treme violentamente por um instante. Cada criatura no chão da tumba deve ser bem sucedida num teste de resistência de Destreza CD 19 ou caíra no chão.
+
+- O demilich afeta uma criatura que ele possa ver, a até 18 metros dele. Um campo antimagia preenche o espaço do alvo, movendo-se com ele até a contagem de iniciativa 20, na próxima rodada.
+
+- O demilich afeta qualquer número de criaturas que ele possa ver, a até 9 metros dele. Nenhum alvo pode recuperar pontos de vida até a contagem de iniciativa 20, na próxima rodada.
+
+TRAÇOS DO COVIL
+
+A tumba de um demilich pode ter qualquer ou todos os seguintes efeitos ativos:
+
+- A primeira vez que uma criatura não-maligna entrar na área da tumba, a criatura sofre 16 (3d10) de dano necrótico.
+
+- Os monstros na tumba tem vantagem em testes de resistência para não serem enfeitiçados ou amedrontados e contra características que expulsem mortos-vivos.
+
+- A tumba é protegida contra viagem mágica de criaturas não autorizadas pelo demilich. Tais criaturas não podem se teletransportar para dentro ou para fora da área da tumba ou usar viagem planar para entrar ou sair. Efeitos que permitem teletransporte ou viagem planar funcionam dentro da tumba, contanto que eles não sejam usados para sair ou entrar na área da tumba.
+
+Se o demilich for destruído, esses efeitos desaparecem num período de 10 dias.
+
+ACERERAK E SEUS DISCÍPULOS
+A transformação em um demilich não é um fim amargo para todos os liches que experimentam isso. Feita como uma escolha consciente, o caminho do demilich torna-se o próximo passo em uma evolução sombria. O lich Acererak – um poderoso mago, demonologista e infame mestre da Tumba dos Horrores – antecipou sua própria transformação, preparando-se para ela ao colocar gemas encantadas nas orbitas oculares de seu crânio e dentes. Cada uma dessas gemas de alma possui o poder de capturar as almas para que ele possa alimentar sua filactéria.
+Acererak abandonou seu corpo físico, aceitando que ele apodrecesse e se dissolvesse em pó enquanto ele viajava pelos planos como uma consciência desencarnada. Caso a caveira, que é seu último resto físico, seja perturbada, suas gemas irão reivindicar as almas dos intrusos insolentes de sua tumba, magicamente transferindo-as para sua filactéria.
+Liches que seguiram o caminho de Acererak acreditam que, ao ficarem livres de seus corpos, eles podem continuar suas buscas por poder além do mundo mortal. Como seu patrono fez, eles preservam seus restos dentro de câmaras bem guardadas, usando gemas de alma para manter suas filactérias e destruir os aventureiros que perturbarem seus covis.
+Acererak ou outro demilich como ele possui nível de desafio 21 (33.000 XP) ou 23 (50.000 XP) em seu covil, e ganha as seguintes opções de ação adicionais. 
+
+Aprisionar Alma:
+O demilich afeta uma criatura que ele possa ver, a até 9 metros dele. O alvo deve realizar um teste de resistência de Carisma CD 19. Se falhar na resistência, a alma do alvo é magicamente aprisionada dentro de uma das gemas do demilich. Enquanto a alma estiver presa, o corpo do alvo e todo o equipamento que ele carregava deixam de existir. Em um sucesso na resistência, o alvo sofre 24 (7d6) de dano necrótico e, caso esse dano reduz o alvo a 0 pontos de vida, sua alma será aprisionada como se ele tivesse falhado no teste de resistência. Uma alma aprisionada em uma gema por 24 horas é devorada e deixa de existir.
+Se o demilich cair a 0 pontos de vida, ele é destruído e tornase pó, deixando suas gemas para trás. Esmagar as gemas liberta qualquer alma dentro dela, nesse momento, o corpo do alvo se reconstrói em um espaço desocupado próximo da gema para o mesmo estado que tinha quando foi aprisionado.
+`
+},
+
+{
+    nome: "Demônios",        
+    pagina: 48,
+    descricao: `Gerados nas Camadas Infinitas do Abismo, os demônios são a encarnação do caos e mal – maquinas de destruição apenas contidas em formas monstruosas. Não possuindo qualquer compaixão, empatia ou misericórdia, eles existem apenas para destruir.
+
+    Prole do Caos: O Abismo cria demônios como extensões de si mesmo, formando corruptores espontaneamente a partir de imundície e carnificina. Alguns são monstruosidades únicas, enquanto outros representam deformações uniformes praticamente idênticas entre si. Outros demônios (como os manes) são criados a partir de almas mortais afugentadas ou amaldiçoadas pelos deuses ou que, de alguma outra forma, foram aprisionadas no Abismo.
+
+    Elevação Caprichosa: Demônios respeitam o poder, e apenas o poder. Um demônio maior comanda turbas barulhentas de demônios menores porquê ele pode destruir qualquer demônio menor que ouse recusar seus comandos. A posição de um demônio aumenta com o sangue que ele derrama; quanto mais inimigos caírem perante ele, mais alta ela se torna. 
+
+    Um demônio pode ser gerado como um manes, então se tornar um dretch e, eventualmente, se transformar em um vrock após um tempo incontável gasto lutando e sobrevivendo no Abismo. Tais elevações são raras, no entanto, a maioria dos demônios é destruída antes de adquirirem poder significativo. Os maiores dentre esses que sobrevivem compõem as fileiras dos lordes demônios que ameaçam partir o Abismo em pedaços com suas guerras intermináveis.
+
+    Ao gastar poder mágico considerável, lordes demônios podem elevar demônios menores a formas maiores, embora tais promoções nunca resultem dos feitos ou realizações de um demônio. Ao invés, um lorde demônio pode perverter um manes em um quasit quando ele necessita de um espião invisível ou tornar um exército de dretches em hezrous quando estiverem marchando contra um lorde rival. Lordes demônios raramente elevam demônios às maiores categorias, temerosos de, inadvertidamente, criarem rivais ao seu próprio poder. Invasões Abissais. Onde quer que perambulem pelo Abismo, os demônios buscam portais para outros planos. Eles almejam a chance de escaparem dos seus reinos nativos e espalharem sua influência sombria pelo multiverso, desfazendo os trabalhos dos deuses, derrubando civilizações e reduzindo o cosmos a desespero e ruínas.
+
+    Algumas das lendas mais obscuras do reino mortal são feitas em volta da destruição causada por demônios que se desgarraram pelo mundo. Quando acontece, até mesmo nações engajadas em conflitos amargos colocarão suas diferenças de lado para ajudar a conter uma erupção de demônios ou para selar as brechas abissais antes que mais demônios escapem. 
+
+    Sinais de Corrupção. Demônios carregam a mácula da corrupção com eles e sua mera presença muda o mundo para pior. As plantas murcham e morrem em áreas onde brechas abissais e demônios surgem. Animais afastam-se dos locais onde um demônio tenha realizado um assassinato. O local de uma infestação demoníaca pode ser poluído com um fedor que nunca se extingue, por áreas de frio intenso ou calor escaldante ou por sombras permanentes que marcam os locais onde os corruptores se mantiveram. 
+    
+    Maldade Eterna: Fora do Abismo, a morte é o menor dos estorvos que nenhum demônio teme. Armas mundanas não podem parar esses corruptores e muitos demônios são resistentes a energia das mais potentes magias. Quando um herói sortudo consegue derrubar um demônio em combate, o corruptor dissolve em uma poça de pus. Ele, então, instantaneamente se reforma no Abismo, com sua mente e essência intactos mesmo que seu ódio esteja inflamado. A única forma de destruir verdadeiramente um demônio é busca-lo no Abismo e mata-lo lá.
+
+    Essência Protegida: Um demônio poderoso pode seguir passos para salvaguardar sua essência vital, usando métodos secretos e metais abissais para criar um amuleto onde parte da essência é armazenada. Se a forma abissal do demônio for destruída, o amuleto permite que o corruptor se reforme no tempo e local escolhido por ele. 
+
+    Conseguir um amuleto demoníaco é uma empreendimento perigoso e, apenas buscar tal dispositivo arrisca chamar a atenção do demônio que o criou. Uma criatura possuindo um amuleto demoníaco pode exigir favores do demônio o qual a essência vital está contida no amuleto – ou infligir dores terríveis se o corruptor resistir. Se um amuleto for destruído, o demônio que o criou é aprisionado no Abismo por um ano e um dia.
+
+    Cultos Demoníacos: Independentemente dos riscos sombrios envolvidos em negociar com corruptores, o reino mortal é cheio de criaturas que cobiçam os poderes demoníacos. Lordes demônios manipulam esses servos mortais a realizarem atos de depravação cada vez maiores, aprofundando as ambições dos lordes demônios em troca de magia e outras vantagens. No entanto, um demônio considera quaisquer mortais a seu serviço como ferramentas para se usar e depois descartas a seus caprichos, consignando suas almas mortais ao Abismo.
+
+    Invocação de Demônios: Poucos atos são mais perigosos que invocar um demônio e, até mesmo arcanos que barganham espontaneamente com diabos temem os corruptores do Abismo. Apesar dos demônios desejarem semear o caos no Plano Material, eles não mostram qualquer gratidão quando trazidos a ele, vociferando contra suas prisões e exigindo a libertação.
+
+    Aqueles que se arriscam em invocar um demônio o fazem para tirar informações dele, obriga-lo a servir ou envia-lo em uma missão que apenas uma criatura de absoluta maldade poderia completar. Preparação é a chave e, invocadores experientes sabem as magias especificas e itens mágicos que podem forçar um demônio a se curvar à vontade de outrem. Se um único erro for cometido, um demônio que se liberte não mostrará misericórdia enquanto faz do seu invocador a primeira vítima de sua ira.
+
+    Tomos sobre Demônios: O Livro da Escuridão Perversa, os Pergaminhos Negros de Ahm e o Demonomicon de Iggwilv são as maiores autoridades sobre assuntos demoníacos. Esses tomos antigos descrevem técnicas que podem aprisionar a essência de um demônio no Plano Material, colocando-a dentro de uma arma, ídolo ou peça de joalheria e prevenindo que ocorruptor retorne para o Abismo.
+
+    Um objeto que prende um demônio deve ser especialmente preparado com encantamentos profanos e sangue inocente. Ele irradia uma maldade palpável, resfriando e corrompendo o ar a seu redor. Uma criatura que porte tal objeto experimenta sonhos inquietantes e impulsos perversos, mas é capaz de controlar o demônio cuja essência está aprisionada dentro do objeto. Destruir o objeto liberta o demônio, que imediatamente buscará vingança contra seu aprisionador.
+
+    Possessão Demoníaca: Não importa o quão seguro é o elo, um demônio poderoso frequentemente encontra uma forma de escapar do objeto que o aprisiona. Quando uma essência demoníaca emerge do seu receptáculo, ela pode possuir um hospedeiro mortal. Às vezes, um corruptor emprega de furtividade para esconder uma possessão bem sucedida. Outras vezes, ele libera toda a fúria demoníaca que o governa através de sua nova forma.
+
+    Enquanto o demônio permanecer possuindo seu hospedeiro, a alma do hospedeiro correra risco de ser dragada para o Abismo com o demônio se ela for exorcizada da carne ou se o hospedeiro morrer. Se um demônio possuir uma criatura e o objeto que aprisiona o demônio for destruído, a possessão irá durar até que magia poderosa seja usada para conduzir o espírito demoníaco para fora do hospedeiro.`,
+    
+lore:`LORDES DEMÔNIOS
+O poder caótico do Abismo recompensa demônios de crueldade e talento particulares com bênção das trevas, transformando-nos em corruptores únicos cujo poder pode rivalizar os deuses. Esses lordes demônios governam através de esperteza ou força bruta, esperando pelo dia em que reivindicação o prêmio de controle absoluto sobre todo o Abismo.
+
+Recompensa para Estrangeiros: Apesar da maioria dos lordes demônios terem ascendido das vastas e incontáveis turbas de demônios que tumultuam através do Abismo, o plano também recompensa estrangeiros que conquistaram quaisquer de suas infinitas camadas. A deusa élfica Lolth tornou-se uma lorde demoniza após Corellon Larethian joga-la no Abismo por trair a raça élfica. Sábios afirmam que o Príncipe das Trevas Graz’zt, originou-se de algum outro plano antes de usurpar seu título abissal de outro lorde demônio há muito esquecido.
+
+Poder e Controle: O maior sinal do poder de um lorde demônio é sua habilidade de remodelar um reino abissal. Uma camada do Abismo controlada por um lorde demônio tornasse o reflexo distorcido da personalidade perversa desse corruptor e lordes demônios, raras vezes, saem de seus reinos, por medo de permitir que outra criatura remodele e confisque ele. 
+
+Assim como outros demônios, lordes demônios que morram em outros planos tem sua essência retornada ao Abismo, onde ela se reforma em um novo corpo. Da mesma maneira, um lorde demônio que morra no Abismo é permanente destruído. A maioria dos lordes demônios mantem uma porção de suas essências armazenadas em segurança longe para prevenir tal destino.
+
+BAFOMÉ
+
+O lorde demônio Bafomé, também conhecido como Rei Chifrudo e o Príncipe das Bestas, governa sobre os minotauros e outras criaturas selvagens. Se ele tivesse feito do seu jeito, a civilização teria ruído e todas as raças teriam abraçado sua selvageria animal básica.
+O Príncipe das Bestas se parece com um minotauro enorme de pelagem negra, chifres de ferro, olhos vermelhos e uma boca cheia de sangue pingando. Sua coroa de ferro tem as cabeças em decomposição de seus inimigos, enquanto que sua armadura negra é um conjunto de cravos e serras em forma de caveiras. Ele carrega uma glaive enorme chamada Decepadora de Corações, mas muitas vezes jogasse na briga para enfrentar seus inimigos com chifres e cascos.
+
+DEMOGORGON
+
+A Besta Sibilante e suposto Príncipe dos Demônios, Demogorgon anseia nada menos que desfazer a ordem do multiverso. Uma reunião insana de características e direcionamentos, o Príncipe dos Demônios inspira medo e ódio dentre outros demônios e lordes demônios.
+Demogorgon tem a altura três vezes maior que a de um humano, seu corpo é tão sinuoso quanto o de uma serpente e tão poderoso quanto de um gorila. Tentáculos com ventosas tomam o lugar dos seus braços. Seu torso inferior sáurio termina em pés palmados com garras e uma cauda bifurcada tem suas pontas armadas com cruéis lâminas. O Príncipe dos Demônios tem duas cabeças de babuíno sinistras, ambas loucas. É exatamente o conflito entre as duas metades de sua natureza dupla que mantem as ambições do lorde demônio em xeque.
+
+GRAZ’ZT
+
+O lorde demônio Graz’zt aparenta ser uma figura sombriamente bela de aproximadamente 2,75 metros. Aqueles que se referem ao Príncipe Negro como o mais humanoides dos lordes demônios subestimam imensamente a capacidade para o mal no intrigante coração dele.
+Graz’zt é uma espécie fisicamente marcante, cuja natureza demoníaca é mostrada em sua pele cor de ébano, orelhas pontudas, presas amareladas, coroa de chifres e mãos com seis dedos. Ele se deleita em elegância, pompa e alcança seus desejos decadentes através de seus subordinados e consortes, dentre os quais os íncubos e as súcubos são geralmente os favoritos. 
+
+JUIBLEX
+
+O lorde demônio das gosmas e limos, Juiblex é uma massa de fluidos nocivos que espreita nas profundezas abissais. O miserável Lorde Sem Face não se importa com cultistas ou servos mortais e seu único desejo é transformar todas as criaturas em cópias disformes do seu eu horrendo.
+Em seu estado de descanso, Juiblex se espalha em uma massa tóxica, borbulhando e enchendo o ar com um profundo fedor. Nas raras ocasiões em que criaturas confrontam o lorde demônio, Juiblex ergue-se em um cone tremulante de lodo estriado com veias negras e esverdeadas. Olhos vermelhos sinistros flutuam dentro do corpo gelatinoso, enquanto pseudópodes de gosma pingando chicoteiam avidamente qualquer criatura que eles consigam alcançar.
+
+LOLTH
+
+A Rainha Demoníaca das Aranhas é a matrona maligna dos drow. Cada pensamento seu é tocado por malícia e a profundidade da sua perversidade pode surpreender até mesmo sua mais fiel sacerdotisa. Ela orienta seus fiéis enquanto tece tramas dos mundos do Plano Material, esperando pelo momento em que suas adeptas drow trarão esses mundos para o seu controle.
+Lolth tem a aparência de uma flexível e arrogante drow matriarca quando ela se manifesta para suas seguidoras no reino mortal, o que ela faz com rara frequência. Quando um batalha se inicia – ou se ela tiver uma razão para lembrar suas seguidoras de que devem temê-la – a parte inferior do corpo de Lolth se transforma em uma enorme aranha demoníaca, com patas espinhadas e mandíbulas que podem partes os inimigos.
+
+ORCUS
+
+Conhecido como o Príncipe Demônio dos Mortos-Vivos e o Senhor Sangrento, o lorde demônio Orcus é venerado pelos mortos-vivos e pelas criaturas vivas que canalizam o poder da morte-vida. Uma entidade introspectiva e niilista, Orcus anseia fazer do multiverso um lugar de morte e trevas, para sempre imutável, exceto por sua vontade. O Príncipe Demônio dos Mortos-Vivos é uma riatura suja e corpulenta, com um torso humanoide,  poderosas pernas de bode e a cabeça dessecada de um carneiro. A parte superior do seu corpo ulceroso fede a doença, mas sua cabeça decadente e olhos vermelhos brilhantes parecem de uma criatura que já está morta.
+Grandes asas negras de morcego brotam de suas costas, provocando um mal cheiro no ar quando batem. Orcus empunha um artefato malévolo conhecido como o Cetro de Orcus, um bastão similar a uma maça de obsidiana com um crânio humanoide na ponta. Ele cercase de mortos-vivos e criaturas vivas fora de seu controle são anátemas para ele.
+
+YEENOGHU
+
+Conhecido como Senhor Gnoll e a Besta da Carnificina, o lorde demônio Yeenoghu tem apetite por chacina e destruição sem sentido. Os gnolls são seus instrumentos mortais e ele os leva a cometer atrocidades cada vez maiores em seu nome. Deliciando-se com tristeza e desespero, o Senhor Gnoll anseia tornar o mundo em uma vastidão desértica em que os últimos gnolls sobreviventes irão se destruir pelo direito de banquetear-se dos mortos. 
+Yeenoghu tem a aparência de um enorme e assustador gnoll com uma crina de espinhos negros e olhos que queimam com chamas esmeralda. Sua armadura é uma miscelânea de escudos e peitorais adquiridos de seus oponentes caídos e decorado com as peles esfoladas desses oponentes. Yeenoghu pode convocar um mangual triplo que ele chama de Açougueiro, o qual ele empunha causando efeitos letais ou ergue girando no ar durante a batalha enquanto destroça seus inimigos com dentes e garras.
+
+OUTROS LORDES DEMÔNIOS
+
+Ninguém sabe o número total de lordes demônios que permeiam o Abismo. Devido às profundezas infinitas desse plano, demônios poderosos constantemente ascendem a lordes demônios e caem com a mesma velocidade. Entre os lordes demônios cujo poder durou tempo suficiente para os demonologistas nomearem-nos estão Fraz-Urb’luu, o Príncipe da Enganação; Kostchtchie, o Príncipe da Ira; Pazuzu, Príncipe dos Reinos Aéreos Inferiores; e Zuggtmoy, Senhora dos Fungos.
+
+TIPOS DE DEMÔNIO
+
+Demonologistas organizaram a distribuição caótica de demônios em amplas categorias de poder conhecidas como tipos. A maioria dos demônios se encaixam em um dos seis tipos principais, onde os mais fracos categorizam-se como Tipo 1 e os mais fortes como Tipo 6. Os demônios fora dos seis tipos principais são categorizados como demônios menores e lordes demônios.
+
+DEMÔNIOS POR TIPO
+Tipo Exemplos
+1 barlgura, demônio das sombras, vrock
+2 chasme, hezrou
+3 glabrezu, yochlol
+4 nalfeshnee
+5 marilith
+6 balor, goristro
+
+NOMES VERDADEIROS DE DEMÔNIOS
+
+Apesar de todos os demônios terem nomes comuns, cada lorde demônio e cada demônio de tipo 1 dos 6 possui um nome verdadeiro que ele guarda em segredo. Um demônio pode ser forçado a revelar seu nome verdadeiro se estiver enfeitiçado e dizem existir antigos pergaminhos e tomos com listas de nomes verdadeiros dos mais poderosos demônios.
+Um mortal que descubra o nome verdadeiro de um demônio pode usar magia de invocação poderosa para convocar o demônio do Abismo e exercer certo grau de controle sobre ele. Porém, a maioria dos demônios trazidos ao Plano Material dessa forma fazem tudo que podem para causar estragos e semear discórdia econflito.`
+},
+
+{
+    nome: "Balor - Demônio",
+    nd: "2",
+    regiao: ["Subterrâneo"],
+    pagina: 64,
+    descricao: `Criatura que destrói a mente e assume corpos.
+
+=== BLOCO DE ESTATÍSTICAS ===
+Tipo: Aberração Pequena
+CA: 12
+PV: 21 (6d6)
+Deslocamento: 12 m
+
+FOR 6 (-2)
+DES 14 (+2)
+CON 13 (+1)
+INT 12 (+1)
+SAB 11 (+0)
+CAR 10 (+0)
 
 Ações:
-- Drenar Vida:
-Criaturas a 3 m fazem teste CON CD 19.
-Falha: 6d6 necrótico.
+- Devorar Intelecto:
+Alvo faz teste INT CD 12.
+Falha: sofre 2d10 psíquico e INT reduzida a 0.
 
-- Uivo:
-CD 15 CON.
-Falha: reduz a 0 PV.
-
-Ações Lendárias:
-- Drenar Essência
+- Roubar Corpo:
+Alvo incapacitado → controle total.
 `
 },
 
 {
     nome: "Devorador de Intelecto",
     nd: "2",
-    regiao: "Subterrâneo",
+    regiao: ["Subterrâneo"],
     pagina: 64,
     descricao: `Criatura que destrói a mente e assume corpos.
 
@@ -1890,7 +1788,7 @@ Alvo incapacitado → controle total.
 {
     nome: "Devorador de Mentes (Mind Flayer)",
     nd: "7",
-    regiao: "Subterrâneo",
+    regiao: ["Subterrâneo"],
     pagina: 65,
     descricao: `Aberração psíquica que domina mentes e devora cérebros.
 
@@ -1925,7 +1823,7 @@ Falha: 4d8 psíquico e atordoado.
 {
     nome: "Diabo (Imp)",
     nd: "1",
-    regiao: "Inferno",
+    regiao: ["Inferno"],
     pagina: 67,
     descricao: `Pequeno diabo servil com veneno e invisibilidade.
 
@@ -1948,7 +1846,7 @@ Habilidades:
 {
     nome: "Tiranossauro Rex",
     nd: "8",
-    regiao: "Floresta",
+    regiao: ["Floresta"],
     pagina: 80,
     descricao: `Predador colossal.
 
@@ -2013,7 +1911,7 @@ CD 18 DES metade.
 {
     nome: "Dragão das Sombras",
     nd: "variável",
-    regiao: "Umbra",
+    regiao: ["Umbra"],
     pagina: 83,
     descricao: `Dragão corrompido pela energia sombria.
 
@@ -2067,7 +1965,7 @@ CD 21 DES metade.
 {
     nome: "Dríade",
     nd: "1",
-    regiao: "Floresta",
+    regiao: ["Floresta"],
     pagina: 119,
     descricao: `Espírito da natureza ligado a uma árvore.
 
@@ -2098,7 +1996,7 @@ CD 14 SAB.
 {
     nome: "Drider",
     nd: "6",
-    regiao: "Subterrâneo",
+    regiao: ["Subterrâneo"],
     pagina: 120,
     descricao: `Drow transformado em criatura aranha.
 
@@ -6583,8 +6481,6 @@ lore:`Um líder endurecido, mais perigoso pela disciplina que impõe do que pela
 
 ];
 
-
-
 // 🔧 INICIALIZAÇÃO
 populateFilters();
 renderList();
@@ -6806,7 +6702,6 @@ document.getElementById("campanhaFilter").addEventListener("change", renderList)
 document.getElementById("portoFilter").addEventListener("change", renderList);
 document.getElementById("customFilter").addEventListener("change", renderList);
 document.getElementById("santuarioMusgoFilter").addEventListener("change", renderList);
-
 </script>
 
 </body>
